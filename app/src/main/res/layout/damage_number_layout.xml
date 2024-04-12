@@ -1,0 +1,9 @@
+<!-- damage_number_layout.xml -->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+          android:id="@+id/damageNumber"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="10"
+          android:textColor="#FF0000"
+          android:textSize="24sp"
+          android:background="@drawable/rounded_background" />
