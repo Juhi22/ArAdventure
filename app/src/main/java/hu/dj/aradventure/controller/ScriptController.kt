@@ -1,6 +1,5 @@
 package hu.dj.aradventure.controller
 
-import android.content.res.AssetManager
 import android.view.View
 import android.widget.TextView
 import hu.dj.aradventure.GameState
@@ -20,41 +19,56 @@ class ScriptController(
     private lateinit var answerB: List<String>
     private var npcSentenceKey: String = "1"
 
+    private var onCompletionListener: (() -> Unit)? = null
+
+    fun setOnCompletionListener(onCompletionListener: () -> Unit) {
+        this.onCompletionListener = onCompletionListener
+    }
+
     fun init() {
         mobText.visibility = View.INVISIBLE
         playerTextA.visibility = View.INVISIBLE
         playerTextB.visibility = View.INVISIBLE
 
         playerTextA.setOnClickListener {
-            if (answerA.isNotEmpty()) {
-                npcSentenceKey = answerA[1]
-                displayDialogsAndPlaySound()
-            } else {
-                removeDialogs()
-            }
+            handleAnswer(answerA)
         }
 
         playerTextB.setOnClickListener {
-            if (answerB.isNotEmpty()) {
-                npcSentenceKey = answerB[1]
-                displayDialogsAndPlaySound()
-            } else {
-                removeDialogs()
-            }
+            handleAnswer(answerB)
         }
     }
 
-    fun play(gameState: GameState, givenArModel: ArModel) {
+    private fun handleAnswer(answers: List<String>) {
+        if (answers.isNotEmpty()) {
+            npcSentenceKey = answers[1]
+            displayDialogsAndPlaySound()
+
+        } else {
+            finishScript()
+        }
+    }
+
+    private fun finishScript() {
+        removeDialogs()
+        onCompletionListener?.invoke()
+    }
+
+    fun play(gameState: GameState?, givenArModel: ArModel, specialScriptKey: String = "default") {
+        npcSentenceKey = "1"
         arModel = givenArModel
-        chapter = gameState.chapter.toString()
         val script: Map<String, Any> = arModel.script
-        dialogs = if(script.isEmpty()) {
+        if (gameState != null) {
+            chapter = gameState.chapter.toString()
+        } else {
+            chapter = specialScriptKey
+        }
+        dialogs = if (script.isEmpty()) {
             HashMap()
         } else {
             script[chapter] as HashMap<String, List<Any>>
         }
         displayDialogsAndPlaySound()
-
     }
 
     private fun displayDialogsAndPlaySound() {

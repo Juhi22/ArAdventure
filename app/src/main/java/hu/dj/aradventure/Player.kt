@@ -2,13 +2,14 @@ package hu.dj.aradventure
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import hu.dj.aradventure.item.Item
 
 class Player : ViewModel() {
-    //var health: Int = 3;
-    var health = MutableLiveData(3);
-    var maxHealth: Int = 3;
-    val minimumHealth: Int = 0;
-    var damagePoint: Int = 1;
+    var health = MutableLiveData(3)
+    var maxHealth: Int = 3
+    val minimumHealth: Int = 0
+    var damagePoint: Int = 1
+    var inventory: MutableList<Item> = mutableListOf()
 
     fun damage(damagePoint: Int) {
         val futureHealth = this.health.value?.minus(damagePoint)
@@ -28,5 +29,9 @@ class Player : ViewModel() {
                 this.health.value = futureHealth
             }
         }
+    }
+
+    fun pickUpItem(item: Item) {
+        inventory.add(item)
     }
 }

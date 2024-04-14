@@ -147,79 +147,79 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             arFragment.arSceneView.session?.configure(config)
         }
 
-/*        arFragment.arSceneView.scene.setOnTouchListener { hitTestResult, motionEvent ->
-            // Kattintás pozíciójának meghatározása
-            val x = motionEvent.x
-            val y = motionEvent.y
+        /*        arFragment.arSceneView.scene.setOnTouchListener { hitTestResult, motionEvent ->
+                    // Kattintás pozíciójának meghatározása
+                    val x = motionEvent.x
+                    val y = motionEvent.y
 
-            // Találati pont meghatározása az AR térben
-            val hitTestResults = arSceneView.arFrame?.hitTest(x, y)
+                    // Találati pont meghatározása az AR térben
+                    val hitTestResults = arSceneView.arFrame?.hitTest(x, y)
 
-            // Ha találtunk egy pontot
-            if (hitTestResults != null && hitTestResults.isNotEmpty()) {
-                val hitPose = hitTestResults[0].hitPose
+                    // Ha találtunk egy pontot
+                    if (hitTestResults != null && hitTestResults.isNotEmpty()) {
+                        val hitPose = hitTestResults[0].hitPose
 
-                // Létrehozunk egy ViewRenderable-t a damage_number_layout alapján
-                val renderable = ViewRenderable.builder()
-                    .setView(this@MainActivity, R.layout.damage_number_layout)
-                    .build()
-                    .thenAccept { renderable ->
-                        // Elhelyezzük a ViewRenderable-t a találati pozícióban
-                        val node = Node()
-                        node.renderable = renderable
-                        node.worldPosition.x = hitPose.tx()
-                        node.worldRotation.y = hitPose.ty()
-                        node.worldPosition.z = hitPose.tz()
+                        // Létrehozunk egy ViewRenderable-t a damage_number_layout alapján
+                        val renderable = ViewRenderable.builder()
+                            .setView(this@MainActivity, R.layout.damage_number_layout)
+                            .build()
+                            .thenAccept { renderable ->
+                                // Elhelyezzük a ViewRenderable-t a találati pozícióban
+                                val node = Node()
+                                node.renderable = renderable
+                                node.worldPosition.x = hitPose.tx()
+                                node.worldRotation.y = hitPose.ty()
+                                node.worldPosition.z = hitPose.tz()
 
-                        // Hozzáadjuk a node-ot az ARScene-hez
-                        arSceneView.scene.addChild(node)
+                                // Hozzáadjuk a node-ot az ARScene-hez
+                                arSceneView.scene.addChild(node)
+                            }
+                            .exceptionally { throwable ->
+                                throw RuntimeException("Error creating renderable", throwable)
+                            }
                     }
-                    .exceptionally { throwable ->
-                        throw RuntimeException("Error creating renderable", throwable)
-                    }
-            }
 
-            true
-        }*/
+                    true
+                }*/
 
-/*        arSceneView.setOnTouchListener { view, motionEvent ->
-            lastTouchX = motionEvent.x
-            lastTouchY = motionEvent.y
-            false
-        }*/
+        /*        arSceneView.setOnTouchListener { view, motionEvent ->
+                    lastTouchX = motionEvent.x
+                    lastTouchY = motionEvent.y
+                    false
+                }*/
 
-/*        //TODO it does not work
-        arFragment.setOnTapArPlaneListener { hitResult, plane, motionEvent ->
-            val trackable = hitResult.trackable
-            if (trackable is AugmentedImage) {
-                // Helyezze el a "damage number" szöveget az AR modell felett
-                val damageNumberLayout = LayoutInflater.from(this).inflate(R.layout.damage_number_layout, arFragment.view as ViewGroup, false)
-                val textView = damageNumberLayout.findViewById<TextView>(R.id.damageNumber)
+        /*        //TODO it does not work
+                arFragment.setOnTapArPlaneListener { hitResult, plane, motionEvent ->
+                    val trackable = hitResult.trackable
+                    if (trackable is AugmentedImage) {
+                        // Helyezze el a "damage number" szöveget az AR modell felett
+                        val damageNumberLayout = LayoutInflater.from(this).inflate(R.layout.damage_number_layout, arFragment.view as ViewGroup, false)
+                        val textView = damageNumberLayout.findViewById<TextView>(R.id.damageNumber)
 
-                // Pozicionálja a szöveget az AR modell felett
-                val anchor = hitResult.createAnchor()
-                val anchorNode = AnchorNode(anchor)
-                anchorNode.addChild(Node().apply {
-                    parent = anchorNode
-                    localPosition = Vector3(0f, 0.1f, 0f)  // Állítsa be a szöveg pozícióját az AR modell felett
-//                    renderable = ViewRenderable.builder()
-//                        .setView(this@MainActivity, damageNumberLayout)
-//                        .build()
-                    val viewRenderableFuture = ViewRenderable.builder()
-                        .setView(this@MainActivity, damageNumberLayout)
-                        .build()
-                    viewRenderableFuture.thenAccept { renderable ->
+                        // Pozicionálja a szöveget az AR modell felett
+                        val anchor = hitResult.createAnchor()
+                        val anchorNode = AnchorNode(anchor)
                         anchorNode.addChild(Node().apply {
-                            setParent(anchorNode)
+                            parent = anchorNode
                             localPosition = Vector3(0f, 0.1f, 0f)  // Állítsa be a szöveg pozícióját az AR modell felett
-                            this.renderable = renderable
+        //                    renderable = ViewRenderable.builder()
+        //                        .setView(this@MainActivity, damageNumberLayout)
+        //                        .build()
+                            val viewRenderableFuture = ViewRenderable.builder()
+                                .setView(this@MainActivity, damageNumberLayout)
+                                .build()
+                            viewRenderableFuture.thenAccept { renderable ->
+                                anchorNode.addChild(Node().apply {
+                                    setParent(anchorNode)
+                                    localPosition = Vector3(0f, 0.1f, 0f)  // Állítsa be a szöveg pozícióját az AR modell felett
+                                    this.renderable = renderable
+                                })
+                            }
                         })
-                    }
-                })
 
-                arFragment.arSceneView.scene.addChild(anchorNode)
-            }
-        }*/
+                        arFragment.arSceneView.scene.addChild(anchorNode)
+                    }
+                }*/
 
         arFragment.arSceneView.scene.addOnUpdateListener { frameTime: FrameTime ->
             //updateModelOrientation()
@@ -299,41 +299,41 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         //}
     }
 
-/*    private fun checkOnTouch() {
-        // Találati eredmények
-        val hitTestResults = arSceneView.arFrame?.hitTest(lastTouchX, lastTouchY)
+    /*    private fun checkOnTouch() {
+            // Találati eredmények
+            val hitTestResults = arSceneView.arFrame?.hitTest(lastTouchX, lastTouchY)
 
-        // Ha van találat
-        if (hitTestResults != null && hitTestResults.isNotEmpty()) {
-            // Az első találati pont
-            val hitResult = hitTestResults[0]
+            // Ha van találat
+            if (hitTestResults != null && hitTestResults.isNotEmpty()) {
+                // Az első találati pont
+                val hitResult = hitTestResults[0]
 
-            // Itt eldöntheted, hogy a kattintás a modellre történt-e vagy sem
-            val trackable = hitResult.trackable
-            if (trackable is AugmentedImage && trackable.trackingState == TrackingState.TRACKING) {
-                // Ha a kattintás a modellre történt, jelenítsd meg a damage indicatort
-                createDamageNumber(hitResult.hitPose)
+                // Itt eldöntheted, hogy a kattintás a modellre történt-e vagy sem
+                val trackable = hitResult.trackable
+                if (trackable is AugmentedImage && trackable.trackingState == TrackingState.TRACKING) {
+                    // Ha a kattintás a modellre történt, jelenítsd meg a damage indicatort
+                    createDamageNumber(hitResult.hitPose)
+                }
             }
-        }
-    }*/
+        }*/
 
 //     private fun createDamageNumber(hitPose: Pose) {
-   /* private fun createDamageNumber(x: Float, y: Float, z: Float) {
-        val damageNumberView = findViewById<TextView>(R.id.damageNumber)
+    /* private fun createDamageNumber(x: Float, y: Float, z: Float) {
+         val damageNumberView = findViewById<TextView>(R.id.damageNumber)
 
-    val damageRenderable = ViewRenderable.builder()
-        .setView(this, damageNumberView)
-        .build()
+     val damageRenderable = ViewRenderable.builder()
+         .setView(this, damageNumberView)
+         .build()
 
-    val damageNode = Node().apply {
-        setParent(arSceneView.scene)
-        localPosition = Vector3(x, y, z)
-    }
+     val damageNode = Node().apply {
+         setParent(arSceneView.scene)
+         localPosition = Vector3(x, y, z)
+     }
 
-    damageRenderable.thenAccept { renderable ->
-        damageNode.renderable = renderable
-    }
-    }*/
+     damageRenderable.thenAccept { renderable ->
+         damageNode.renderable = renderable
+     }
+     }*/
 
     override fun onInit(status: Int) {
         // Ellenőrizzük, hogy a TextToSpeech inicializálás sikeres volt-e
@@ -420,9 +420,13 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                 arFragment.arSceneView.scene.addChild(anchorNode.apply {
                     addChildNode(this, modelRenderable, arModel, "idle")
 
-                    soundController.mediaPlayer?.setOnCompletionListener {
-                        if (arModel is Enemy) {
-                            changeNodeAnimation(this, modelRenderable, arModel, "attack")
+                    if (arModel is Enemy) {
+                        var isInitialAttack = true
+                        scriptController.setOnCompletionListener {
+                            if (isInitialAttack) {
+                                changeNodeAnimation(this, modelRenderable, arModel, "attack")
+                                isInitialAttack = false
+                            }
                         }
                     }
                 })
@@ -469,7 +473,11 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                 renderableInstance.animate(arModel.animations[animationName]).start()
 
                 if (animationName == "idle") {
-                    scriptController.play(gameState, arModel)
+                    if (arModel is Enemy) {
+                        scriptController.play(null, arModel, "attack")
+                    } else {
+                        scriptController.play(gameState, arModel)
+                    }
                 }
 
                 if (arModel is Enemy && animationName == "attack") {
@@ -503,6 +511,7 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                     timedActionController.runAfterDelay(100) {
                         updateModelOrientation(this)
                     }
+                    scriptController.play(null, arModel, "dead")
                 }
             }
 
