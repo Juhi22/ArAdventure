@@ -1,8 +1,11 @@
 package hu.dj.aradventure.armodel
 
+import hu.dj.aradventure.item.Item
+
 open class Enemy: ArModel() {
 
-    open var damagePoint: Int = 0;
+    open var damagePoint: Int = 0
+    open var reward: Item? = null
 
     fun damage(damagePoint: Int) {
         this.health -= damagePoint

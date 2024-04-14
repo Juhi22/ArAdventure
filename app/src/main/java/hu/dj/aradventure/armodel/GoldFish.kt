@@ -1,5 +1,8 @@
 package hu.dj.aradventure.armodel
 
+import hu.dj.aradventure.item.HealthAmulet
+import hu.dj.aradventure.item.Item
+
 object GoldFish: Enemy() {
     override val gltfPath: String
         get() = "gold_fish/scene.gltf"
@@ -19,6 +22,8 @@ object GoldFish: Enemy() {
     override var health: Int = 5
 
     override var damagePoint: Int = 1
+
+    override var reward: Item? = HealthAmulet
 
     override val sounds: Map<String, String>
         get() {

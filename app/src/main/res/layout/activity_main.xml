@@ -17,6 +17,49 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
+    <View
+            android:id="@+id/backdrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#80000000"
+            android:alpha="0.8"
+            android:clickable="true"
+            android:focusable="true"/>
+
+    <ImageView
+            android:id="@+id/centerImage"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/heart"
+            app:layout_constraintTop_toBottomOf="@id/centerTitle"
+            app:layout_constraintBottom_toTopOf="@id/centerDescription"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+            android:id="@+id/centerTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Top Text"
+            android:textSize="20sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="300dp"/>
+
+    <TextView
+            android:id="@+id/centerDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bottom Text"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@id/centerImage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp" />
+
     <ImageView
             android:id="@+id/heartIcon"
             android:layout_width="50dp"

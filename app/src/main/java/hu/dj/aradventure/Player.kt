@@ -2,6 +2,7 @@ package hu.dj.aradventure
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import hu.dj.aradventure.item.HealthAmulet
 import hu.dj.aradventure.item.Item
 
 class Player : ViewModel() {
@@ -32,6 +33,12 @@ class Player : ViewModel() {
     }
 
     fun pickUpItem(item: Item) {
-        inventory.add(item)
+        if (!inventory.contains(item)) {
+            inventory.add(item)
+            if (item is HealthAmulet) {
+                maxHealth += 5
+                health.value = maxHealth
+            }
+        }
     }
 }

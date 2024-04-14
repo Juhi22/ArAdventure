@@ -32,6 +32,7 @@ import hu.dj.aradventure.controller.ScriptController
 import hu.dj.aradventure.controller.SoundController
 import hu.dj.aradventure.controller.TimedActionController
 import hu.dj.aradventure.controller.VibrationController
+import hu.dj.aradventure.item.Item
 
 class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
@@ -67,6 +68,8 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        setBackDropContent(View.INVISIBLE, Item())
 
         soundController = SoundController(assets)
 
@@ -390,6 +393,35 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                 }
             }
         }*/
+    private fun setBackDropContent(visibility: Int, item: Item) {
+        val backdrop = findViewById<View>(R.id.backdrop)
+        val healthPoints: TextView = findViewById(R.id.healthPoints)
+        val heartIcon: ImageView = findViewById(R.id.heartIcon)
+        val centerImage: ImageView = findViewById(R.id.centerImage)
+        val centerTitle: TextView = findViewById(R.id.centerTitle)
+        val centerDescription: TextView = findViewById(R.id.centerDescription)
+
+        backdrop.visibility = visibility
+        centerImage.visibility = visibility
+        centerImage.setImageResource(item.imageId)
+        centerTitle.visibility = visibility
+        centerTitle.text = item.name
+        centerDescription.visibility = visibility
+        centerDescription.text = item.description
+
+        if (visibility == View.VISIBLE) {
+            healthPoints.visibility = View.INVISIBLE
+            heartIcon.visibility = View.INVISIBLE
+
+            centerImage.setOnClickListener {
+                setBackDropContent(View.INVISIBLE, Item())
+                player.pickUpItem(item)
+            }
+        } else {
+            healthPoints.visibility = View.VISIBLE
+            heartIcon.visibility = View.VISIBLE
+        }
+    }
 
     private fun updateModelOrientation(transformableNode: TransformableNode) {
         val cameraPosition = arFragment.arSceneView.scene.camera.worldPosition
@@ -512,6 +544,12 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                         updateModelOrientation(this)
                     }
                     scriptController.play(null, arModel, "dead")
+                    if (arModel is Enemy && arModel.reward != null) {
+                        scriptController.setOnCompletionListener {
+                            //TODO show item, onlcick put it in the player inventory, update player inventory, update player stats
+                            showReward(arModel.reward!!)
+                        }
+                    }
                 }
             }
 
@@ -522,6 +560,10 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                 }
             }
         }
+    }
+
+    private fun showReward(reward: Item) {
+        setBackDropContent(View.VISIBLE, reward)
     }
 
     private fun clearChildNodes(anchorNode: Node) {
