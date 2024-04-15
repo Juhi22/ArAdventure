@@ -4,4 +4,10 @@ open class Item {
     open var name: String = ""
     open var description: String = ""
     open var imageId: Int = 0
+    open var type: ItemType = ItemType.MAX_HEALTH
+    open var value: Int = 0
+}
+
+enum class ItemType {
+    MAX_HEALTH, ATTACK_POWER
 }

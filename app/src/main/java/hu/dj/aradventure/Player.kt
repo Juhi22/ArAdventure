@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import hu.dj.aradventure.item.HealthAmulet
 import hu.dj.aradventure.item.Item
+import hu.dj.aradventure.item.ItemType
 
 class Player : ViewModel() {
     var health = MutableLiveData(3)
@@ -35,9 +36,11 @@ class Player : ViewModel() {
     fun pickUpItem(item: Item) {
         if (!inventory.contains(item)) {
             inventory.add(item)
-            if (item is HealthAmulet) {
-                maxHealth += 5
+            if (item.type == ItemType.MAX_HEALTH) {
+                maxHealth += item.value
                 health.value = maxHealth
+            } else if (item.type == ItemType.ATTACK_POWER) {
+                damagePoint += item.value
             }
         }
     }
