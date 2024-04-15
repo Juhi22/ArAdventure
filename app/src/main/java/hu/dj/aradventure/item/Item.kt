@@ -7,7 +7,3 @@ open class Item {
     open var type: ItemType = ItemType.MAX_HEALTH
     open var value: Int = 0
 }
-
-enum class ItemType {
-    MAX_HEALTH, ATTACK_POWER
-}
