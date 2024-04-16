@@ -12,6 +12,7 @@ class Player : ViewModel() {
     val minimumHealth: Int = 0
     var damagePoint: Int = 1
     var inventory: MutableList<Item> = mutableListOf()
+    var isDead = MutableLiveData(false)
 
     fun damage(damagePoint: Int) {
         val futureHealth = this.health.value?.minus(damagePoint)
@@ -20,6 +21,9 @@ class Player : ViewModel() {
                 this.health.value = minimumHealth
             } else {
                 this.health.value = futureHealth
+            }
+            if(this.health.value!! <= 0) {
+                isDead.value = true
             }
         }
     }
@@ -34,7 +38,10 @@ class Player : ViewModel() {
     }
 
     fun pickUpItem(item: Item) {
-        if (!inventory.contains(item)) {
+        if (item.type == ItemType.DEATH) {
+            health.value = 1
+            isDead.value = false
+        } else if (!inventory.contains(item)) {
             inventory.add(item)
             if (item.type == ItemType.MAX_HEALTH) {
                 maxHealth += item.value

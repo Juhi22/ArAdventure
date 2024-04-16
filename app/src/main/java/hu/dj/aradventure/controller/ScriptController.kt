@@ -89,6 +89,7 @@ class ScriptController(
             }
         } else {
             arModel.sounds["default"]?.let { soundController.start(it) }
+            finishScript()
         }
     }
 
