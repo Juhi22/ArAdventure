@@ -2,9 +2,7 @@ package hu.dj.aradventure
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import hu.dj.aradventure.item.HealthAmulet
-import hu.dj.aradventure.item.Item
-import hu.dj.aradventure.item.ItemType
+import hu.dj.aradventure.item.*
 
 class Player : ViewModel() {
     var health = MutableLiveData(3)
@@ -13,6 +11,7 @@ class Player : ViewModel() {
     var damagePoint: Int = 1
     var inventory: MutableList<Item> = mutableListOf()
     var isDead = MutableLiveData(false)
+    var quests: MutableList<Quest> = mutableListOf()
 
     fun damage(damagePoint: Int) {
         val futureHealth = this.health.value?.minus(damagePoint)
@@ -41,6 +40,8 @@ class Player : ViewModel() {
         if (item.type == ItemType.DEATH) {
             health.value = 1
             isDead.value = false
+        } else if (item is Quest) {
+            quests.add(item)
         } else if (!inventory.contains(item)) {
             inventory.add(item)
             if (item.type == ItemType.MAX_HEALTH) {
@@ -50,5 +51,13 @@ class Player : ViewModel() {
                 damagePoint += item.value
             }
         }
+    }
+
+    fun finishQuest(quest: Quest) {
+        quests.remove(quest)
+    }
+
+    fun updateQuests(quests: List<Quest>) {
+        this.quests = quests.toMutableList()
     }
 }

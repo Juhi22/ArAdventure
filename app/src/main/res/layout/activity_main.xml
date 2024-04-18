@@ -82,6 +82,16 @@
             android:layout_marginTop="16dp"/>
 
     <ImageView
+            android:id="@+id/questLog"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/quest_log"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="86dp"
+            android:layout_marginStart="16dp"/>
+
+    <ImageView
             android:id="@+id/fight_indicator"
             android:layout_width="50dp"
             android:layout_height="50dp"

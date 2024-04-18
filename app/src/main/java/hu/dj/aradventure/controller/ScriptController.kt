@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.TextView
 import hu.dj.aradventure.GameState
 import hu.dj.aradventure.armodel.ArModel
+import hu.dj.aradventure.item.Quest
 
 class ScriptController(
     private val mobText: TextView,
@@ -18,6 +19,7 @@ class ScriptController(
     private lateinit var answerA: List<String>
     private lateinit var answerB: List<String>
     private var npcSentenceKey: String = "1"
+    private var newQuest: Quest? = null
 
     private var onCompletionListener: (() -> Unit)? = null
 
@@ -43,7 +45,6 @@ class ScriptController(
         if (answers.isNotEmpty()) {
             npcSentenceKey = answers[1]
             displayDialogsAndPlaySound()
-
         } else {
             finishScript()
         }
@@ -51,6 +52,10 @@ class ScriptController(
 
     private fun finishScript() {
         removeDialogs()
+        if (newQuest != null) {
+            QuestController.startQuest(newQuest!!)
+            newQuest = null
+        }
         onCompletionListener?.invoke()
     }
 
@@ -103,13 +108,19 @@ class ScriptController(
     }
 
     private fun setAnswers(section: List<Any>) {
-        if (section[1] != null) {
-            val answers: List<String> = section[1] as List<String>
-            answerA = dialogs[answers[0]] as List<String>
-            answerB = dialogs[answers[1]] as List<String>
-        } else {
+        if (section[1] is Quest) {
+            newQuest = section[1] as Quest
             answerA = emptyList()
             answerB = emptyList()
+        } else {
+            if (section[1] != null) {
+                val answers: List<String> = section[1] as List<String>
+                answerA = dialogs[answers[0]] as List<String>
+                answerB = dialogs[answers[1]] as List<String>
+            } else {
+                answerA = emptyList()
+                answerB = emptyList()
+            }
         }
     }
 

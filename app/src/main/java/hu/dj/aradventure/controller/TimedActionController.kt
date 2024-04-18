@@ -27,6 +27,8 @@ class TimedActionController() {
     }
 
     fun stopRunning() {
-        handler.removeCallbacks(runnable)
+        if (::runnable.isInitialized) {
+            handler.removeCallbacks(runnable)
+        }
     }
 }

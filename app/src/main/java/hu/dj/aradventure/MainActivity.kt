@@ -1,5 +1,6 @@
 package hu.dj.aradventure
 
+import hu.dj.aradventure.dialog.QuestLogDialog
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -25,12 +26,11 @@ import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
 import hu.dj.aradventure.armodel.*
-import hu.dj.aradventure.controller.ScriptController
-import hu.dj.aradventure.controller.SoundController
-import hu.dj.aradventure.controller.TimedActionController
-import hu.dj.aradventure.controller.VibrationController
+import hu.dj.aradventure.controller.*
 import hu.dj.aradventure.item.Death
 import hu.dj.aradventure.item.Item
+import hu.dj.aradventure.item.Quest
+import hu.dj.aradventure.item.QuestType
 
 class MainActivity : AppCompatActivity() {
 
@@ -99,6 +99,24 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        val questLogImage: ImageView = findViewById(R.id.questLog)
+        questLogImage.setOnClickListener {
+            val questLogDialog = QuestLogDialog(this)
+            questLogDialog.show(player.quests)
+        }
+
+        QuestController.onQuestStartListener(object : QuestController.QuestListener{
+            override fun onQuestStarts(quest: Quest) {
+                showItem(quest)
+            }
+            override fun onQuestEnds(quest: Quest) {
+                player.finishQuest(quest)
+            }
+            override fun onQuestsUpdated(quests: List<Quest>) {
+                player.updateQuests(quests)
+            }
+        })
+
         augmentedImageMap = mutableMapOf()
 
         arFragment = supportFragmentManager.findFragmentById(R.id.arFragment) as ArFragment
@@ -165,14 +183,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun clearAugmentedImages() {
-//        val arSession = arFragment.arSceneView.session?.close()
-        /*  arSession?.getAllTrackables(AugmentedImage::class.java)?.forEach { image ->
-  //            arSession.removeTrackable(image)
-  //            image.trackingState = TrackingState.STOPPED
-          }*/
-        //arFragment.arSceneView.session?.
-        /*arFragment.arSceneView.session?.close()
-        arFragment.arSceneView.session?.resume()*/
         augmentedImageMap.clear()
     }
 
@@ -180,6 +190,7 @@ class MainActivity : AppCompatActivity() {
         val backdrop = findViewById<View>(R.id.backdrop)
         val healthPoints: TextView = findViewById(R.id.healthPoints)
         val heartIcon: ImageView = findViewById(R.id.heartIcon)
+        val questLogIcon: ImageView = findViewById(R.id.questLog)
         val centerImage: ImageView = findViewById(R.id.centerImage)
         val centerTitle: TextView = findViewById(R.id.centerTitle)
         val centerDescription: TextView = findViewById(R.id.centerDescription)
@@ -195,6 +206,7 @@ class MainActivity : AppCompatActivity() {
         if (visibility == View.VISIBLE) {
             healthPoints.visibility = View.INVISIBLE
             heartIcon.visibility = View.INVISIBLE
+            questLogIcon.visibility = View.INVISIBLE
 
             centerImage.setOnClickListener {
                 setBackDropContent(View.INVISIBLE, Item())
@@ -204,6 +216,7 @@ class MainActivity : AppCompatActivity() {
         } else {
             healthPoints.visibility = View.VISIBLE
             heartIcon.visibility = View.VISIBLE
+            questLogIcon.visibility = View.VISIBLE
         }
     }
 
@@ -313,6 +326,7 @@ class MainActivity : AppCompatActivity() {
                                 timedActionController.stopRunning()
                                 changeNodeAnimation(anchorNode, modelRenderable, arModel, "dead")
                                 gameState.isFightOngoing.value = false
+                                QuestController.update(player.quests, QuestType.KILLING, arModel)
                             }
                         }
                     }

@@ -1,5 +1,7 @@
 package hu.dj.aradventure.armodel
 
+import hu.dj.aradventure.item.QuestList
+
 object MedievalKnight : ArModel() {
     override val gltfPath: String
         get() = "medieval_knight/scene.gltf"
@@ -35,20 +37,20 @@ object MedievalKnight : ArModel() {
                         listOf("player1", "player2")
                     ),
                     "2" to listOf(
-                        "Igazi bajtárs vagy! Menj a trónterembe és találkozz Viharszárnnyal, Ő vezet minket.",
+                        "Mi, hősök, a jó és igaz sárkányt, Viharszárnyat támogatjuk. Mielőtt találkozhatnál vele, át kell esned egy próbán.",
                         listOf("player3", "player4")
                     ),
                     "3" to listOf(
-                        "Elég flúgos figura vagy... Menj a trónterembe és beszélj Viharszárnnyal, Ő vezet minket. Előtte ne beszélj össze-vissza!",
+                        "Elég flúgos figura vagy... Mielőtt találkozhatnál az általunk támogatott Viharszárnnyal, át kell esned egy próbán!",
                         listOf("player3", "player4")
                     ),
                     "4" to listOf(
-                        "Ő az utolsó sárkány úr aki a békét és jólétet próbálja visszaállítani, támogatnunk kell ebben!",
-                        null
+                        "Le kell győznöd öt pokolfajzatot. Ha ez sikerül, méltó vagy Viharszárny seregébe lépni!",
+                        QuestList.list[1]
                     ),
                     "5" to listOf(
-                        "Na ne szórakozz! Haladj!",
-                        null
+                        "Önbizalmad az van, aztán nehogy véletlenül odavessz! Győzz le öt pokolfajzatot, meglátjuk Viharszárny méltó katonája lehetsz e.",
+                        QuestList.list[1]
                     ),
                     "player1" to listOf(
                         "Jöttem, ahogy csak tudtam, elvégre segítenünk kell egymást!",
@@ -59,11 +61,11 @@ object MedievalKnight : ArModel() {
                         "3"
                     ),
                     "player3" to listOf(
-                        "Ki az a Viharszárny?",
+                        "Miféle próbán?",
                         "4"
                     ),
                     "player4" to listOf(
-                        "Félek a sárkányoktól, ez problémát jelent?",
+                        "Kemény vagyok mint Tarzan sarka, jöhet bármi.",
                         "5"
                     ),
                 )
