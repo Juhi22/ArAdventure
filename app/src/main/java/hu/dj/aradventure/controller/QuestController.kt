@@ -28,7 +28,6 @@ object QuestController {
 
     fun update(quests: List<Quest>, type: QuestType, questItem: Any) {
         quests.forEach{
-            it.isFinished = true
             if (!it.isFinished && it.questType == type) {
                 if (type == QuestType.KILLING && it.questItem == questItem && it.progress < it.goal) {
                     it.progress++
