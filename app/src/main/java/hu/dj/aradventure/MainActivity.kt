@@ -7,7 +7,6 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.speech.tts.TextToSpeech
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
@@ -36,7 +35,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var arFragment: ArFragment
     private lateinit var augmentedImageMap: MutableMap<AugmentedImage, AnchorNode>
-    private var textToSpeech: TextToSpeech? = null
 
     private var player = Player()
     private var gameState = GameState()
@@ -176,10 +174,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-
-        textToSpeech?.stop()
-        textToSpeech?.shutdown()
-
         soundController.shutdown()
     }
 
