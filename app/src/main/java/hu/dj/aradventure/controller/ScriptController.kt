@@ -24,6 +24,8 @@ class ScriptController(
     private var finishedQuest: Quest? = null
     var isScriptOngoing = false
 
+    private val constantDialogs = listOf("default", "attack", "dead")
+
     private var onCompletionListener: (() -> Unit)? = null
 
     fun setOnCompletionListener(onCompletionListener: () -> Unit) {
@@ -69,7 +71,9 @@ class ScriptController(
     }
 
     private fun removeDoneDialog() {
-        arModel.script.remove(chapter)
+        if (!constantDialogs.contains(chapter) && arModel.script.keys.contains(chapter)) {
+            arModel.script.remove(chapter)
+        }
     }
 
     fun play(gameState: GameState?, givenArModel: ArModel, quests: List<Quest>, specialScriptKey: String = "default") {

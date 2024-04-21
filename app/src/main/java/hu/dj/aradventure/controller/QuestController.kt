@@ -1,6 +1,5 @@
 package hu.dj.aradventure.controller
 
-import hu.dj.aradventure.armodel.Enemy
 import hu.dj.aradventure.item.Quest
 import hu.dj.aradventure.item.QuestType
 
@@ -14,7 +13,7 @@ object QuestController {
 
     private var listener: QuestListener? = null
 
-    fun onQuestStartListener(listener: QuestListener) {
+    fun onEventListener(listener: QuestListener) {
         this.listener = listener
     }
 

@@ -36,59 +36,57 @@ object MedievalKnight : ArModel() {
             )
         }
 
-    override val script: MutableMap<String, Any>
-        get() {
-            return hashMapOf(
-                "default" to hashMapOf(
-                    "1" to listOf(
-                        "Előre Viharszárnyért!",
-                        null
-                    ),
+    override var script: MutableMap<String, Any> =
+        hashMapOf(
+            "default" to hashMapOf(
+                "1" to listOf(
+                    "Előre Viharszárnyért!",
+                    null
                 ),
-                quests[0].name to hashMapOf(
-                    "1" to listOf(
-                        "Szép munka",
-                        null
-                    )
-                ),
-                "0.0" to hashMapOf(
-                    "1" to listOf(
-                        "Üdvözöllek Sárkányvölgyben! Köszönjük, hogy ilyen gyorsan jöttél és segítesz nekünk a láda kinyitásában és a gonosz legyőzésében!",
-                        listOf("player1", "player2")
-                    ),
-                    "2" to listOf(
-                        "Mi, hősök, a jó és igaz sárkányt, Viharszárnyat támogatjuk. Mielőtt találkozhatnál vele, át kell esned egy próbán.",
-                        listOf("player3", "player4")
-                    ),
-                    "3" to listOf(
-                        "Elég flúgos figura vagy... Mielőtt találkozhatnál az általunk támogatott Viharszárnnyal, át kell esned egy próbán!",
-                        listOf("player3", "player4")
-                    ),
-                    "4" to listOf(
-                        "Le kell győznöd öt pokolfajzatot. Ha ez sikerül, méltó vagy Viharszárny seregébe lépni!",
-                        quests[0]
-                    ),
-                    "5" to listOf(
-                        "Önbizalmad az van, aztán nehogy véletlenül odavessz! Győzz le öt pokolfajzatot, meglátjuk Viharszárny méltó katonája lehetsz e.",
-                        quests[0]
-                    ),
-                    "player1" to listOf(
-                        "Jöttem, ahogy csak tudtam, elvégre segítenünk kell egymást!",
-                        "2"
-                    ),
-                    "player2" to listOf(
-                        "Nem tudom miről beszélsz, én csak túrázgatok.",
-                        "3"
-                    ),
-                    "player3" to listOf(
-                        "Miféle próbán?",
-                        "4"
-                    ),
-                    "player4" to listOf(
-                        "Kemény vagyok mint Tarzan sarka, jöhet bármi.",
-                        "5"
-                    ),
+            ),
+            quests[0].name to hashMapOf(
+                "1" to listOf(
+                    "Szép munka",
+                    null
                 )
+            ),
+            "0.0" to hashMapOf(
+                "1" to listOf(
+                    "Üdvözöllek Sárkányvölgyben! Köszönjük, hogy ilyen gyorsan jöttél és segítesz nekünk a láda kinyitásában és a gonosz legyőzésében!",
+                    listOf("player1", "player2")
+                ),
+                "2" to listOf(
+                    "Mi, hősök, a jó és igaz sárkányt, Viharszárnyat támogatjuk. Mielőtt találkozhatnál vele, át kell esned egy próbán.",
+                    listOf("player3", "player4")
+                ),
+                "3" to listOf(
+                    "Elég flúgos figura vagy... Mielőtt találkozhatnál az általunk támogatott Viharszárnnyal, át kell esned egy próbán!",
+                    listOf("player3", "player4")
+                ),
+                "4" to listOf(
+                    "Le kell győznöd öt pokolfajzatot. Ha ez sikerül, méltó vagy Viharszárny seregébe lépni!",
+                    quests[0]
+                ),
+                "5" to listOf(
+                    "Önbizalmad az van, aztán nehogy véletlenül odavessz! Győzz le öt pokolfajzatot, meglátjuk Viharszárny méltó katonája lehetsz e.",
+                    quests[0]
+                ),
+                "player1" to listOf(
+                    "Jöttem, ahogy csak tudtam, elvégre segítenünk kell egymást!",
+                    "2"
+                ),
+                "player2" to listOf(
+                    "Nem tudom miről beszélsz, én csak túrázgatok.",
+                    "3"
+                ),
+                "player3" to listOf(
+                    "Miféle próbán?",
+                    "4"
+                ),
+                "player4" to listOf(
+                    "Kemény vagyok mint Tarzan sarka, jöhet bármi.",
+                    "5"
+                ),
             )
-        }
+        )
 }

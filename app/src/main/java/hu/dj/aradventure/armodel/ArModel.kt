@@ -9,7 +9,7 @@ open class ArModel() {
     open val animations = mutableMapOf<String, String>()
     open var health: Int = 1
     open var maxHealth: Int = 1
-    open val script = mutableMapOf<String, Any>()
+    open var script = mutableMapOf<String, Any>()
     open val sounds = emptyMap<String, String>()
     open val quests = emptyList<Quest>()
     open var scale = Vector3(0.4F, 0.4F, 0.4F)

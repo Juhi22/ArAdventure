@@ -31,9 +31,8 @@ object HellMinion: Enemy() {
             )
         }
 
-    override val script: MutableMap<String, Any>
-        get() {
-            return hashMapOf(
+    override var script: MutableMap<String, Any> =
+        hashMapOf(
                 "attack" to hashMapOf(
                     "1" to listOf(
                         "Hogy merészelsz megzavarni? Adok egy kóstolót az öklömből!",
@@ -47,5 +46,4 @@ object HellMinion: Enemy() {
                     ),
                 )
             )
-        }
 }

@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity() {
             questLogDialog.show(player.quests)
         }
 
-        QuestController.onQuestStartListener(object : QuestController.QuestListener{
+        QuestController.onEventListener(object : QuestController.QuestListener{
             override fun onQuestStarts(quest: Quest) {
                 showItem(quest)
             }
