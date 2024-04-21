@@ -5,6 +5,7 @@ import android.widget.TextView
 import hu.dj.aradventure.GameState
 import hu.dj.aradventure.armodel.ArModel
 import hu.dj.aradventure.item.Quest
+import java.util.stream.Collectors
 
 class ScriptController(
     private val mobText: TextView,
@@ -20,6 +21,8 @@ class ScriptController(
     private lateinit var answerB: List<String>
     private var npcSentenceKey: String = "1"
     private var newQuest: Quest? = null
+    private var finishedQuest: Quest? = null
+    var isScriptOngoing = false
 
     private var onCompletionListener: (() -> Unit)? = null
 
@@ -52,28 +55,56 @@ class ScriptController(
 
     private fun finishScript() {
         removeDialogs()
+        removeDoneDialog()
+        isScriptOngoing = false
         if (newQuest != null) {
             QuestController.startQuest(newQuest!!)
             newQuest = null
         }
+        if (finishedQuest != null) {
+            QuestController.finishQuest(finishedQuest!!)
+            finishedQuest = null
+        }
         onCompletionListener?.invoke()
     }
 
-    fun play(gameState: GameState?, givenArModel: ArModel, specialScriptKey: String = "default") {
+    private fun removeDoneDialog() {
+        arModel.script.remove(chapter)
+    }
+
+    fun play(gameState: GameState?, givenArModel: ArModel, quests: List<Quest>, specialScriptKey: String = "default") {
         npcSentenceKey = "1"
         arModel = givenArModel
         val script: Map<String, Any> = arModel.script
-        if (gameState != null) {
-            chapter = gameState.chapter.toString()
+
+        val compeletedQuests = collectCompletedQuestsOfArModel(quests)
+        if (compeletedQuests.isNotEmpty()) {
+            chapter = compeletedQuests[0].name
+            finishedQuest = compeletedQuests[0]
         } else {
-            chapter = specialScriptKey
+            if (gameState != null) {
+                chapter = gameState.chapter.toString()
+            } else {
+                chapter = specialScriptKey
+            }
         }
         dialogs = if (script.isEmpty()) {
             HashMap()
         } else {
-            script[chapter] as HashMap<String, List<Any>>
+            if (script[chapter] != null) {
+                script[chapter] as HashMap<String, List<Any>>
+            } else {
+                script["default"] as HashMap<String, List<Any>>
+            }
         }
         displayDialogsAndPlaySound()
+    }
+
+    private fun collectCompletedQuestsOfArModel(quests: List<Quest>): List<Quest> {
+        return quests
+            .stream()
+            .filter {it.isFinished && arModel.quests.contains(it)}
+            .collect(Collectors.toList())
     }
 
     private fun displayDialogsAndPlaySound() {
@@ -92,6 +123,7 @@ class ScriptController(
                     soundController.start(soundPath)
                 }
             }
+            isScriptOngoing = true
         } else {
             arModel.sounds["default"]?.let { soundController.start(it) }
             finishScript()

@@ -95,7 +95,6 @@ class MainActivity : AppCompatActivity() {
                 gameState.isFightOngoing.value = false
                 showItem(Death)
                 clearAllNodes()
-                clearAugmentedImages()
             }
         }
 
@@ -111,6 +110,7 @@ class MainActivity : AppCompatActivity() {
             }
             override fun onQuestEnds(quest: Quest) {
                 player.finishQuest(quest)
+                showItem(quest.reward)
             }
             override fun onQuestsUpdated(quests: List<Quest>) {
                 player.updateQuests(quests)
@@ -145,7 +145,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         arFragment.arSceneView.scene.addOnUpdateListener { frameTime: FrameTime ->
-            if (!player.isDead.value!!) {
+            if (!player.isDead.value!! && !gameState.isFightOngoing.value!! && !scriptController.isScriptOngoing) {
                 val updatedAugmentedImages =
                     arFragment.arSceneView.arFrame?.getUpdatedTrackables(AugmentedImage::class.java)
                 updatedAugmentedImages?.forEach { augmentedImage ->
@@ -155,6 +155,7 @@ class MainActivity : AppCompatActivity() {
                             if (!augmentedImageMap.containsKey(augmentedImage) &&
                                 augmentedImage.trackingMethod == AugmentedImage.TrackingMethod.FULL_TRACKING
                             ) {
+                                clearAllNodes()
                                 val anchorNode = AnchorNode(augmentedImage.createAnchor(augmentedImage.centerPose))
                                 augmentedImageMap[augmentedImage] = anchorNode
                                 val currentModel = getModelByGtlfPath(augmentedImage.name)
@@ -180,10 +181,6 @@ class MainActivity : AppCompatActivity() {
         textToSpeech?.shutdown()
 
         soundController.shutdown()
-    }
-
-    private fun clearAugmentedImages() {
-        augmentedImageMap.clear()
     }
 
     private fun setBackDropContent(visibility: Int, item: Item) {
@@ -303,16 +300,19 @@ class MainActivity : AppCompatActivity() {
 
                 if (animationName == "idle") {
                     if (arModel is Enemy) {
-                        scriptController.play(null, arModel, "attack")
+                        scriptController.play(null, arModel, player.quests, "attack")
                     } else {
-                        scriptController.play(gameState, arModel)
+                        scriptController.play(gameState, arModel, player.quests)
                     }
                 }
 
                 if (arModel is Enemy && animationName == "attack") {
+
+                    arModel.health = arModel.maxHealth
+
                     val attackLength = renderableInstance.getAnimation(arModel.animations[animationName]).durationMillis
                     timedActionController.runRepeatedly(attackLength) {
-                        player.damage(arModel.damagePoint)
+                        player.damage(arModel)
                         soundController.start("common_sounds/get_hit.mp3")
                         vibrationController.vibrate()
                     }
@@ -341,10 +341,12 @@ class MainActivity : AppCompatActivity() {
                     timedActionController.runAfterDelay(100) {
                         updateModelOrientation(this)
                     }
-                    scriptController.play(null, arModel, "dead")
+                    scriptController.play(null, arModel, player.quests, "dead")
                     if (arModel is Enemy && arModel.reward != null) {
                         scriptController.setOnCompletionListener {
-                            showItem(arModel.reward!!)
+                            if (arModel.reward != null) {
+                                showItem(arModel.reward!!)
+                            }
                         }
                     }
                 }
@@ -366,16 +368,31 @@ class MainActivity : AppCompatActivity() {
     private fun clearChildNodes(anchorNode: Node) {
         anchorNode.children.forEach {
             anchorNode.removeChild(it)
+            it.parent = null
+            it.renderable = null
         }
     }
 
     private fun clearAllNodes() {
-        arFragment.arSceneView.scene.children.forEach { node ->
+        with(arFragment.arSceneView.scene.children.iterator()) {
+            forEach {
+                if (it is AnchorNode) {
+                    clearChildNodes(it)
+                    arFragment.arSceneView.scene.removeChild(it)
+                    it.anchor?.detach()
+                    it.parent = null
+                    it.renderable = null
+                    augmentedImageMap.clear()
+                }
+            }
+        }
+        /*arFragment.arSceneView.scene.children.forEach { node ->
             if (node is AnchorNode) {
                 clearChildNodes(node)
                 arFragment.arSceneView.scene.removeChild(node)
                 node.anchor?.detach()
+                augmentedImageMap.clear()
             }
-        }
+        }*/
     }
 }

@@ -39,7 +39,7 @@ object GoldFish: Enemy() {
             )
         }
 
-    override val script: Map<String, Any>
+    override val script: MutableMap<String, Any>
         get() {
             return hashMapOf(
                 "attack" to hashMapOf(

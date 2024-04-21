@@ -1,6 +1,8 @@
 package hu.dj.aradventure.armodel
 
+import hu.dj.aradventure.item.Quest
 import hu.dj.aradventure.item.QuestList
+import hu.dj.aradventure.item.Sword
 
 object MedievalKnight : ArModel() {
     override val gltfPath: String
@@ -16,21 +18,39 @@ object MedievalKnight : ArModel() {
             )
         }
 
+    override val quests: List<Quest> = listOf(
+        QuestList.list[1]!!,
+    )
+
     override val sounds: Map<String, String>
         get() {
             return mutableMapOf(
                 "default" to "medieval_knight/sounds/1.mp3",
+                "default/1" to "medieval_knight/sounds/1.mp3",
                 "0.0/1" to "medieval_knight/sounds/1.mp3",
                 "0.0/2" to "medieval_knight/sounds/1.mp3",
                 "0.0/3" to "medieval_knight/sounds/1.mp3",
                 "0.0/4" to "medieval_knight/sounds/1.mp3",
                 "0.0/5" to "medieval_knight/sounds/1.mp3",
+                quests[0].name + "/1" to "medieval_knight/sounds/1.mp3",
             )
         }
 
-    override val script: Map<String, Any>
+    override val script: MutableMap<String, Any>
         get() {
             return hashMapOf(
+                "default" to hashMapOf(
+                    "1" to listOf(
+                        "Előre Viharszárnyért!",
+                        null
+                    ),
+                ),
+                quests[0].name to hashMapOf(
+                    "1" to listOf(
+                        "Szép munka",
+                        null
+                    )
+                ),
                 "0.0" to hashMapOf(
                     "1" to listOf(
                         "Üdvözöllek Sárkányvölgyben! Köszönjük, hogy ilyen gyorsan jöttél és segítesz nekünk a láda kinyitásában és a gonosz legyőzésében!",
@@ -46,11 +66,11 @@ object MedievalKnight : ArModel() {
                     ),
                     "4" to listOf(
                         "Le kell győznöd öt pokolfajzatot. Ha ez sikerül, méltó vagy Viharszárny seregébe lépni!",
-                        QuestList.list[1]
+                        quests[0]
                     ),
                     "5" to listOf(
                         "Önbizalmad az van, aztán nehogy véletlenül odavessz! Győzz le öt pokolfajzatot, meglátjuk Viharszárny méltó katonája lehetsz e.",
-                        QuestList.list[1]
+                        quests[0]
                     ),
                     "player1" to listOf(
                         "Jöttem, ahogy csak tudtam, elvégre segítenünk kell egymást!",

@@ -18,12 +18,34 @@ object HellMinion: Enemy() {
 
     override var health: Int = 5
 
+    override var maxHealth: Int = 5
+
     override var damagePoint: Int = 1
 
     override val sounds: Map<String, String>
         get() {
             return mutableMapOf(
-                "default" to "hell_minion/sounds/1.mp3"
+                "default" to "hell_minion/sounds/1.mp3",
+                "attack/1" to "hell_minion/sounds/1.mp3",
+                "dead/1" to "hell_minion/sounds/1.mp3",
+            )
+        }
+
+    override val script: MutableMap<String, Any>
+        get() {
+            return hashMapOf(
+                "attack" to hashMapOf(
+                    "1" to listOf(
+                        "Hogy merészelsz megzavarni? Adok egy kóstolót az öklömből!",
+                        null
+                    ),
+                ),
+                "dead" to hashMapOf(
+                    "1" to listOf(
+                        "AJDOAIJ(%+U+)(QFQAKJLKA!",
+                        null
+                    ),
+                )
             )
         }
 }

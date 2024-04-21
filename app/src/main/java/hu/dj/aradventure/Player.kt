@@ -2,6 +2,7 @@ package hu.dj.aradventure
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import hu.dj.aradventure.armodel.Enemy
 import hu.dj.aradventure.item.*
 
 class Player : ViewModel() {
@@ -13,8 +14,8 @@ class Player : ViewModel() {
     var isDead = MutableLiveData(false)
     var quests: MutableList<Quest> = mutableListOf()
 
-    fun damage(damagePoint: Int) {
-        val futureHealth = this.health.value?.minus(damagePoint)
+    fun damage(enemy: Enemy) {
+        val futureHealth = this.health.value?.minus(enemy.damagePoint)
         if (futureHealth != null) {
             if (futureHealth < minimumHealth) {
                 this.health.value = minimumHealth
@@ -22,6 +23,7 @@ class Player : ViewModel() {
                 this.health.value = futureHealth
             }
             if(this.health.value!! <= 0) {
+                enemy.health = enemy.maxHealth
                 isDead.value = true
             }
         }
@@ -40,7 +42,7 @@ class Player : ViewModel() {
         if (item.type == ItemType.DEATH) {
             health.value = 1
             isDead.value = false
-        } else if (item is Quest) {
+        } else if (item is Quest && !quests.contains(item)) {
             quests.add(item)
         } else if (!inventory.contains(item)) {
             inventory.add(item)

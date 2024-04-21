@@ -30,7 +30,7 @@ object Unicorn : ArModel() {
             )
         }
 
-    override val script: Map<String, Any>
+    override val script: MutableMap<String, Any>
         get() {
             return hashMapOf(
                 "0.0" to hashMapOf(
