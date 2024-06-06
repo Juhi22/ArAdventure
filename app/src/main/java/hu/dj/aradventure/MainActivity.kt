@@ -1,6 +1,5 @@
 package hu.dj.aradventure
 
-import hu.dj.aradventure.dialog.QuestLogDialog
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -24,8 +23,10 @@ import com.google.ar.sceneform.math.Vector3
 import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
+import com.gorisse.thomas.sceneform.scene.destroy
 import hu.dj.aradventure.armodel.*
 import hu.dj.aradventure.controller.*
+import hu.dj.aradventure.dialog.QuestLogDialog
 import hu.dj.aradventure.item.Death
 import hu.dj.aradventure.item.Item
 import hu.dj.aradventure.item.Quest
@@ -149,7 +150,6 @@ class MainActivity : AppCompatActivity() {
                 updatedAugmentedImages?.forEach { augmentedImage ->
                     when (augmentedImage.trackingState) {
                         TrackingState.TRACKING -> {
-                            print(augmentedImage.trackingMethod)
                             if (!augmentedImageMap.containsKey(augmentedImage) &&
                                 augmentedImage.trackingMethod == AugmentedImage.TrackingMethod.FULL_TRACKING
                             ) {
@@ -362,6 +362,7 @@ class MainActivity : AppCompatActivity() {
     private fun clearChildNodes(anchorNode: Node) {
         anchorNode.children.forEach {
             anchorNode.removeChild(it)
+            it.renderableInstance.destroyGltfAsset()
             it.parent = null
             it.renderable = null
         }
@@ -380,13 +381,5 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        /*arFragment.arSceneView.scene.children.forEach { node ->
-            if (node is AnchorNode) {
-                clearChildNodes(node)
-                arFragment.arSceneView.scene.removeChild(node)
-                node.anchor?.detach()
-                augmentedImageMap.clear()
-            }
-        }*/
     }
 }

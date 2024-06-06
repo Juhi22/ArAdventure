@@ -18,6 +18,9 @@ class SoundController(private val assetManager: AssetManager) {
             prepare()
             start()
         }
+        mediaPlayer!!.setOnCompletionListener {
+            shutdown()
+        }
     }
 
     fun shutdown() {

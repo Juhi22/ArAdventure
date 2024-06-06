@@ -23,7 +23,6 @@ class ScriptController(
     private var newQuest: Quest? = null
     private var finishedQuest: Quest? = null
     var isScriptOngoing = false
-
     private val constantDialogs = listOf("default", "attack", "dead")
 
     private var onCompletionListener: (() -> Unit)? = null
