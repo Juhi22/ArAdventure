@@ -237,19 +237,22 @@ class MainActivity : AppCompatActivity() {
             .setIsFilamentGltf(true)
             .build()
             .thenAccept { modelRenderable ->
-                arFragment.arSceneView.scene.addChild(anchorNode.apply {
-                    addChildNode(this, modelRenderable, arModel, "idle")
+                // use runOnUiThread to make sure all views appear properly (does this really work???)
+                runOnUiThread {
+                    arFragment.arSceneView.scene.addChild(anchorNode.apply {
+                        addChildNode(this, modelRenderable, arModel, "idle")
 
-                    if (arModel is Enemy) {
-                        var isInitialAttack = true
-                        scriptController.setOnCompletionListener {
-                            if (isInitialAttack) {
-                                changeNodeAnimation(this, modelRenderable, arModel, "attack")
-                                isInitialAttack = false
+                        if (arModel is Enemy) {
+                            var isInitialAttack = true
+                            scriptController.setOnCompletionListener {
+                                if (isInitialAttack) {
+                                    changeNodeAnimation(this, modelRenderable, arModel, "attack")
+                                    isInitialAttack = false
+                                }
                             }
                         }
-                    }
-                })
+                    })
+                }
             }
     }
 
