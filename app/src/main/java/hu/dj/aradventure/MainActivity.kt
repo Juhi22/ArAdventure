@@ -1,5 +1,6 @@
 package hu.dj.aradventure
 
+import GameDataManager
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -23,7 +24,6 @@ import com.google.ar.sceneform.math.Vector3
 import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
-import com.gorisse.thomas.sceneform.scene.destroy
 import hu.dj.aradventure.armodel.*
 import hu.dj.aradventure.controller.*
 import hu.dj.aradventure.dialog.QuestLogDialog
@@ -37,8 +37,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var arFragment: ArFragment
     private lateinit var augmentedImageMap: MutableMap<AugmentedImage, AnchorNode>
 
+    private lateinit var gameState: GameState
+    private lateinit var gameDataManager: GameDataManager
+
     private var player = Player()
-    private var gameState = GameState()
     private var medievalKnight = MedievalKnight
     private var unicorn = Unicorn
     private var hellMinion = HellMinion
@@ -71,6 +73,9 @@ class MainActivity : AppCompatActivity() {
         scriptController.init()
 
         vibrationController = VibrationController(this)
+
+        gameDataManager = GameDataManager(this)
+        gameState = gameDataManager.loadGameState()
 
         gameState.isFightOngoing.observe(this) {
             val fightIndicatorView = findViewById<ImageView>(R.id.fight_indicator)
@@ -153,11 +158,13 @@ class MainActivity : AppCompatActivity() {
                             if (!augmentedImageMap.containsKey(augmentedImage) &&
                                 augmentedImage.trackingMethod == AugmentedImage.TrackingMethod.FULL_TRACKING
                             ) {
-                                clearAllNodes()
-                                val anchorNode = AnchorNode(augmentedImage.createAnchor(augmentedImage.centerPose))
-                                augmentedImageMap[augmentedImage] = anchorNode
                                 val currentModel = getModelByGtlfPath(augmentedImage.name)
-                                displayModel(augmentedImage.name, currentModel, anchorNode)
+                                if (!(currentModel is GoldFish && gameState.isGoldFishDefeated)) {
+                                    clearAllNodes()
+                                    val anchorNode = AnchorNode(augmentedImage.createAnchor(augmentedImage.centerPose))
+                                    augmentedImageMap[augmentedImage] = anchorNode
+                                    displayModel(augmentedImage.name, currentModel, anchorNode)
+                                }
                             }
                         }
 
@@ -324,6 +331,7 @@ class MainActivity : AppCompatActivity() {
                                 changeNodeAnimation(anchorNode, modelRenderable, arModel, "dead")
                                 gameState.isFightOngoing.value = false
                                 QuestController.update(player.quests, QuestType.KILLING, arModel)
+                                handleSpecialCharacterDefeat(arModel)
                             }
                         }
                     }
@@ -355,6 +363,13 @@ class MainActivity : AppCompatActivity() {
                     arModel.sounds["default"]?.let { soundController.start(it) }
                 }
             }
+        }
+    }
+
+    private fun handleSpecialCharacterDefeat(arModel: ArModel) {
+        if (arModel is GoldFish) {
+            gameState.isGoldFishDefeated = true
+            gameDataManager.saveGoldFishDefeat()
         }
     }
 
