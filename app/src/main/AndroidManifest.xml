@@ -24,7 +24,7 @@
         <meta-data android:name="com.google.ar.core" android:value="required" />
 
         <activity
-                android:name=".MainActivity"
+                android:name=".MenuActivity"
                 android:exported="true"
                 android:label="@string/app_name"
                 android:theme="@style/Theme.ArAdventure">
@@ -34,6 +34,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".TutorialActivity" />
     </application>
 
 </manifest>

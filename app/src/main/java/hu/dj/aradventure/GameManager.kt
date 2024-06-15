@@ -24,8 +24,7 @@ class GameDataManager(context: Context) {
 
     fun resetGameState() {
         val editor = prefs.edit()
-        editor.putFloat(chapterKey, 0.0.toFloat())
-        editor.putBoolean(goldFishDefeatKey, false)
+        editor.clear()
         editor.apply()
     }
 
