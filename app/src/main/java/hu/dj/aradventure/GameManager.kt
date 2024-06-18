@@ -1,24 +1,79 @@
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.lifecycle.MutableLiveData
 import hu.dj.aradventure.GameState
+import hu.dj.aradventure.Player
+import hu.dj.aradventure.item.Item
+import hu.dj.aradventure.item.ItemType
+import hu.dj.aradventure.item.QuestList
 
 class GameDataManager(context: Context) {
 
     private val prefs: SharedPreferences = context.getSharedPreferences("game_data", Context.MODE_PRIVATE)
 
-    val chapterKey = "chapter"
-    val goldFishDefeatKey = "goldFishDefeated"
-
-    fun saveGameState(chapter: Double) {
+    fun savePlayer(player: Player) {
         val editor = prefs.edit()
-        editor.putFloat(chapterKey, chapter.toFloat())
+        editor.putInt(Key.PLAYER_HEALTH.name, player.health.value!!)
+        editor.putInt(Key.PLAYER_MAX_HEALTH.name, player.maxHealth)
+        editor.putInt(Key.PLAYER_DAMAGE_POINT.name, player.damagePoint)
+        editor.putBoolean(Key.PLAYER_IS_DEAD.name, player.isDead.value!!)
+        player.inventory.forEachIndexed{ index, item ->
+            editor.putString(Key.PLAYER_ITEM_NAME.name + index, item.name)
+            editor.putString(Key.PLAYER_ITEM_DESCRIPTION.name + index, item.description)
+            editor.putString(Key.PLAYER_ITEM_TYPE.name + index, item.type.name)
+            editor.putInt(Key.PLAYER_ITEM_VALUE.name + index, item.value)
+            editor.putInt(Key.PLAYER_ITEM_IMAGE_ID.name + index, item.imageId)
+        }
+        player.quests.forEachIndexed{ index, quest ->
+            val entry = QuestList.list.entries.first { entry -> entry.value.name == quest.name }
+            editor.putInt(Key.QUEST_INDEX.name + index, entry.key)
+            editor.putInt(Key.QUEST_PROGRESS.name + index, quest.progress)
+            editor.putBoolean(Key.QUEST_IS_FINISHED.name + index, quest.isFinished)
+        }
         editor.apply()
+    }
+
+    fun saveGameState(gameState: GameState) {
+        val editor = prefs.edit()
+        editor.putFloat(Key.CHAPTER.name, gameState.chapter.toFloat())
+        editor.apply()
+    }
+
+    fun loadPlayer(): Player {
+        val player = Player()
+        player.health = MutableLiveData(prefs.getInt(Key.PLAYER_HEALTH.name, 3))
+        player.maxHealth = prefs.getInt(Key.PLAYER_MAX_HEALTH.name, 3)
+        player.damagePoint = prefs.getInt(Key.PLAYER_DAMAGE_POINT.name, 1)
+        player.isDead = MutableLiveData(prefs.getBoolean(Key.PLAYER_IS_DEAD.name, false))
+        for (i in 0..100) {
+            val item = Item()
+            item.name = prefs.getString(Key.PLAYER_ITEM_NAME.name + i, "")!!
+            if (item.name == "") {
+                break
+            }
+            item.description = prefs.getString(Key.PLAYER_ITEM_DESCRIPTION.name + i, "")!!
+            item.type = ItemType.valueOf(prefs.getString(Key.PLAYER_ITEM_TYPE.name + i, null)!!)
+            item.value = prefs.getInt(Key.PLAYER_ITEM_VALUE.name + i, 0)
+            item.imageId = prefs.getInt(Key.PLAYER_ITEM_IMAGE_ID.name + i, 0)
+            player.inventory.add(item)
+        }
+        for (i in 0..100) {
+            val questIndex = prefs.getInt(Key.QUEST_INDEX.name + i, 0)
+            if (questIndex == 0) {
+                break
+            }
+            val quest = QuestList.list[questIndex]!!
+            quest.progress = prefs.getInt(Key.QUEST_PROGRESS.name + i, 0)
+            quest.isFinished = prefs.getBoolean(Key.QUEST_IS_FINISHED.name + i, false)
+            player.quests.add(quest)
+        }
+        return player
     }
 
     fun loadGameState(): GameState {
         val gameState = GameState()
-        gameState.chapter = prefs.getFloat(chapterKey, 0.0.toFloat()).toDouble()
-        gameState.isGoldFishDefeated = prefs.getBoolean(goldFishDefeatKey, false)
+        gameState.chapter = prefs.getFloat(Key.CHAPTER.name, 0.0.toFloat()).toDouble()
+        gameState.isGoldFishDefeated = prefs.getBoolean(Key.GOLD_FISH_DEFEATED.name, false)
         return gameState
     }
 
@@ -28,9 +83,25 @@ class GameDataManager(context: Context) {
         editor.apply()
     }
 
-    fun saveGoldFishDefeat() {
+    fun saveBooleanValue(key: String, value: Boolean) {
         val editor = prefs.edit()
-        editor.putBoolean(goldFishDefeatKey, true)
+        editor.putBoolean(key, value)
         editor.apply()
+    }
+    enum class Key {
+        CHAPTER,
+        PLAYER_HEALTH,
+        PLAYER_MAX_HEALTH,
+        PLAYER_DAMAGE_POINT,
+        PLAYER_IS_DEAD,
+        PLAYER_ITEM_NAME,
+        PLAYER_ITEM_DESCRIPTION,
+        PLAYER_ITEM_TYPE,
+        PLAYER_ITEM_VALUE,
+        PLAYER_ITEM_IMAGE_ID,
+        QUEST_INDEX,
+        QUEST_PROGRESS,
+        QUEST_IS_FINISHED,
+        GOLD_FISH_DEFEATED,
     }
 }

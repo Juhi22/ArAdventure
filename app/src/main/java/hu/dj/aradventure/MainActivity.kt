@@ -39,8 +39,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var gameState: GameState
     private lateinit var gameDataManager: GameDataManager
+    private lateinit var player: Player
 
-    private var player = Player()
     private var medievalKnight = MedievalKnight
     private var unicorn = Unicorn
     private var hellMinion = HellMinion
@@ -78,6 +78,7 @@ class MainActivity : AppCompatActivity() {
 
         gameDataManager = GameDataManager(this)
         gameState = gameDataManager.loadGameState()
+        player = gameDataManager.loadPlayer()
 
         gameState.isFightOngoing.observe(this) {
             val fightIndicatorView = findViewById<ImageView>(R.id.fight_indicator)
@@ -121,10 +122,12 @@ class MainActivity : AppCompatActivity() {
                 }
                 if (quest.nextChapter != null) {
                     gameState.chapter = quest.nextChapter
-                    gameDataManager.saveGameState(quest.nextChapter)
+                    gameDataManager.saveGameState(gameState)
                 }
+                gameDataManager.savePlayer(player)
             }
             override fun onQuestsUpdated(quests: List<Quest>) {
+                gameDataManager.savePlayer(player)
                 player.updateQuests(quests)
             }
         })
@@ -224,6 +227,7 @@ class MainActivity : AppCompatActivity() {
                 setBackDropContent(View.INVISIBLE, Item())
                 timedActionController.stopRunning()
                 player.pickUpItem(item)
+                gameDataManager.savePlayer(player)
             }
         } else {
             healthPoints.visibility = View.VISIBLE
@@ -383,7 +387,7 @@ class MainActivity : AppCompatActivity() {
     private fun handleSpecialCharacterDefeat(arModel: ArModel) {
         if (arModel is GoldFish) {
             gameState.isGoldFishDefeated = true
-            gameDataManager.saveGoldFishDefeat()
+            gameDataManager.saveBooleanValue(GameDataManager.Key.GOLD_FISH_DEFEATED.name, true)
         }
     }
 
