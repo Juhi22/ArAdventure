@@ -2,7 +2,6 @@ package hu.dj.aradventure.armodel
 
 import hu.dj.aradventure.item.Quest
 import hu.dj.aradventure.item.QuestList
-import hu.dj.aradventure.item.Sword
 
 object MedievalKnight : ArModel() {
     override val gltfPath: String
@@ -46,7 +45,7 @@ object MedievalKnight : ArModel() {
             ),
             quests[0].name to hashMapOf(
                 "1" to listOf(
-                    "Szép munka",
+                    "Szép munka! Vedd át a jutalmadat és fáradj Viharszárny elé, már vár téged.",
                     null
                 )
             ),

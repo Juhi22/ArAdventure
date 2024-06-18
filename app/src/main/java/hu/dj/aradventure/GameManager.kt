@@ -9,14 +9,14 @@ class GameDataManager(context: Context) {
     val chapterKey = "chapter"
     val goldFishDefeatKey = "goldFishDefeated"
 
-    fun saveGameState(chapter: Int) {
+    fun saveGameState(chapter: Double) {
         val editor = prefs.edit()
-        editor.putInt(chapterKey, chapter)
+        editor.putFloat(chapterKey, chapter.toFloat())
         editor.apply()
     }
 
     fun loadGameState(): GameState {
-        var gameState = GameState()
+        val gameState = GameState()
         gameState.chapter = prefs.getFloat(chapterKey, 0.0.toFloat()).toDouble()
         gameState.isGoldFishDefeated = prefs.getBoolean(goldFishDefeatKey, false)
         return gameState
