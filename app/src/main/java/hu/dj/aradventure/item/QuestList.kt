@@ -1,5 +1,6 @@
 package hu.dj.aradventure.item
 
+import hu.dj.aradventure.armodel.Ent
 import hu.dj.aradventure.armodel.HellMinion
 
 object QuestList {
@@ -14,7 +15,7 @@ object QuestList {
         3 to Quest(
             "Utánpótlás hiányában",
             "Az erdő szellemei testet öltöttek és akadályozzák az utánpótlás ellátást. Győzz le belőlük 3-at",
-            QuestType.KILLING, HellMinion, 3, Sword, 0.2
+            QuestType.KILLING, Ent, 3, null, 0.2
         ),
     )
 

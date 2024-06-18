@@ -47,8 +47,9 @@ class MainActivity : AppCompatActivity() {
     private var goldFish = GoldFish
     private var chickenSandwich = ChickenSandwich
     private var stormWing = StormWing
+    private var ent = Ent
 
-    private var arModels = mutableListOf(medievalKnight, hellMinion, unicorn, chickenSandwich, goldFish, stormWing)
+    private var arModels = mutableListOf(medievalKnight, hellMinion, unicorn, chickenSandwich, goldFish, stormWing, ent)
 
     private var timedActionController = TimedActionController()
     private lateinit var soundController: SoundController
@@ -115,7 +116,9 @@ class MainActivity : AppCompatActivity() {
             }
             override fun onQuestEnds(quest: Quest) {
                 player.finishQuest(quest)
-                showItem(quest.reward)
+                if(quest.reward != null) {
+                    showItem(quest.reward)
+                }
                 if (quest.nextChapter != null) {
                     gameState.chapter = quest.nextChapter
                     gameDataManager.saveGameState(quest.nextChapter)
@@ -150,6 +153,9 @@ class MainActivity : AppCompatActivity() {
             //add storm wing
             bitmap = BitmapFactory.decodeStream(assets.open(stormWing.fiducialMarkerPath))
             augmentedImageDatabase.addImage(stormWing.gltfPath, bitmap, 0.12F)
+            //add ent
+            bitmap = BitmapFactory.decodeStream(assets.open(ent.fiducialMarkerPath))
+            augmentedImageDatabase.addImage(ent.gltfPath, bitmap, 0.12F)
 
             val config = arFragment.arSceneView.session?.config
             config?.augmentedImageDatabase = augmentedImageDatabase

@@ -8,7 +8,7 @@ class Quest(
     val questType: QuestType,
     val questItem: Any,
     val goal: Int,
-    val reward: Item,
+    val reward: Item?,
     val nextChapter: Double?
 ) : Item() {
     override var imageId = R.drawable.quest_log

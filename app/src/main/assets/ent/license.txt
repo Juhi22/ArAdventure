@@ -1,0 +1,11 @@
+Model Information:
+* title:	[ MC ] Dummy Monster
+* source:	https://sketchfab.com/3d-models/mc-dummy-monster-246678f908b548feb0f4cccaeef78756
+* author:	iJUNE (https://sketchfab.com/iJUNE)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "[ MC ] Dummy Monster" (https://sketchfab.com/3d-models/mc-dummy-monster-246678f908b548feb0f4cccaeef78756) by iJUNE (https://sketchfab.com/iJUNE) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
