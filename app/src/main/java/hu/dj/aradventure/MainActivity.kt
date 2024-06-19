@@ -13,6 +13,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.animation.doOnEnd
 import com.google.ar.core.AugmentedImage
 import com.google.ar.core.AugmentedImageDatabase
 import com.google.ar.core.TrackingState
@@ -31,6 +32,7 @@ import hu.dj.aradventure.item.Death
 import hu.dj.aradventure.item.Item
 import hu.dj.aradventure.item.Quest
 import hu.dj.aradventure.item.QuestType
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -111,13 +113,14 @@ class MainActivity : AppCompatActivity() {
             questLogDialog.show(player.quests)
         }
 
-        QuestController.onEventListener(object : QuestController.QuestListener{
+        QuestController.onEventListener(object : QuestController.QuestListener {
             override fun onQuestStarts(quest: Quest) {
                 showItem(quest)
             }
+
             override fun onQuestEnds(quest: Quest) {
                 player.finishQuest(quest)
-                if(quest.reward != null) {
+                if (quest.reward != null) {
                     showItem(quest.reward)
                 }
                 if (quest.nextChapter != null) {
@@ -126,6 +129,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 gameDataManager.savePlayer(player)
             }
+
             override fun onQuestsUpdated(quests: List<Quest>) {
                 gameDataManager.savePlayer(player)
                 player.updateQuests(quests)
@@ -318,7 +322,16 @@ class MainActivity : AppCompatActivity() {
 
             if (renderableInstance.animationCount > 0) {
 
-                renderableInstance.animate(arModel.animations[animationName]).start()
+                if (animationName == "dead" && arModel is Enemy && !arModel.loopDeathAnimation) {
+                    val animatableModel = renderableInstance.animate(arModel.animations[animationName])
+                    animatableModel.repeatCount = 1
+                    animatableModel.start()
+                    animatableModel.doOnEnd {
+                        clearAllNodes()
+                    }
+                } else {
+                    renderableInstance.animate(arModel.animations[animationName]).start()
+                }
 
                 if (animationName == "idle") {
                     if (arModel is Enemy) {
@@ -365,10 +378,15 @@ class MainActivity : AppCompatActivity() {
                         updateModelOrientation(this)
                     }
                     scriptController.play(null, arModel, player.quests, "dead")
-                    if (arModel is Enemy && arModel.reward != null) {
+                    if (arModel is Enemy) {
                         scriptController.setOnCompletionListener {
                             if (arModel.reward != null) {
                                 showItem(arModel.reward!!)
+                            }
+                            if (arModel.loopDeathAnimation) {
+                                timedActionController.runAfterDelay(10000) {
+                                    clearAllNodes()
+                                }
                             }
                         }
                     }

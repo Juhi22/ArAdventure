@@ -22,6 +22,8 @@ object Ent: Enemy() {
 
     override var damagePoint: Int = 1
 
+    override var loopDeathAnimation: Boolean = false
+
     override val sounds: Map<String, String>
         get() {
             return mutableMapOf(
