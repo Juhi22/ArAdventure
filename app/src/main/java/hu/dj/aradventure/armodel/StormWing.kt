@@ -1,5 +1,6 @@
 package hu.dj.aradventure.armodel
 
+import com.google.ar.sceneform.math.Vector3
 import hu.dj.aradventure.item.Quest
 import hu.dj.aradventure.item.QuestList
 
@@ -13,13 +14,15 @@ object StormWing : ArModel() {
     override val animations: MutableMap<String, String>
         get() {
             return mutableMapOf(
-                "idle" to "Idle"
+                "idle" to "Qishilong_stand"
             )
         }
 
     override val quests: List<Quest> = listOf(
         QuestList.list[3]!!,
     )
+
+    override var scale: Vector3 = Vector3(0.01F, 0.01F, 0.01F)
 
     override val sounds: Map<String, String>
         get() {

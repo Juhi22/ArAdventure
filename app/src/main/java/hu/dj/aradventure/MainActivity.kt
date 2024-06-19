@@ -53,8 +53,9 @@ class MainActivity : AppCompatActivity() {
     private var stormWing = StormWing
     private var ent = Ent
     private var dragonSlave = DragonSlave
+    private var dragonLordBlack = DragonLordBlack
 
-    private var arModels = mutableListOf(medievalKnight, hellMinion, unicorn, chickenSandwich, goldFish, stormWing, ent, dragonSlave)
+    private var arModels = mutableListOf(medievalKnight, hellMinion, unicorn, chickenSandwich, goldFish, stormWing, ent, dragonSlave, dragonLordBlack)
 
     private var timedActionController = TimedActionController()
     private lateinit var soundController: SoundController
@@ -175,6 +176,9 @@ class MainActivity : AppCompatActivity() {
             //add dragon slave
             bitmap = BitmapFactory.decodeStream(assets.open(dragonSlave.fiducialMarkerPath))
             augmentedImageDatabase.addImage(dragonSlave.gltfPath, bitmap, 0.12F)
+            //add dragon lord black
+            bitmap = BitmapFactory.decodeStream(assets.open(dragonLordBlack.fiducialMarkerPath))
+            augmentedImageDatabase.addImage(dragonLordBlack.gltfPath, bitmap, 0.12F)
 
             val config = arFragment.arSceneView.session?.config
             config?.augmentedImageDatabase = augmentedImageDatabase
@@ -348,7 +352,7 @@ class MainActivity : AppCompatActivity() {
 
                 if (animationName == "dead" && arModel is Enemy && !arModel.loopDeathAnimation) {
                     val animatableModel = renderableInstance.animate(arModel.animations[animationName])
-                    animatableModel.repeatCount = 1
+                    animatableModel.repeatCount = 0
                     animatableModel.start()
                     animatableModel.doOnEnd {
                         clearAllNodes()
