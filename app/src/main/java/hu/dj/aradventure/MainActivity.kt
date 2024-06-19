@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -66,6 +67,14 @@ class MainActivity : AppCompatActivity() {
 
         setBackDropContent(View.INVISIBLE, Item())
 
+        val progressBar: ProgressBar = findViewById(R.id.progress_bar)
+        val healthPointsView: TextView = findViewById(R.id.healthPoints)
+        val heartIconView: ImageView = findViewById(R.id.heartIcon)
+        val questLogImage: ImageView = findViewById(R.id.questLog)
+        healthPointsView.visibility = View.GONE
+        heartIconView.visibility = View.GONE
+        questLogImage.visibility = View.GONE
+
         soundController = SoundController(assets)
 
         scriptController = ScriptController(
@@ -94,7 +103,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val healthPointsView: TextView = findViewById(R.id.healthPoints)
         healthPointsView.text = player.health.value.toString()
         player.health.observe(this) {
             healthPointsView.text = it.toString()
@@ -107,7 +115,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val questLogImage: ImageView = findViewById(R.id.questLog)
         questLogImage.setOnClickListener {
             val questLogDialog = QuestLogDialog(this)
             questLogDialog.show(player.quests)
@@ -167,6 +174,11 @@ class MainActivity : AppCompatActivity() {
             val config = arFragment.arSceneView.session?.config
             config?.augmentedImageDatabase = augmentedImageDatabase
             arFragment.arSceneView.session?.configure(config)
+
+            progressBar.visibility = View.GONE
+            healthPointsView.visibility = View.VISIBLE
+            heartIconView.visibility = View.VISIBLE
+            questLogImage.visibility = View.VISIBLE
         }
 
         arFragment.arSceneView.scene.addOnUpdateListener { frameTime: FrameTime ->
