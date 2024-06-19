@@ -13,4 +13,5 @@ open class ArModel() {
     open val sounds = emptyMap<String, String>()
     open val quests = emptyList<Quest>()
     open var scale = Vector3(0.4F, 0.4F, 0.4F)
+    open var useCustomCollisionShape = false
 }

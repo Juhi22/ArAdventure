@@ -21,6 +21,7 @@ import com.google.ar.core.TrackingState
 import com.google.ar.sceneform.AnchorNode
 import com.google.ar.sceneform.FrameTime
 import com.google.ar.sceneform.Node
+import com.google.ar.sceneform.collision.Box
 import com.google.ar.sceneform.math.Quaternion
 import com.google.ar.sceneform.math.Vector3
 import com.google.ar.sceneform.rendering.ModelRenderable
@@ -51,8 +52,9 @@ class MainActivity : AppCompatActivity() {
     private var chickenSandwich = ChickenSandwich
     private var stormWing = StormWing
     private var ent = Ent
+    private var dragonSlave = DragonSlave
 
-    private var arModels = mutableListOf(medievalKnight, hellMinion, unicorn, chickenSandwich, goldFish, stormWing, ent)
+    private var arModels = mutableListOf(medievalKnight, hellMinion, unicorn, chickenSandwich, goldFish, stormWing, ent, dragonSlave)
 
     private var timedActionController = TimedActionController()
     private lateinit var soundController: SoundController
@@ -170,6 +172,9 @@ class MainActivity : AppCompatActivity() {
             //add ent
             bitmap = BitmapFactory.decodeStream(assets.open(ent.fiducialMarkerPath))
             augmentedImageDatabase.addImage(ent.gltfPath, bitmap, 0.12F)
+            //add dragon slave
+            bitmap = BitmapFactory.decodeStream(assets.open(dragonSlave.fiducialMarkerPath))
+            augmentedImageDatabase.addImage(dragonSlave.gltfPath, bitmap, 0.12F)
 
             val config = arFragment.arSceneView.session?.config
             config?.augmentedImageDatabase = augmentedImageDatabase
@@ -323,6 +328,7 @@ class MainActivity : AppCompatActivity() {
         animationName: String
     ): TransformableNode {
         return TransformableNode(arFragment.transformationSystem).apply {
+            this.scaleController.maxScale = 100F
             this.scaleController.minScale = 0.01f
             this.translationController.isEnabled = false
             this.localScale = arModel.scale
@@ -333,6 +339,12 @@ class MainActivity : AppCompatActivity() {
             }
 
             if (renderableInstance.animationCount > 0) {
+
+                if (arModel.useCustomCollisionShape) {
+                    collisionShape = Box(
+                        Vector3(localScale.x / 2, localScale.y / 2, localScale.z / 2)
+                    )
+                }
 
                 if (animationName == "dead" && arModel is Enemy && !arModel.loopDeathAnimation) {
                     val animatableModel = renderableInstance.animate(arModel.animations[animationName])
