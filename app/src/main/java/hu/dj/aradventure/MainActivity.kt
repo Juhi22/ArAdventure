@@ -54,8 +54,20 @@ class MainActivity : AppCompatActivity() {
     private var ent = Ent
     private var dragonSlave = DragonSlave
     private var dragonLordBlack = DragonLordBlack
+    private var dragonBaby = DragonBaby
 
-    private var arModels = mutableListOf(medievalKnight, hellMinion, unicorn, chickenSandwich, goldFish, stormWing, ent, dragonSlave, dragonLordBlack)
+    private var arModels = mutableListOf(
+        medievalKnight,
+        hellMinion,
+        unicorn,
+        chickenSandwich,
+        goldFish,
+        stormWing,
+        ent,
+        dragonSlave,
+        dragonLordBlack,
+        dragonBaby
+    )
 
     private var timedActionController = TimedActionController()
     private lateinit var soundController: SoundController
@@ -179,6 +191,9 @@ class MainActivity : AppCompatActivity() {
             //add dragon lord black
             bitmap = BitmapFactory.decodeStream(assets.open(dragonLordBlack.fiducialMarkerPath))
             augmentedImageDatabase.addImage(dragonLordBlack.gltfPath, bitmap, 0.12F)
+            //add dragon baby
+            bitmap = BitmapFactory.decodeStream(assets.open(dragonBaby.fiducialMarkerPath))
+            augmentedImageDatabase.addImage(dragonBaby.gltfPath, bitmap, 0.12F)
 
             val config = arFragment.arSceneView.session?.config
             config?.augmentedImageDatabase = augmentedImageDatabase
@@ -396,27 +411,34 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
 
-                if (animationName != "dead") {
-                    arFragment.arSceneView.scene.addOnUpdateListener {
-                        updateModelOrientation(this)
-                    }
-                } else {
-                    gameState.isFightOngoing.value = false
-                    timedActionController.runAfterDelay(100) {
-                        updateModelOrientation(this)
-                    }
-                    scriptController.play(null, arModel, player.quests, "dead")
-                    if (arModel is Enemy) {
-                        scriptController.setOnCompletionListener {
-                            if (arModel.reward != null) {
-                                showItem(arModel.reward!!)
-                            }
-                            if (arModel.loopDeathAnimation) {
-                                timedActionController.runAfterDelay(10000) {
-                                    clearAllNodes()
+                if (arModel !is Collectable) {
+                    if (animationName != "dead") {
+                        arFragment.arSceneView.scene.addOnUpdateListener {
+                            updateModelOrientation(this)
+                        }
+                    } else {
+                        gameState.isFightOngoing.value = false
+                        timedActionController.runAfterDelay(100) {
+                            updateModelOrientation(this)
+                        }
+                        scriptController.play(null, arModel, player.quests, "dead")
+                        if (arModel is Enemy) {
+                            scriptController.setOnCompletionListener {
+                                if (arModel.reward != null) {
+                                    showItem(arModel.reward!!)
+                                }
+                                if (arModel.loopDeathAnimation) {
+                                    timedActionController.runAfterDelay(5000) {
+                                        clearAllNodes()
+                                    }
                                 }
                             }
                         }
+                    }
+                } else {
+                    setOnTapListener { hitTestResult, motionEvent ->
+                        showItem(arModel.item)
+                        clearAllNodes()
                     }
                 }
             }
