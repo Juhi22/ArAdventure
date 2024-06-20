@@ -29,6 +29,7 @@ import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
 import hu.dj.aradventure.armodel.*
 import hu.dj.aradventure.controller.*
+import hu.dj.aradventure.dialog.InventoryDialog
 import hu.dj.aradventure.dialog.QuestLogDialog
 import hu.dj.aradventure.item.Death
 import hu.dj.aradventure.item.Item
@@ -86,9 +87,11 @@ class MainActivity : AppCompatActivity() {
         val healthPointsView: TextView = findViewById(R.id.healthPoints)
         val heartIconView: ImageView = findViewById(R.id.heartIcon)
         val questLogImage: ImageView = findViewById(R.id.questLog)
+        val inventoryImage: ImageView = findViewById(R.id.inventory)
         healthPointsView.visibility = View.GONE
         heartIconView.visibility = View.GONE
         questLogImage.visibility = View.GONE
+        inventoryImage.visibility = View.GONE
 
         soundController = SoundController(assets)
 
@@ -128,6 +131,11 @@ class MainActivity : AppCompatActivity() {
                 showItem(Death)
                 clearAllNodes()
             }
+        }
+
+        inventoryImage.setOnClickListener {
+            val inventoryDialog = InventoryDialog(this)
+            inventoryDialog.show(player.inventory)
         }
 
         questLogImage.setOnClickListener {
@@ -203,6 +211,7 @@ class MainActivity : AppCompatActivity() {
             healthPointsView.visibility = View.VISIBLE
             heartIconView.visibility = View.VISIBLE
             questLogImage.visibility = View.VISIBLE
+            inventoryImage.visibility = View.VISIBLE
         }
 
         arFragment.arSceneView.scene.addOnUpdateListener { frameTime: FrameTime ->
@@ -246,6 +255,7 @@ class MainActivity : AppCompatActivity() {
         val healthPoints: TextView = findViewById(R.id.healthPoints)
         val heartIcon: ImageView = findViewById(R.id.heartIcon)
         val questLogIcon: ImageView = findViewById(R.id.questLog)
+        val inventoryIcon: ImageView = findViewById(R.id.inventory)
         val centerImage: ImageView = findViewById(R.id.centerImage)
         val centerTitle: TextView = findViewById(R.id.centerTitle)
         val centerDescription: TextView = findViewById(R.id.centerDescription)
@@ -262,6 +272,7 @@ class MainActivity : AppCompatActivity() {
             healthPoints.visibility = View.INVISIBLE
             heartIcon.visibility = View.INVISIBLE
             questLogIcon.visibility = View.INVISIBLE
+            inventoryIcon.visibility = View.INVISIBLE
 
             centerImage.setOnClickListener {
                 setBackDropContent(View.INVISIBLE, Item())
@@ -273,6 +284,7 @@ class MainActivity : AppCompatActivity() {
             healthPoints.visibility = View.VISIBLE
             heartIcon.visibility = View.VISIBLE
             questLogIcon.visibility = View.VISIBLE
+            inventoryIcon.visibility = View.VISIBLE
         }
     }
 
