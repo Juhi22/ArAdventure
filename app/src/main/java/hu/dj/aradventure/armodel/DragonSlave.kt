@@ -28,6 +28,8 @@ object DragonSlave: Enemy() {
 
     override var useCustomCollisionShape: Boolean = true
 
+    override var name = "Sárkány szolga"
+
     override val sounds: Map<String, String>
         get() {
             return mutableMapOf(

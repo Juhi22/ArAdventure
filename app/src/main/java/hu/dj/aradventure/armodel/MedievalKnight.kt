@@ -17,6 +17,8 @@ object MedievalKnight : ArModel() {
             )
         }
 
+    override var name = "Viharszárny lovagja"
+
     override val quests: List<Quest> = listOf(
         QuestList.list[1]!!,
     )

@@ -24,6 +24,8 @@ object Ent: Enemy() {
 
     override var loopDeathAnimation: Boolean = false
 
+    override var name = "Erdő szelleme"
+
     override val sounds: Map<String, String>
         get() {
             return mutableMapOf(

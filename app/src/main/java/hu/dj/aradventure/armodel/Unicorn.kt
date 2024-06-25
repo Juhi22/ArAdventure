@@ -11,6 +11,8 @@ object Unicorn : ArModel() {
 
     override var scale = Vector3(0.05F, 0.05F, 0.05F)
 
+    override var name = "Unikornis"
+
     override val animations: MutableMap<String, String>
         get() {
             return mutableMapOf(

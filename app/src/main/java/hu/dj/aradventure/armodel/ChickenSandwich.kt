@@ -19,4 +19,6 @@ object ChickenSandwich: Food() {
     override var healPoint: Int = 1
 
     override var scale = Vector3(0.05F, 0.05F, 0.05F)
+
+    override var name = "Szendvics"
 }

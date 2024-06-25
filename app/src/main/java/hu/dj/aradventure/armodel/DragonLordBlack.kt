@@ -24,6 +24,8 @@ object DragonLordBlack: Enemy() {
 
     override var loopDeathAnimation: Boolean = false
 
+    override var name = "Sárkányúr: Fekete"
+
     override val sounds: Map<String, String>
         get() {
             return mutableMapOf(

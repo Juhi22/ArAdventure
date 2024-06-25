@@ -55,6 +55,7 @@ class MainActivity : AppCompatActivity() {
     private var ent = Ent
     private var dragonSlave = DragonSlave
     private var dragonLordBlack = DragonLordBlack
+    private var dragonLordSnowPrince = DragonLordSnowPrince
     private var dragonBaby = DragonBaby
 
     private var arModels = mutableListOf(
@@ -67,6 +68,7 @@ class MainActivity : AppCompatActivity() {
         ent,
         dragonSlave,
         dragonLordBlack,
+        dragonLordSnowPrince,
         dragonBaby
     )
 
@@ -83,11 +85,13 @@ class MainActivity : AppCompatActivity() {
 
         setBackDropContent(View.INVISIBLE, Item())
 
+        val modelNameView: TextView = findViewById(R.id.modelName)
         val progressBar: ProgressBar = findViewById(R.id.progress_bar)
         val healthPointsView: TextView = findViewById(R.id.healthPoints)
         val heartIconView: ImageView = findViewById(R.id.heartIcon)
         val questLogImage: ImageView = findViewById(R.id.questLog)
         val inventoryImage: ImageView = findViewById(R.id.inventory)
+        modelNameView.visibility = View.GONE
         healthPointsView.visibility = View.GONE
         heartIconView.visibility = View.GONE
         questLogImage.visibility = View.GONE
@@ -202,6 +206,10 @@ class MainActivity : AppCompatActivity() {
             //add dragon baby
             bitmap = BitmapFactory.decodeStream(assets.open(dragonBaby.fiducialMarkerPath))
             augmentedImageDatabase.addImage(dragonBaby.gltfPath, bitmap, 0.12F)
+            //add dragon lord snow prince
+            bitmap = BitmapFactory.decodeStream(assets.open(dragonLordSnowPrince.fiducialMarkerPath))
+            augmentedImageDatabase.addImage(dragonLordSnowPrince.gltfPath, bitmap, 0.12F)
+
 
             val config = arFragment.arSceneView.session?.config
             config?.augmentedImageDatabase = augmentedImageDatabase
@@ -230,6 +238,8 @@ class MainActivity : AppCompatActivity() {
                                     val anchorNode = AnchorNode(augmentedImage.createAnchor(augmentedImage.centerPose))
                                     augmentedImageMap[augmentedImage] = anchorNode
                                     displayModel(augmentedImage.name, currentModel, anchorNode)
+                                    modelNameView.text = currentModel.name
+                                    modelNameView.visibility = View.VISIBLE
                                 }
                             }
                         }
@@ -485,6 +495,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun clearAllNodes() {
+        val modelNameView: TextView = findViewById(R.id.modelName)
+        modelNameView.visibility = View.GONE
         with(arFragment.arSceneView.scene.children.iterator()) {
             forEach {
                 if (it is AnchorNode) {

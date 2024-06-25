@@ -92,6 +92,23 @@
             app:layout_constraintStart_toEndOf="@id/heartIcon"
             android:layout_marginTop="16dp"/>
 
+    <TextView
+            android:id="@+id/modelName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="20dp"
+            android:textColor="#000000"
+            android:background="#D2B48C"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:singleLine="false"
+            android:inputType="textMultiLine"
+            app:layout_constraintStart_toEndOf="@id/healthPoints"
+            android:padding="5dp"
+            android:layout_marginTop="16dp"/>
+
     <ImageView
             android:id="@+id/questLog"
             android:layout_width="50dp"

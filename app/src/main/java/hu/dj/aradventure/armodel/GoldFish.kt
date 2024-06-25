@@ -27,6 +27,8 @@ object GoldFish : Enemy() {
 
     override var reward: Item? = HealthAmulet
 
+    override var name = "Aranyhal"
+
     override val sounds: Map<String, String>
         get() {
             return mutableMapOf(

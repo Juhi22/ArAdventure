@@ -22,6 +22,8 @@ object HellMinion: Enemy() {
 
     override var damagePoint: Int = 1
 
+    override var name = "Pokolfajzat"
+
     override val sounds: Map<String, String>
         get() {
             return mutableMapOf(

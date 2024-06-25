@@ -19,6 +19,8 @@ object DragonBaby : Collectable() {
 
     override var item: Item = DragonBaby
 
+    override var name = "Sárkány baba"
+
     override val sounds: Map<String, String>
         get() {
             return mutableMapOf(

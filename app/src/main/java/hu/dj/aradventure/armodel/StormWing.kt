@@ -18,6 +18,8 @@ object StormWing : ArModel() {
             )
         }
 
+    override var name = "Viharszárny"
+
     override val quests: List<Quest> = listOf(
         QuestList.list[3]!!,
     )
