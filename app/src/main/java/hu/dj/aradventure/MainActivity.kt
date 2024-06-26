@@ -233,7 +233,7 @@ class MainActivity : AppCompatActivity() {
                                 augmentedImage.trackingMethod == AugmentedImage.TrackingMethod.FULL_TRACKING
                             ) {
                                 val currentModel = getModelByGtlfPath(augmentedImage.name)
-                                if (!(currentModel is GoldFish && gameState.isGoldFishDefeated)) {
+                                if (canDisplayModel(currentModel)) {
                                     clearAllNodes()
                                     val anchorNode = AnchorNode(augmentedImage.createAnchor(augmentedImage.centerPose))
                                     augmentedImageMap[augmentedImage] = anchorNode
@@ -253,6 +253,15 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun canDisplayModel(model: ArModel): Boolean {
+        if (model is GoldFish) {
+            return !gameState.isGoldFishDefeated
+        } else if (model is DragonBaby) {
+            return !PlayerUtil.isItemInInventory(player.inventory, hu.dj.aradventure.item.DragonBaby)
+        }
+        return true
     }
 
     override fun onDestroy() {

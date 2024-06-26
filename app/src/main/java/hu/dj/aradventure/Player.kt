@@ -44,7 +44,7 @@ class Player : ViewModel() {
             isDead.value = false
         } else if (item is Quest && !quests.contains(item)) {
             quests.add(item)
-        } else if (!isItemInInventory(item)) {
+        } else if (!PlayerUtil.isItemInInventory(inventory, item)) {
             inventory.add(item)
             if (item.type == ItemType.MAX_HEALTH) {
                 maxHealth += item.value
@@ -53,11 +53,6 @@ class Player : ViewModel() {
                 damagePoint += item.value
             }
         }
-    }
-
-    private fun isItemInInventory(item: Item): Boolean {
-        val foundItem = inventory.firstOrNull { itemInInventory -> itemInInventory.name == item.name }
-        return foundItem != null
     }
 
     fun finishQuest(quest: Quest) {
