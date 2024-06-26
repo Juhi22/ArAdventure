@@ -14,7 +14,7 @@ object StormWing : ArModel() {
     override val animations: MutableMap<String, String>
         get() {
             return mutableMapOf(
-                "idle" to "Qishilong_stand"
+                "idle" to "Armature_Stand Ready_full"
             )
         }
 
@@ -24,7 +24,7 @@ object StormWing : ArModel() {
         QuestList.list[3]!!,
     )
 
-    override var scale: Vector3 = Vector3(0.01F, 0.01F, 0.01F)
+    override var scale = Vector3(0.1F, 0.1F, 0.1F)
 
     override val sounds: Map<String, String>
         get() {

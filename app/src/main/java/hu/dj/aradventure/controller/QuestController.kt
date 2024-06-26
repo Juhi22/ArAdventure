@@ -28,13 +28,11 @@ object QuestController {
     fun update(quests: List<Quest>, type: QuestType, questItem: Any) {
         quests.forEach{
             if (!it.isFinished && it.questType == type) {
-                if (type == QuestType.KILLING && it.questItem == questItem && it.progress < it.goal) {
+                if (it.questItem == questItem && it.progress < it.goal) {
                     it.progress++
                     if (it.progress >= it.goal) {
                         it.isFinished = true
                     }
-                } else if (type == QuestType.COLLECTING) {
-
                 }
             }
         }

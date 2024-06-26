@@ -57,6 +57,7 @@ class MainActivity : AppCompatActivity() {
     private var dragonLordBlack = DragonLordBlack
     private var dragonLordSnowPrince = DragonLordSnowPrince
     private var dragonBaby = DragonBaby
+    private var dragonMom = DragonMom
 
     private var arModels = mutableListOf(
         medievalKnight,
@@ -69,7 +70,8 @@ class MainActivity : AppCompatActivity() {
         dragonSlave,
         dragonLordBlack,
         dragonLordSnowPrince,
-        dragonBaby
+        dragonBaby,
+        dragonMom
     )
 
     private var timedActionController = TimedActionController()
@@ -150,6 +152,7 @@ class MainActivity : AppCompatActivity() {
         QuestController.onEventListener(object : QuestController.QuestListener {
             override fun onQuestStarts(quest: Quest) {
                 showItem(quest)
+                QuestController.update(player.quests, quest.questType, quest.questItem)
             }
 
             override fun onQuestEnds(quest: Quest) {
@@ -201,14 +204,17 @@ class MainActivity : AppCompatActivity() {
             bitmap = BitmapFactory.decodeStream(assets.open(dragonSlave.fiducialMarkerPath))
             augmentedImageDatabase.addImage(dragonSlave.gltfPath, bitmap, 0.12F)
             //add dragon lord black
-            bitmap = BitmapFactory.decodeStream(assets.open(dragonLordBlack.fiducialMarkerPath))
-            augmentedImageDatabase.addImage(dragonLordBlack.gltfPath, bitmap, 0.12F)
+            //bitmap = BitmapFactory.decodeStream(assets.open(dragonLordBlack.fiducialMarkerPath))
+            //augmentedImageDatabase.addImage(dragonLordBlack.gltfPath, bitmap, 0.12F)
             //add dragon baby
             bitmap = BitmapFactory.decodeStream(assets.open(dragonBaby.fiducialMarkerPath))
             augmentedImageDatabase.addImage(dragonBaby.gltfPath, bitmap, 0.12F)
             //add dragon lord snow prince
             bitmap = BitmapFactory.decodeStream(assets.open(dragonLordSnowPrince.fiducialMarkerPath))
             augmentedImageDatabase.addImage(dragonLordSnowPrince.gltfPath, bitmap, 0.12F)
+            // add dragon mom
+            bitmap = BitmapFactory.decodeStream(assets.open(dragonMom.fiducialMarkerPath))
+            augmentedImageDatabase.addImage(dragonMom.gltfPath, bitmap, 0.12F)
 
 
             val config = arFragment.arSceneView.session?.config
@@ -469,6 +475,7 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     setOnTapListener { hitTestResult, motionEvent ->
                         showItem(arModel.item)
+                        QuestController.update(player.quests, QuestType.COLLECTING, arModel.item)
                         clearAllNodes()
                     }
                 }
