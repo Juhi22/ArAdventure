@@ -25,6 +25,7 @@ import com.google.ar.sceneform.collision.Box
 import com.google.ar.sceneform.math.Quaternion
 import com.google.ar.sceneform.math.Vector3
 import com.google.ar.sceneform.rendering.ModelRenderable
+import com.google.ar.sceneform.rendering.RenderableInstance
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
 import hu.dj.aradventure.armodel.*
@@ -58,6 +59,8 @@ class MainActivity : AppCompatActivity() {
     private var dragonLordSnowPrince = DragonLordSnowPrince
     private var dragonBaby = DragonBaby
     private var dragonMom = DragonMom
+    private var chestOne = ChestOne
+    private var chestTwo = ChestTwo
 
     private var arModels = mutableListOf(
         medievalKnight,
@@ -71,7 +74,9 @@ class MainActivity : AppCompatActivity() {
         dragonLordBlack,
         dragonLordSnowPrince,
         dragonBaby,
-        dragonMom
+        dragonMom,
+        chestOne,
+        chestTwo
     )
 
     private var timedActionController = TimedActionController()
@@ -215,7 +220,12 @@ class MainActivity : AppCompatActivity() {
             // add dragon mom
             bitmap = BitmapFactory.decodeStream(assets.open(dragonMom.fiducialMarkerPath))
             augmentedImageDatabase.addImage(dragonMom.gltfPath, bitmap, 0.12F)
-
+            // add chest 1
+            bitmap = BitmapFactory.decodeStream(assets.open(chestOne.fiducialMarkerPath))
+            augmentedImageDatabase.addImage(chestOne.gltfPath, bitmap, 0.12F)
+            // add chest 2
+            bitmap = BitmapFactory.decodeStream(assets.open(chestTwo.fiducialMarkerPath))
+            augmentedImageDatabase.addImage(chestTwo.gltfPath, bitmap, 0.12F)
 
             val config = arFragment.arSceneView.session?.config
             config?.augmentedImageDatabase = augmentedImageDatabase
@@ -264,8 +274,8 @@ class MainActivity : AppCompatActivity() {
     private fun canDisplayModel(model: ArModel): Boolean {
         if (model is GoldFish) {
             return !gameState.isGoldFishDefeated
-        } else if (model is DragonBaby) {
-            return !PlayerUtil.isItemInInventory(player.inventory, hu.dj.aradventure.item.DragonBaby)
+        } else if (model is Collectable) {
+            return !PlayerUtil.isItemInInventory(player.inventory, model.item)
         }
         return true
     }
@@ -385,7 +395,7 @@ class MainActivity : AppCompatActivity() {
     ): TransformableNode {
         return TransformableNode(arFragment.transformationSystem).apply {
             this.scaleController.maxScale = 100F
-            this.scaleController.minScale = 0.01f
+            this.scaleController.minScale = 0.001f
             this.translationController.isEnabled = false
             this.localScale = arModel.scale
             renderable = modelRenderable
@@ -402,13 +412,10 @@ class MainActivity : AppCompatActivity() {
                     )
                 }
 
-                if (animationName == "dead" && arModel is Enemy && !arModel.loopDeathAnimation) {
-                    val animatableModel = renderableInstance.animate(arModel.animations[animationName])
-                    animatableModel.repeatCount = 0
-                    animatableModel.start()
-                    animatableModel.doOnEnd {
-                        clearAllNodes()
-                    }
+                if (animationName == "dead" && arModel is Enemy && !arModel.loopDeathAnimation ) {
+                    playAnimationOnce(renderableInstance, arModel, animationName, true)
+                } else if (animationName == "idle" && arModel is Collectable && !arModel.loopIdleAnimation) {
+                    playAnimationOnce(renderableInstance, arModel, animationName, false)
                 } else {
                     renderableInstance.animate(arModel.animations[animationName]).start()
                 }
@@ -486,6 +493,22 @@ class MainActivity : AppCompatActivity() {
                     player.heal(arModel.healPoint)
                     arModel.sounds["default"]?.let { soundController.start(it) }
                 }
+            }
+        }
+    }
+
+    private fun playAnimationOnce(
+        renderableInstance: RenderableInstance,
+        arModel: ArModel,
+        animationName: String,
+        clearAfterAnimation: Boolean
+    ) {
+        val animatableModel = renderableInstance.animate(arModel.animations[animationName])
+        animatableModel.repeatCount = 0
+        animatableModel.start()
+        if (clearAfterAnimation) {
+            animatableModel.doOnEnd {
+                clearAllNodes()
             }
         }
     }
