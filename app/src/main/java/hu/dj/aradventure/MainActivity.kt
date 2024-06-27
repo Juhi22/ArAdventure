@@ -57,6 +57,7 @@ class MainActivity : AppCompatActivity() {
     private var dragonSlave = DragonSlave
     private var dragonLordBlack = DragonLordBlack
     private var dragonLordSnowPrince = DragonLordSnowPrince
+    private var dragonLordHorn = DragonLordHorn
     private var dragonBaby = DragonBaby
     private var dragonMom = DragonMom
     private var chestOne = ChestOne
@@ -73,6 +74,7 @@ class MainActivity : AppCompatActivity() {
         dragonSlave,
         dragonLordBlack,
         dragonLordSnowPrince,
+        dragonLordHorn,
         dragonBaby,
         dragonMom,
         chestOne,
@@ -185,47 +187,35 @@ class MainActivity : AppCompatActivity() {
         arFragment.arSceneView.post {
             val augmentedImageDatabase = AugmentedImageDatabase(arFragment.arSceneView.session)
             //add medieval knight
-            var bitmap: Bitmap = BitmapFactory.decodeStream(assets.open(medievalKnight.fiducialMarkerPath))
-            augmentedImageDatabase.addImage(medievalKnight.gltfPath, bitmap, 0.12F)
+            addAugmentedImageToDB(medievalKnight, augmentedImageDatabase)
             //add hell minion
-            bitmap = BitmapFactory.decodeStream(assets.open(hellMinion.fiducialMarkerPath))
-            augmentedImageDatabase.addImage(hellMinion.gltfPath, bitmap, 0.12F)
+            addAugmentedImageToDB(hellMinion, augmentedImageDatabase)
             //add chicken sandwich
-            bitmap = BitmapFactory.decodeStream(assets.open(chickenSandwich.fiducialMarkerPath))
-            augmentedImageDatabase.addImage(chickenSandwich.gltfPath, bitmap, 0.12F)
+            addAugmentedImageToDB(chickenSandwich, augmentedImageDatabase)
             //add unicorn
-            bitmap = BitmapFactory.decodeStream(assets.open(unicorn.fiducialMarkerPath))
-            augmentedImageDatabase.addImage(unicorn.gltfPath, bitmap, 0.12F)
+            addAugmentedImageToDB(unicorn, augmentedImageDatabase)
             //add gold fish
-            bitmap = BitmapFactory.decodeStream(assets.open(goldFish.fiducialMarkerPath))
-            augmentedImageDatabase.addImage(goldFish.gltfPath, bitmap, 0.12F)
+            addAugmentedImageToDB(goldFish, augmentedImageDatabase)
             //add storm wing
-            bitmap = BitmapFactory.decodeStream(assets.open(stormWing.fiducialMarkerPath))
-            augmentedImageDatabase.addImage(stormWing.gltfPath, bitmap, 0.12F)
+            addAugmentedImageToDB(stormWing, augmentedImageDatabase)
             //add ent
-            bitmap = BitmapFactory.decodeStream(assets.open(ent.fiducialMarkerPath))
-            augmentedImageDatabase.addImage(ent.gltfPath, bitmap, 0.12F)
+            addAugmentedImageToDB(ent, augmentedImageDatabase)
             //add dragon slave
-            bitmap = BitmapFactory.decodeStream(assets.open(dragonSlave.fiducialMarkerPath))
-            augmentedImageDatabase.addImage(dragonSlave.gltfPath, bitmap, 0.12F)
+            addAugmentedImageToDB(dragonSlave, augmentedImageDatabase)
             //add dragon lord black
-            //bitmap = BitmapFactory.decodeStream(assets.open(dragonLordBlack.fiducialMarkerPath))
-            //augmentedImageDatabase.addImage(dragonLordBlack.gltfPath, bitmap, 0.12F)
+            //addAugmentedImageToDB(dragonLordBlack, augmentedImageDatabase)
             //add dragon baby
-            bitmap = BitmapFactory.decodeStream(assets.open(dragonBaby.fiducialMarkerPath))
-            augmentedImageDatabase.addImage(dragonBaby.gltfPath, bitmap, 0.12F)
+            addAugmentedImageToDB(dragonBaby, augmentedImageDatabase)
             //add dragon lord snow prince
-            bitmap = BitmapFactory.decodeStream(assets.open(dragonLordSnowPrince.fiducialMarkerPath))
-            augmentedImageDatabase.addImage(dragonLordSnowPrince.gltfPath, bitmap, 0.12F)
+            addAugmentedImageToDB(dragonLordSnowPrince, augmentedImageDatabase)
             // add dragon mom
-            bitmap = BitmapFactory.decodeStream(assets.open(dragonMom.fiducialMarkerPath))
-            augmentedImageDatabase.addImage(dragonMom.gltfPath, bitmap, 0.12F)
+            //addAugmentedImageToDB(dragonMom, augmentedImageDatabase)
             // add chest 1
-            bitmap = BitmapFactory.decodeStream(assets.open(chestOne.fiducialMarkerPath))
-            augmentedImageDatabase.addImage(chestOne.gltfPath, bitmap, 0.12F)
+            addAugmentedImageToDB(chestOne, augmentedImageDatabase)
             // add chest 2
-            bitmap = BitmapFactory.decodeStream(assets.open(chestTwo.fiducialMarkerPath))
-            augmentedImageDatabase.addImage(chestTwo.gltfPath, bitmap, 0.12F)
+            addAugmentedImageToDB(chestTwo, augmentedImageDatabase)
+            // add dragon lord horn
+            addAugmentedImageToDB(dragonLordHorn, augmentedImageDatabase)
 
             val config = arFragment.arSceneView.session?.config
             config?.augmentedImageDatabase = augmentedImageDatabase
@@ -321,6 +311,14 @@ class MainActivity : AppCompatActivity() {
             questLogIcon.visibility = View.VISIBLE
             inventoryIcon.visibility = View.VISIBLE
         }
+    }
+
+    private fun addAugmentedImageToDB(arModel: ArModel, augmentedImageDatabase: AugmentedImageDatabase) {
+        augmentedImageDatabase.addImage(
+            arModel.gltfPath,
+            BitmapFactory.decodeStream(assets.open(arModel.fiducialMarkerPath)),
+            0.12F
+        )
     }
 
     private fun updateModelOrientation(transformableNode: TransformableNode) {
