@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
     private var dragonMom = DragonMom
     private var chestOne = ChestOne
     private var chestTwo = ChestTwo
+    private var ogre = Ogre
 
     private var arModels = mutableListOf(
         medievalKnight,
@@ -78,7 +79,8 @@ class MainActivity : AppCompatActivity() {
         dragonBaby,
         dragonMom,
         chestOne,
-        chestTwo
+        chestTwo,
+        ogre
     )
 
     private var timedActionController = TimedActionController()
