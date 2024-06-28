@@ -17,7 +17,7 @@ object QuestList {
             QuestType.COLLECTING,
             DragonBaby,
             1,
-            null,
+            HealthAmulet,
             null
         ),
         3 to Quest(
