@@ -6,4 +6,5 @@ open class Item {
     open var imageId: Int = 0
     open var type: ItemType = ItemType.MAX_HEALTH
     open var value: Int = 0
+    open var stackable: Boolean = false
 }

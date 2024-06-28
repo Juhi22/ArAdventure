@@ -44,7 +44,7 @@ class Player : ViewModel() {
             isDead.value = false
         } else if (item is Quest && !quests.contains(item)) {
             quests.add(item)
-        } else if (!PlayerUtil.isItemInInventory(inventory, item)) {
+        } else if (!PlayerUtil.isItemInInventory(inventory, item) || item.stackable) {
             inventory.add(item)
             if (item.type == ItemType.MAX_HEALTH) {
                 maxHealth += item.value

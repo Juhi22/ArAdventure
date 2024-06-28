@@ -147,7 +147,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         inventoryImage.setOnClickListener {
-            val inventoryDialog = InventoryDialog(this)
+            val inventoryDialog = InventoryDialog(this, resources)
             inventoryDialog.show(player.inventory)
         }
 
@@ -186,36 +186,9 @@ class MainActivity : AppCompatActivity() {
 
         arFragment.arSceneView.post {
             val augmentedImageDatabase = AugmentedImageDatabase(arFragment.arSceneView.session)
-            //add medieval knight
-            addAugmentedImageToDB(medievalKnight, augmentedImageDatabase)
-            //add hell minion
-            addAugmentedImageToDB(hellMinion, augmentedImageDatabase)
-            //add chicken sandwich
-            addAugmentedImageToDB(chickenSandwich, augmentedImageDatabase)
-            //add unicorn
-            addAugmentedImageToDB(unicorn, augmentedImageDatabase)
-            //add gold fish
-            addAugmentedImageToDB(goldFish, augmentedImageDatabase)
-            //add storm wing
-            addAugmentedImageToDB(stormWing, augmentedImageDatabase)
-            //add ent
-            addAugmentedImageToDB(ent, augmentedImageDatabase)
-            //add dragon slave
-            addAugmentedImageToDB(dragonSlave, augmentedImageDatabase)
-            //add dragon lord black
-            //addAugmentedImageToDB(dragonLordBlack, augmentedImageDatabase)
-            //add dragon baby
-            addAugmentedImageToDB(dragonBaby, augmentedImageDatabase)
-            //add dragon lord snow prince
-            addAugmentedImageToDB(dragonLordSnowPrince, augmentedImageDatabase)
-            // add dragon mom
-            //addAugmentedImageToDB(dragonMom, augmentedImageDatabase)
-            // add chest 1
-            addAugmentedImageToDB(chestOne, augmentedImageDatabase)
-            // add chest 2
-            addAugmentedImageToDB(chestTwo, augmentedImageDatabase)
-            // add dragon lord horn
-            addAugmentedImageToDB(dragonLordHorn, augmentedImageDatabase)
+            arModels.forEach {
+                addAugmentedImageToDB(it, augmentedImageDatabase)
+            }
 
             val config = arFragment.arSceneView.session?.config
             config?.augmentedImageDatabase = augmentedImageDatabase

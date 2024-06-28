@@ -3,6 +3,7 @@ package hu.dj.aradventure.dialog
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
@@ -16,7 +17,7 @@ import hu.dj.aradventure.item.Item
 import hu.dj.aradventure.item.Quest
 import java.util.stream.Collectors
 
-class InventoryDialog(private var context: Context) {
+class InventoryDialog(private var context: Context, private var resources: Resources) {
 
     private lateinit var alertDialog: AlertDialog
 
@@ -32,13 +33,31 @@ class InventoryDialog(private var context: Context) {
         val dialogView = LayoutInflater.from(context).inflate(R.layout.inventory, null)
         val gridLayout = dialogView.findViewById<GridLayout>(R.id.gridLayout)
 
-        for (item in inventory) {
+        val countedItems = mutableMapOf<String, Int>()
+        inventory.stream().forEach {
+            val item = countedItems[it.name]
+            if (item == null) {
+                countedItems[it.name] = 1
+            } else {
+                val count = countedItems[it.name]!!
+                countedItems[it.name] = count + 1
+            }
+        }
+
+        for (itemNameWithCount in countedItems) {
+            val item = inventory.first { it.name == itemNameWithCount.key }
+
+            val frameLayout = FrameLayout(context).apply {
+                layoutParams = ViewGroup.LayoutParams(270, 270)
+            }
+
             val imageView = ImageView(context).apply {
                 setImageResource(item.imageId)
-                layoutParams = GridLayout.LayoutParams().apply {
-                    width = 0
-                    height = GridLayout.LayoutParams.WRAP_CONTENT
-                    columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
+                layoutParams = FrameLayout.LayoutParams(
+                    FrameLayout.LayoutParams.MATCH_PARENT,
+                    FrameLayout.LayoutParams.MATCH_PARENT
+                ).apply {
+                    setMargins(4, 4, 4, 4) // margin a cellák között
                 }
                 scaleType = ImageView.ScaleType.CENTER_CROP
                 adjustViewBounds = true
@@ -47,7 +66,24 @@ class InventoryDialog(private var context: Context) {
                     showTooltip(it as ImageView, item)
                 }
             }
-            gridLayout.addView(imageView)
+
+            val textView = TextView(context).apply {
+                text = itemNameWithCount.value.toString()
+                setTextColor(Color.WHITE)
+                setBackgroundColor(Color.BLACK)
+                textSize = 20f
+                layoutParams = FrameLayout.LayoutParams(
+                    FrameLayout.LayoutParams.WRAP_CONTENT,
+                    FrameLayout.LayoutParams.WRAP_CONTENT
+                ).apply {
+                    gravity = android.view.Gravity.BOTTOM or android.view.Gravity.END
+                    setMargins(0, 0, 8, 8)
+                }
+            }
+
+            frameLayout.addView(imageView)
+            frameLayout.addView(textView)
+            gridLayout.addView(frameLayout)
         }
 
         val dialogBuilder = AlertDialog.Builder(context)

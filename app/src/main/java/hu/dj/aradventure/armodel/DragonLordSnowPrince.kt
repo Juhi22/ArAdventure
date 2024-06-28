@@ -1,6 +1,8 @@
 package hu.dj.aradventure.armodel
 
 import com.google.ar.sceneform.math.Vector3
+import hu.dj.aradventure.item.DragonPowerOrb
+import hu.dj.aradventure.item.Item
 
 object DragonLordSnowPrince: Enemy() {
     override val gltfPath: String
@@ -13,9 +15,7 @@ object DragonLordSnowPrince: Enemy() {
         get() {
             return mutableMapOf(
                 "idle" to "ANI_YongYong_Idle_01",
-                //"attack" to "ANI_YongYong_Stand_Up_Attack_00",
                 "attack" to "ANI_YongYong_Attack_Light_01",
-                //"attack" to "ANI_YongYong_Hit_00",
                 "dead" to "ANI_YongYong_Stun"
             )
         }
@@ -29,6 +29,8 @@ object DragonLordSnowPrince: Enemy() {
     override var loopDeathAnimation: Boolean = false
 
     override var name = "Sárkányúr: Hó herceg"
+
+    override var reward: Item? = DragonPowerOrb
 
     override var scale = Vector3(0.1F, 0.1F, 0.1F)
 

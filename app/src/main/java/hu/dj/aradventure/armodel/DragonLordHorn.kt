@@ -1,5 +1,8 @@
 package hu.dj.aradventure.armodel
 
+import hu.dj.aradventure.item.DragonPowerOrb
+import hu.dj.aradventure.item.Item
+
 object DragonLordHorn: Enemy() {
     override val gltfPath: String
         get() = "dragon_lord_horn/scene.gltf"
@@ -25,6 +28,8 @@ object DragonLordHorn: Enemy() {
     override var loopDeathAnimation: Boolean = false
 
     override var name = "Sárkányúr: Agyar"
+
+    override var reward: Item? = DragonPowerOrb
 
     override val sounds: Map<String, String>
         get() {
