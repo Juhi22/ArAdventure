@@ -79,6 +79,8 @@ class ScriptController(
         npcSentenceKey = "1"
         arModel = givenArModel
         val script: Map<String, Any> = arModel.script
+        // clear listener
+        onCompletionListener = null
 
         val compeletedQuests = collectCompletedQuestsOfArModel(quests)
         if (compeletedQuests.isNotEmpty()) {
