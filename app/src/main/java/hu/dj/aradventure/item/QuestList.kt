@@ -23,7 +23,7 @@ object QuestList {
         3 to Quest(
             "Utánpótlás hiányában",
             "Az erdő szellemei testet öltöttek és akadályozzák az utánpótlás ellátást. Győzz le belőlük 3-at",
-            QuestType.KILLING, Ent, 3, null, 0.2
+            QuestType.KILLING, Ent, 3, null, 1.0
         ),
     )
 

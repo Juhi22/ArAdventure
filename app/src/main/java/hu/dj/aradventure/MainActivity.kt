@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.annotation.RequiresApi
@@ -96,6 +97,7 @@ class MainActivity : AppCompatActivity() {
 
         setBackDropContent(View.INVISIBLE, Item())
 
+        val modelInfoView: LinearLayout = findViewById(R.id.modelInfo)
         val modelNameView: TextView = findViewById(R.id.modelName)
         val progressBar: ProgressBar = findViewById(R.id.progress_bar)
         val healthPointsView: TextView = findViewById(R.id.healthPoints)
@@ -104,7 +106,7 @@ class MainActivity : AppCompatActivity() {
         val damageIconView: ImageView = findViewById(R.id.damageIcon)
         val questLogImage: ImageView = findViewById(R.id.questLog)
         val inventoryImage: ImageView = findViewById(R.id.inventory)
-        modelNameView.visibility = View.GONE
+        modelInfoView.visibility = View.GONE
         healthPointsView.visibility = View.GONE
         heartIconView.visibility = View.GONE
         damageIconView.visibility = View.GONE
@@ -229,8 +231,12 @@ class MainActivity : AppCompatActivity() {
                                     val anchorNode = AnchorNode(augmentedImage.createAnchor(augmentedImage.centerPose))
                                     augmentedImageMap[augmentedImage] = anchorNode
                                     displayModel(augmentedImage.name, currentModel, anchorNode)
+
                                     modelNameView.text = currentModel.name
-                                    modelNameView.visibility = View.VISIBLE
+                                    modelInfoView.visibility = View.VISIBLE
+                                    modelNameView.post{
+                                        setModelHealthBar(100, modelNameView)
+                                    }
                                 }
                             }
                         }
@@ -244,6 +250,14 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun setModelHealthBar(healthPercent: Int, modelNameView: TextView = findViewById(R.id.modelName)) {
+        val modelHealthView: ProgressBar = findViewById(R.id.modelHealth)
+        modelHealthView.progress = healthPercent
+        val layoutParams = modelHealthView.layoutParams
+        layoutParams.width = modelNameView.width
+        modelHealthView.layoutParams = layoutParams
     }
 
     private fun canDisplayModel(model: ArModel): Boolean {
@@ -433,6 +447,7 @@ class MainActivity : AppCompatActivity() {
                         if (arModel.health > 0) {
                             arModel.damage(player.damagePoint.value!!)
                             soundController.start("common_sounds/punch.mp3")
+                            setModelHealthBar((arModel.health.toFloat() / arModel.maxHealth.toFloat() * 100).toInt())
                             if (arModel.health <= 0) {
                                 timedActionController.stopRunning()
                                 changeNodeAnimation(anchorNode, modelRenderable, arModel, "dead")
@@ -523,8 +538,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun clearAllNodes() {
-        val modelNameView: TextView = findViewById(R.id.modelName)
-        modelNameView.visibility = View.GONE
+        val modelInfoView: LinearLayout = findViewById(R.id.modelInfo)
+        modelInfoView.visibility = View.GONE
         with(arFragment.arSceneView.scene.children.iterator()) {
             forEach {
                 if (it is AnchorNode) {
