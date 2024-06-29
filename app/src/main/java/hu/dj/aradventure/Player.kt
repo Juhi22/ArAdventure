@@ -9,7 +9,7 @@ class Player : ViewModel() {
     var health = MutableLiveData(3)
     var maxHealth: Int = 3
     val minimumHealth: Int = 0
-    var damagePoint: Int = 1
+    var damagePoint = MutableLiveData(1)
     var inventory: MutableList<Item> = mutableListOf()
     var isDead = MutableLiveData(false)
     var quests: MutableList<Quest> = mutableListOf()
@@ -50,7 +50,7 @@ class Player : ViewModel() {
                 maxHealth += item.value
                 health.value = maxHealth
             } else if (item.type == ItemType.ATTACK_POWER) {
-                damagePoint += item.value
+                damagePoint.value = damagePoint.value?.plus(item.value)
             }
         }
     }

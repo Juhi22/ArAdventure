@@ -15,7 +15,7 @@ class GameDataManager(context: Context) {
         val editor = prefs.edit()
         editor.putInt(Key.PLAYER_HEALTH.name, player.health.value!!)
         editor.putInt(Key.PLAYER_MAX_HEALTH.name, player.maxHealth)
-        editor.putInt(Key.PLAYER_DAMAGE_POINT.name, player.damagePoint)
+        editor.putInt(Key.PLAYER_DAMAGE_POINT.name, player.damagePoint.value!!)
         editor.putBoolean(Key.PLAYER_IS_DEAD.name, player.isDead.value!!)
         player.inventory.forEachIndexed{ index, item ->
             editor.putString(Key.PLAYER_ITEM_NAME.name + index, item.name)
@@ -43,7 +43,7 @@ class GameDataManager(context: Context) {
         val player = Player()
         player.health = MutableLiveData(prefs.getInt(Key.PLAYER_HEALTH.name, 3))
         player.maxHealth = prefs.getInt(Key.PLAYER_MAX_HEALTH.name, 3)
-        player.damagePoint = prefs.getInt(Key.PLAYER_DAMAGE_POINT.name, 1)
+        player.damagePoint = MutableLiveData(prefs.getInt(Key.PLAYER_DAMAGE_POINT.name, 1))
         player.isDead = MutableLiveData(prefs.getBoolean(Key.PLAYER_IS_DEAD.name, false))
         for (i in 0..100) {
             val item = Item()

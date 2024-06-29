@@ -91,6 +91,27 @@
             app:layout_constraintStart_toEndOf="@id/heartIcon"
             android:layout_marginTop="16dp"/>
 
+    <ImageView
+            android:id="@+id/damageIcon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/sword_attack_point"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="86dp"
+            android:layout_marginStart="16dp"/>
+
+    <TextView
+            android:id="@+id/damagePoints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="42"
+            android:textSize="40dp"
+            android:textColor="#716F6F"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/damageIcon"
+            android:layout_marginTop="86dp"/>
+
     <TextView
             android:id="@+id/modelName"
             android:layout_width="wrap_content"
@@ -115,17 +136,17 @@
             android:src="@drawable/quest_log"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="86dp"
+            android:layout_marginTop="150dp"
             android:layout_marginStart="16dp"/>
 
     <ImageView
             android:id="@+id/inventory"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:src="@drawable/inventory"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="205dp"
             android:layout_marginStart="16dp"/>
 
     <ImageView

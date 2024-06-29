@@ -100,11 +100,15 @@ class MainActivity : AppCompatActivity() {
         val progressBar: ProgressBar = findViewById(R.id.progress_bar)
         val healthPointsView: TextView = findViewById(R.id.healthPoints)
         val heartIconView: ImageView = findViewById(R.id.heartIcon)
+        val damagePointsView: TextView = findViewById(R.id.damagePoints)
+        val damageIconView: ImageView = findViewById(R.id.damageIcon)
         val questLogImage: ImageView = findViewById(R.id.questLog)
         val inventoryImage: ImageView = findViewById(R.id.inventory)
         modelNameView.visibility = View.GONE
         healthPointsView.visibility = View.GONE
         heartIconView.visibility = View.GONE
+        damageIconView.visibility = View.GONE
+        damagePointsView.visibility = View.GONE
         questLogImage.visibility = View.GONE
         inventoryImage.visibility = View.GONE
 
@@ -139,6 +143,10 @@ class MainActivity : AppCompatActivity() {
         healthPointsView.text = player.health.value.toString()
         player.health.observe(this) {
             healthPointsView.text = it.toString()
+        }
+        damagePointsView.text = player.damagePoint.value.toString()
+        player.damagePoint.observe(this) {
+            damagePointsView.text = it.toString()
         }
         player.isDead.observe(this) {
             if (it) {
@@ -199,6 +207,8 @@ class MainActivity : AppCompatActivity() {
             progressBar.visibility = View.GONE
             healthPointsView.visibility = View.VISIBLE
             heartIconView.visibility = View.VISIBLE
+            damagePointsView.visibility = View.VISIBLE
+            damageIconView.visibility = View.VISIBLE
             questLogImage.visibility = View.VISIBLE
             inventoryImage.visibility = View.VISIBLE
         }
@@ -254,6 +264,8 @@ class MainActivity : AppCompatActivity() {
         val backdrop = findViewById<View>(R.id.backdrop)
         val healthPoints: TextView = findViewById(R.id.healthPoints)
         val heartIcon: ImageView = findViewById(R.id.heartIcon)
+        val damagePoints: TextView = findViewById(R.id.damagePoints)
+        val damageIcon: ImageView = findViewById(R.id.damageIcon)
         val questLogIcon: ImageView = findViewById(R.id.questLog)
         val inventoryIcon: ImageView = findViewById(R.id.inventory)
         val centerImage: ImageView = findViewById(R.id.centerImage)
@@ -271,6 +283,8 @@ class MainActivity : AppCompatActivity() {
         if (visibility == View.VISIBLE) {
             healthPoints.visibility = View.INVISIBLE
             heartIcon.visibility = View.INVISIBLE
+            damagePoints.visibility = View.INVISIBLE
+            damageIcon.visibility = View.INVISIBLE
             questLogIcon.visibility = View.INVISIBLE
             inventoryIcon.visibility = View.INVISIBLE
 
@@ -283,6 +297,8 @@ class MainActivity : AppCompatActivity() {
         } else {
             healthPoints.visibility = View.VISIBLE
             heartIcon.visibility = View.VISIBLE
+            damagePoints.visibility = View.VISIBLE
+            damageIcon.visibility = View.VISIBLE
             questLogIcon.visibility = View.VISIBLE
             inventoryIcon.visibility = View.VISIBLE
         }
@@ -415,7 +431,7 @@ class MainActivity : AppCompatActivity() {
                     setOnTapListener { hitTestResult, motionEvent ->
                         //hit enemy
                         if (arModel.health > 0) {
-                            arModel.damage(player.damagePoint)
+                            arModel.damage(player.damagePoint.value!!)
                             soundController.start("common_sounds/punch.mp3")
                             if (arModel.health <= 0) {
                                 timedActionController.stopRunning()
