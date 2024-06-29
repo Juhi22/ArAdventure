@@ -1,97 +1,115 @@
-<mxfile host="app.diagrams.net" modified="2024-06-28T18:39:14.595Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="A1llEs-uJN1HnEpdZJBB" version="24.6.4" type="device">
+<mxfile host="app.diagrams.net" modified="2024-06-29T14:49:59.426Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="05y_ZZjLxY8rE2zGIXwr" version="24.6.4" type="device">
   <diagram name="1 oldal" id="Uiq4vRB8BfLM2qZy_Oot">
     <mxGraphModel dx="1362" dy="793" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="io6slPMdRA6OT_VzWNtm-1" value="&lt;b&gt;medieval knight&lt;/b&gt;&lt;div&gt;&lt;b&gt;friend&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;quests:&lt;/b&gt;&lt;/div&gt;&lt;div&gt;- 1, reward: sword, chapter 0.0, next chapter: 0.1&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="io6slPMdRA6OT_VzWNtm-1" value="&lt;b&gt;medieval knight&lt;/b&gt;&lt;div&gt;&lt;b&gt;friend&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;quests:&lt;/b&gt;&lt;/div&gt;&lt;div&gt;- 1, reward: sword, chapter 0.0, next chapter: 0.1&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="32" y="40" width="268" height="190" as="geometry" />
         </mxCell>
-        <mxCell id="io6slPMdRA6OT_VzWNtm-2" value="&lt;b&gt;stormwing&lt;/b&gt;&lt;div&gt;&lt;b&gt;friend&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;quests:&lt;/b&gt;&lt;/div&gt;&lt;div&gt;- 3, chapter 0.1, next chapter: 0.2&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="io6slPMdRA6OT_VzWNtm-2" value="&lt;b&gt;stormwing&lt;/b&gt;&lt;div&gt;&lt;b&gt;friend&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;quests:&lt;/b&gt;&lt;/div&gt;&lt;div&gt;- 3, chapter 0.1, next chapter: 1.0&lt;/div&gt;&lt;div&gt;- 4, chapter 1.0, next chapter: 1.1&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="354" y="30" width="406" height="230" as="geometry" />
         </mxCell>
-        <mxCell id="io6slPMdRA6OT_VzWNtm-3" value="&lt;div&gt;dragon lord: black&lt;/div&gt;&lt;div&gt;enemy&lt;/div&gt;&lt;div&gt;reward: dragon power orb&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="37" y="440" width="190" height="160" as="geometry" />
+        <mxCell id="io6slPMdRA6OT_VzWNtm-3" value="&lt;div&gt;dragon lord: black&lt;/div&gt;&lt;div&gt;enemy&lt;/div&gt;&lt;div&gt;reward: dragon power orb&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="120" y="480" width="190" height="160" as="geometry" />
         </mxCell>
-        <mxCell id="io6slPMdRA6OT_VzWNtm-4" value="&lt;div&gt;dragon lord: snow prince&lt;/div&gt;&lt;div&gt;enemy&lt;/div&gt;&lt;div&gt;reward: dragon power orb&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="237" y="440" width="190" height="160" as="geometry" />
+        <mxCell id="io6slPMdRA6OT_VzWNtm-4" value="&lt;div&gt;dragon lord: snow prince&lt;/div&gt;&lt;div&gt;enemy&lt;/div&gt;&lt;div&gt;reward: dragon power orb&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="320" y="480" width="190" height="160" as="geometry" />
         </mxCell>
-        <mxCell id="io6slPMdRA6OT_VzWNtm-5" value="goldfish&lt;div&gt;enemy&lt;/div&gt;&lt;div&gt;reward: health amulet&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="840" y="440" width="190" height="160" as="geometry" />
+        <mxCell id="io6slPMdRA6OT_VzWNtm-5" value="goldfish&lt;div&gt;enemy&lt;/div&gt;&lt;div&gt;reward: health amulet&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="990" width="120" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="io6slPMdRA6OT_VzWNtm-6" value="&lt;div&gt;dragon lord: horn&lt;/div&gt;&lt;div&gt;enemy&lt;/div&gt;&lt;div&gt;reward: dragon power orb&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="437" y="440" width="190" height="160" as="geometry" />
+        <mxCell id="io6slPMdRA6OT_VzWNtm-6" value="&lt;div&gt;dragon lord: horn&lt;/div&gt;&lt;div&gt;enemy&lt;/div&gt;&lt;div&gt;reward: dragon power orb&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="520" y="480" width="190" height="160" as="geometry" />
         </mxCell>
-        <mxCell id="io6slPMdRA6OT_VzWNtm-7" value="&lt;b&gt;dragon mom&lt;/b&gt;&lt;div&gt;&lt;b&gt;friend&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;quests:&lt;/b&gt;&lt;/div&gt;&lt;div&gt;- 2, reward: health amulet&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="io6slPMdRA6OT_VzWNtm-7" value="&lt;b&gt;dragon mom&lt;/b&gt;&lt;div&gt;&lt;b&gt;friend&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;quests:&lt;/b&gt;&lt;/div&gt;&lt;div&gt;- 2, reward: health amulet&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="10" y="650" width="150" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="io6slPMdRA6OT_VzWNtm-8" value="dragon lord: unicorn&lt;div&gt;friend&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="640" y="440" width="190" height="160" as="geometry" />
+        <mxCell id="io6slPMdRA6OT_VzWNtm-8" value="dragon lord: unicorn&lt;div&gt;friend&lt;/div&gt;&lt;div&gt;quests:&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="723" y="480" width="190" height="160" as="geometry" />
         </mxCell>
-        <mxCell id="io6slPMdRA6OT_VzWNtm-9" value="hell minion&lt;div&gt;enemy&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="io6slPMdRA6OT_VzWNtm-9" value="hell minion&lt;div&gt;enemy&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="70" y="350" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="io6slPMdRA6OT_VzWNtm-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="io6slPMdRA6OT_VzWNtm-14" target="io6slPMdRA6OT_VzWNtm-9">
+        <mxCell id="io6slPMdRA6OT_VzWNtm-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="io6slPMdRA6OT_VzWNtm-14" target="io6slPMdRA6OT_VzWNtm-9" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="100" y="100" as="sourcePoint" />
             <mxPoint x="102" y="135" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="io6slPMdRA6OT_VzWNtm-14" value="quest 1: kill 5" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="io6slPMdRA6OT_VzWNtm-14" value="quest 1: kill 5" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="100" y="260" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="io6slPMdRA6OT_VzWNtm-18" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="io6slPMdRA6OT_VzWNtm-14" target="io6slPMdRA6OT_VzWNtm-1">
+        <mxCell id="io6slPMdRA6OT_VzWNtm-18" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="io6slPMdRA6OT_VzWNtm-14" target="io6slPMdRA6OT_VzWNtm-1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="390" y="430" as="sourcePoint" />
             <mxPoint x="440" y="380" as="targetPoint" />
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="io6slPMdRA6OT_VzWNtm-20" value="ent&lt;div&gt;enemy&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="420" y="340" width="120" height="60" as="geometry" />
+        <mxCell id="io6slPMdRA6OT_VzWNtm-20" value="ent&lt;div&gt;enemy&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="640" y="390" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="io6slPMdRA6OT_VzWNtm-21" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="io6slPMdRA6OT_VzWNtm-22" target="io6slPMdRA6OT_VzWNtm-2">
+        <mxCell id="io6slPMdRA6OT_VzWNtm-21" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="io6slPMdRA6OT_VzWNtm-22" target="io6slPMdRA6OT_VzWNtm-2" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="140" y="270" as="sourcePoint" />
             <mxPoint x="176" y="240" as="targetPoint" />
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="io6slPMdRA6OT_VzWNtm-25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="io6slPMdRA6OT_VzWNtm-22" target="io6slPMdRA6OT_VzWNtm-20">
+        <mxCell id="io6slPMdRA6OT_VzWNtm-25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="io6slPMdRA6OT_VzWNtm-22" target="io6slPMdRA6OT_VzWNtm-20" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="io6slPMdRA6OT_VzWNtm-22" value="quest 3: kill 3" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="460" y="280" width="60" height="30" as="geometry" />
+        <mxCell id="io6slPMdRA6OT_VzWNtm-22" value="quest 3: kill 3" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="640" y="310" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="io6slPMdRA6OT_VzWNtm-26" value="dragon baby&lt;div&gt;collectable&lt;/div&gt;&lt;div&gt;item: dragon baby&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="io6slPMdRA6OT_VzWNtm-26" value="dragon baby&lt;div&gt;collectable&lt;/div&gt;&lt;div&gt;item: dragon baby&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="300" y="670" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="io6slPMdRA6OT_VzWNtm-27" value="&lt;div&gt;chest two&lt;/div&gt;&lt;div&gt;collectable&lt;/div&gt;&lt;div&gt;item: power amulet&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="37" y="850" width="120" height="60" as="geometry" />
+        <mxCell id="io6slPMdRA6OT_VzWNtm-27" value="&lt;div&gt;chest two&lt;/div&gt;&lt;div&gt;collectable&lt;/div&gt;&lt;div&gt;item: power amulet&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="850" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="io6slPMdRA6OT_VzWNtm-28" value="chest One&lt;div&gt;collectable&lt;/div&gt;&lt;div&gt;item: health ring&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="40" y="770" width="120" height="60" as="geometry" />
+        <mxCell id="io6slPMdRA6OT_VzWNtm-28" value="chest One&lt;div&gt;collectable&lt;/div&gt;&lt;div&gt;item: health ring&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="780" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="io6slPMdRA6OT_VzWNtm-29" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="io6slPMdRA6OT_VzWNtm-7" target="io6slPMdRA6OT_VzWNtm-30">
+        <mxCell id="io6slPMdRA6OT_VzWNtm-29" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="io6slPMdRA6OT_VzWNtm-7" target="io6slPMdRA6OT_VzWNtm-30" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="170" y="710" as="sourcePoint" />
             <mxPoint x="220" y="660" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="io6slPMdRA6OT_VzWNtm-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="io6slPMdRA6OT_VzWNtm-30" target="io6slPMdRA6OT_VzWNtm-26">
+        <mxCell id="io6slPMdRA6OT_VzWNtm-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="io6slPMdRA6OT_VzWNtm-30" target="io6slPMdRA6OT_VzWNtm-26" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="io6slPMdRA6OT_VzWNtm-30" value="quest 2:&lt;div&gt;collect 1&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="io6slPMdRA6OT_VzWNtm-30" value="quest 2:&lt;div&gt;collect 1&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="200" y="685" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="io6slPMdRA6OT_VzWNtm-33" value="ogre&lt;div&gt;enemy&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="750" y="340" width="120" height="60" as="geometry" />
+        <mxCell id="io6slPMdRA6OT_VzWNtm-33" value="ogre&lt;div&gt;enemy&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="850" y="210" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="io6slPMdRA6OT_VzWNtm-34" value="dragon slave&lt;div&gt;enemy&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="610" y="340" width="120" height="60" as="geometry" />
+        <mxCell id="io6slPMdRA6OT_VzWNtm-34" value="dragon slave&lt;div&gt;enemy&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="850" y="130" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="io6slPMdRA6OT_VzWNtm-35" value="chicken sandwich&lt;div&gt;food&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="io6slPMdRA6OT_VzWNtm-35" value="chicken sandwich&lt;div&gt;food&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="40" y="920" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KZHnJ-V21HNgsZF85aE5-1" value="" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="KZHnJ-V21HNgsZF85aE5-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="387" y="310" as="sourcePoint" />
+            <mxPoint x="437" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KZHnJ-V21HNgsZF85aE5-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="KZHnJ-V21HNgsZF85aE5-2" target="io6slPMdRA6OT_VzWNtm-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KZHnJ-V21HNgsZF85aE5-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="KZHnJ-V21HNgsZF85aE5-2" target="io6slPMdRA6OT_VzWNtm-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KZHnJ-V21HNgsZF85aE5-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="KZHnJ-V21HNgsZF85aE5-2" target="io6slPMdRA6OT_VzWNtm-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KZHnJ-V21HNgsZF85aE5-2" value="quest 4: collect 3" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="330" y="310" width="60" height="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
