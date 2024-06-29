@@ -25,6 +25,11 @@ object QuestList {
             "Az erdő szellemei testet öltöttek és akadályozzák az utánpótlás ellátást. Győzz le belőlük 3-at",
             QuestType.KILLING, Ent, 3, null, 1.0
         ),
+        4 to Quest(
+            "Sárkányok ereje",
+            "Gyűjtsd össze a sárkány urak erő gömbjeit",
+            QuestType.COLLECTING, DragonPowerOrb, 3, null, 1.1
+        ),
     )
 
 }
