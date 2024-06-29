@@ -30,6 +30,8 @@ object DragonSlave: Enemy() {
 
     override var name = "Sárkány szolga"
 
+    override var invincibleUntilChapter = 2.0F
+
     override val sounds: Map<String, String>
         get() {
             return mutableMapOf(

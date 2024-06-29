@@ -34,6 +34,8 @@ object DragonLordSnowPrince: Enemy() {
 
     override var scale = Vector3(0.1F, 0.1F, 0.1F)
 
+    override var invincibleUntilChapter = 1.0F
+
     override val sounds: Map<String, String>
         get() {
             return mutableMapOf(

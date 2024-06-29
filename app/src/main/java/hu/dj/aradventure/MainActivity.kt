@@ -448,9 +448,13 @@ class MainActivity : AppCompatActivity() {
                     setOnTapListener { hitTestResult, motionEvent ->
                         //hit enemy
                         if (arModel.health > 0) {
-                            arModel.damage(player.damagePoint.value!!)
+                            if (isInvincible(arModel)) {
+                                arModel.damage(0)
+                            } else {
+                                arModel.damage(player.damagePoint.value!!)
+                                setModelHealthBar((arModel.health.toFloat() / arModel.maxHealth.toFloat() * 100).toInt())
+                            }
                             soundController.start("common_sounds/punch.mp3")
-                            setModelHealthBar((arModel.health.toFloat() / arModel.maxHealth.toFloat() * 100).toInt())
                             if (arModel.health <= 0) {
                                 timedActionController.stopRunning()
                                 changeNodeAnimation(anchorNode, modelRenderable, arModel, "dead")
@@ -502,6 +506,10 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun isInvincible(arModel: ArModel): Boolean {
+        return arModel is Enemy && arModel.invincibleUntilChapter <= gameState.chapter
     }
 
     private fun playAnimationOnce(
