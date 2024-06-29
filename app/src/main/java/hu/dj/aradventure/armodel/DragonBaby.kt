@@ -27,14 +27,4 @@ object DragonBaby : Collectable() {
                 "default" to "dragon_baby/sounds/baby_giggles.mp3"
             )
         }
-
-    override var script: MutableMap<String, Any> =
-        hashMapOf(
-            "default" to hashMapOf(
-                "1" to listOf(
-                    "*gügyögés",
-                    null
-                ),
-            ),
-        )
 }

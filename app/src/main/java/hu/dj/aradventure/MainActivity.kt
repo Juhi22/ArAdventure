@@ -89,6 +89,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var scriptController: ScriptController
     private lateinit var vibrationController: VibrationController
 
+    private var isItemBeingShown = false
+
     @SuppressLint("MissingInflatedId", "ClickableViewAccessibility")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -216,7 +218,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         arFragment.arSceneView.scene.addOnUpdateListener { frameTime: FrameTime ->
-            if (!player.isDead.value!! && !gameState.isFightOngoing.value!! && !scriptController.isScriptOngoing) {
+            if (!player.isDead.value!! && !gameState.isFightOngoing.value!! && !scriptController.isScriptOngoing && !isItemBeingShown) {
                 val updatedAugmentedImages =
                     arFragment.arSceneView.arFrame?.getUpdatedTrackables(AugmentedImage::class.java)
                 updatedAugmentedImages?.forEach { augmentedImage ->
@@ -234,7 +236,7 @@ class MainActivity : AppCompatActivity() {
 
                                     modelNameView.text = currentModel.name
                                     modelInfoView.visibility = View.VISIBLE
-                                    modelNameView.post{
+                                    modelNameView.post {
                                         setModelHealthBar(100, modelNameView)
                                     }
                                 }
@@ -307,6 +309,7 @@ class MainActivity : AppCompatActivity() {
                 timedActionController.stopRunning()
                 player.pickUpItem(item)
                 gameDataManager.savePlayer(player)
+                isItemBeingShown = false
             }
         } else {
             healthPoints.visibility = View.VISIBLE
@@ -525,6 +528,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showItem(reward: Item) {
+        isItemBeingShown = true
         setBackDropContent(View.VISIBLE, reward)
     }
 

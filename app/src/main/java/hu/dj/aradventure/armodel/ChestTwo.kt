@@ -32,14 +32,4 @@ object ChestTwo : Collectable() {
                 "default" to "common_sounds/chest_opening.mp3"
             )
         }
-
-    override var script: MutableMap<String, Any> =
-        hashMapOf(
-            "default" to hashMapOf(
-                "1" to listOf(
-                    "*vajon mit rejt?",
-                    null
-                ),
-            ),
-        )
 }
