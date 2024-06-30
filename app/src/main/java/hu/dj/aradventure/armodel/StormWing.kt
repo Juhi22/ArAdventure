@@ -147,6 +147,44 @@ object StormWing : ArModel() {
                     "10"
                 ),
             ),
+            quests[1].name to hashMapOf(
+                "1" to listOf(
+                    "Lenyűgöző teljesítmény, legyőzted a sárkány urakat  és lehoztad az erőgömböket nekem.",
+                    listOf("player1", "player2")
+                ),
+                "2" to listOf(
+                    "De, így is fogunk tenni, amíg a sötétség szolgái járják a völgyet nem nyugodhatunk. Előtte viszont utána kellene járnod valaminek.",
+                    listOf("player3", "player4")
+                ),
+                "3" to listOf(
+                    "Nem hiszem, hogy csak ennyi volt, mind a három harcedzett sárkány volt. Viszont, ha már ekkora boxoló vagy, utána kellene járnod valaminek.",
+                    listOf("player3", "player4")
+                ),
+                "4" to listOf(
+                    "Járőrözz a völgyben, mint a többi lovagom. Tartsd nyitva a szemed, azt hallottam egy unikornis van a völgyben, ami veszélyt jelent a békére. Mágiával egyre több szövetségesemet állítja maga mellé.",
+                    null
+                ),
+                "5" to listOf(
+                    "Járőrözz, hamarosan véget ér a háború és mind pihenhetünk. Tartsd nyitva a szemed, azt hallottam egy unikornis van a völgyben, ami veszélyt jelent a békére. Mágiával egyre több szövetségesemet állítja maga mellé.",
+                    null
+                ),
+                "player1" to listOf(
+                    "Az ellenségre ezzel nagy csapást mértünk, ne támadjunk most teljes erővel, hogy végleg legyőzzük a gonoszt?.",
+                    "2"
+                ),
+                "player2" to listOf(
+                    "Egy jobbos ide, egy balos oda, Durr egy pofon és feküdt az egész brigád.",
+                    "3"
+                ),
+                "player3" to listOf(
+                    "Természetesen. Mi lenne az?",
+                    "4"
+                ),
+                "player4" to listOf(
+                    "Aludnék már, fárasztó ez a sok küldetés.",
+                    "5"
+                )
+            ),
             "0.1" to hashMapOf(
                 "1" to listOf(
                     "Üdvözöllek, Viharszárny vagyok. Megüzenték, hogy sikeresen helyt álltál.",
