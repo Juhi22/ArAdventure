@@ -265,6 +265,12 @@ class MainActivity : AppCompatActivity() {
     private fun canDisplayModel(model: ArModel): Boolean {
         if (model is GoldFish) {
             return !gameState.isGoldFishDefeated
+        } else if (model is DragonLordBlack) {
+            return !gameState.isDragonLordBlackIsDefeated
+        } else if (model is DragonLordSnowPrince) {
+            return !gameState.isDragonLordSnowPrinceIsDefeated
+        } else if (model is DragonLordHorn) {
+            return !gameState.isDragonLordHornIsDefeated
         } else if (model is Collectable) {
             return !PlayerUtil.isItemInInventory(player.inventory, model.item)
         }
@@ -308,8 +314,9 @@ class MainActivity : AppCompatActivity() {
                 setBackDropContent(View.INVISIBLE, Item())
                 timedActionController.stopRunning()
                 player.pickUpItem(item)
-                gameDataManager.savePlayer(player)
                 isItemBeingShown = false
+                gameDataManager.savePlayer(player)
+                QuestController.update(player.quests, QuestType.COLLECTING, item)
             }
         } else {
             healthPoints.visibility = View.VISIBLE
@@ -509,7 +516,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun isInvincible(arModel: ArModel): Boolean {
-        return arModel is Enemy && arModel.invincibleUntilChapter <= gameState.chapter
+        return arModel is Enemy && arModel.invincibleUntilChapter > gameState.chapter
     }
 
     private fun playAnimationOnce(
@@ -532,6 +539,15 @@ class MainActivity : AppCompatActivity() {
         if (arModel is GoldFish) {
             gameState.isGoldFishDefeated = true
             gameDataManager.saveBooleanValue(GameDataManager.Key.GOLD_FISH_DEFEATED.name, true)
+        } else if (arModel is DragonLordBlack) {
+            gameState.isDragonLordBlackIsDefeated = true
+            gameDataManager.saveBooleanValue(GameDataManager.Key.DRAGON_LORD_BLACK_DEFEATED.name, true)
+        } else if (arModel is DragonLordSnowPrince) {
+            gameState.isDragonLordSnowPrinceIsDefeated = true
+            gameDataManager.saveBooleanValue(GameDataManager.Key.DRAGON_LORD_SNOW_PRINCE_DEFEATED.name, true)
+        } else if (arModel is DragonLordHorn) {
+            gameState.isDragonLordHornIsDefeated = true
+            gameDataManager.saveBooleanValue(GameDataManager.Key.DRAGON_LORD_HORN_DEFEATED.name, true)
         }
     }
 

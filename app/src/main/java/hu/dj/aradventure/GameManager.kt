@@ -74,6 +74,9 @@ class GameDataManager(context: Context) {
         val gameState = GameState()
         gameState.chapter = prefs.getFloat(Key.CHAPTER.name, 0.0.toFloat()).toDouble()
         gameState.isGoldFishDefeated = prefs.getBoolean(Key.GOLD_FISH_DEFEATED.name, false)
+        gameState.isDragonLordBlackIsDefeated = prefs.getBoolean(Key.DRAGON_LORD_BLACK_DEFEATED.name, false)
+        gameState.isDragonLordSnowPrinceIsDefeated = prefs.getBoolean(Key.DRAGON_LORD_SNOW_PRINCE_DEFEATED.name, false)
+        gameState.isDragonLordHornIsDefeated = prefs.getBoolean(Key.DRAGON_LORD_HORN_DEFEATED.name, false)
         return gameState
     }
 
@@ -103,5 +106,8 @@ class GameDataManager(context: Context) {
         QUEST_PROGRESS,
         QUEST_IS_FINISHED,
         GOLD_FISH_DEFEATED,
+        DRAGON_LORD_BLACK_DEFEATED,
+        DRAGON_LORD_SNOW_PRINCE_DEFEATED,
+        DRAGON_LORD_HORN_DEFEATED,
     }
 }
