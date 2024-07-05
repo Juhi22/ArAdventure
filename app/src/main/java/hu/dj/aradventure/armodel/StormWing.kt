@@ -23,6 +23,7 @@ object StormWing : ArModel() {
     override val quests: List<Quest> = listOf(
         QuestList.list[3]!!,
         QuestList.list[4]!!,
+        QuestList.list[5]!!,
     )
 
     override var scale = Vector3(0.1F, 0.1F, 0.1F)
@@ -47,6 +48,48 @@ object StormWing : ArModel() {
                 "1" to listOf(
                     "Hosszú az út, de végül békét teremtünk a völgyben!",
                     null
+                ),
+            ),
+            quests[2].name to hashMapOf(
+                "1" to listOf(
+                    "Üdvözöllek, jelentsd a történéseket!",
+                    listOf("player1", "player2")
+                ),
+                "2" to listOf(
+                    "A te fejedet is telebeszélte mindennel... Ilyen állapotban már nem kérek a szolgálataidból.",
+                    listOf("player3", "player4")
+                ),
+                "3" to listOf(
+                    "A mágiája átmosta a te agyadat is. Mivel jó szolgálatot tettél, szabadon távozhatsz. Mágia befolyása alatt lévő lovagok nem kellenek a seregembe.",
+                    listOf("player5", "player6")
+                ),
+                "4" to listOf(
+                    "Nem nyitok vitát. Köszönöm a szolgálatot, a zsoldot elküldjük. Most pedig távozz!",
+                    null
+                ),
+                "player1" to listOf(
+                    "A járőrözés közben megtaláltam az Unikornist, erős vádakkal állt elő. Azt állítja, a háborúért te vagy a felelős.",
+                    "2"
+                ),
+                "player2" to listOf(
+                    "Beszéltem a sárkány unikornis valamivel, azt mondta, te vagy a felelős a völgyben kitört háborúért.",
+                    "2"
+                ),
+                "player3" to listOf(
+                    "Ennyi lenne? Ezért törtem magam?",
+                    "3"
+                ),
+                "player4" to listOf(
+                    "Hiszen csak jelentettem azt ami történt.",
+                    "3"
+                ),
+                "player5" to listOf(
+                    "Semmilyen mágia alatt nem állok.",
+                    "4"
+                ),
+                "player6" to listOf(
+                    "Tehát igaz, a rossz oldalon álltam végig.",
+                    "4"
                 ),
             ),
             quests[0].name to hashMapOf(

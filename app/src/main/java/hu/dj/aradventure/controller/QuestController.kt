@@ -30,9 +30,9 @@ object QuestController {
             if (!it.isFinished && it.questType == type) {
                 if (it.questItem == questItem && it.progress < it.goal) {
                     it.progress++
-                    if (it.progress >= it.goal) {
-                        it.isFinished = true
-                    }
+                }
+                if (it.progress >= it.goal) {
+                    it.isFinished = true
                 }
             }
         }

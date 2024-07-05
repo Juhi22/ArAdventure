@@ -30,6 +30,15 @@ object QuestList {
             "Gyűjtsd össze a sárkány urak erő gömbjeit",
             QuestType.COLLECTING, DragonPowerOrb, 3, null, 1.1
         ),
+        5 to Quest(
+            "Tiszta vizet a pohárba",
+            "Beszélj Viharszárnnyal, kérdezz rá az Unikornistól hallottakra",
+            QuestType.COLLECTING,
+            HellMinion,
+            0,
+            null,
+            2.0
+        ),
     )
 
 }

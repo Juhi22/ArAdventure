@@ -6,6 +6,8 @@ import hu.dj.aradventure.Player
 import hu.dj.aradventure.item.Item
 import hu.dj.aradventure.item.ItemType
 import hu.dj.aradventure.item.QuestList
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 class GameDataManager(context: Context) {
 
@@ -17,6 +19,23 @@ class GameDataManager(context: Context) {
         editor.putInt(Key.PLAYER_MAX_HEALTH.name, player.maxHealth)
         editor.putInt(Key.PLAYER_DAMAGE_POINT.name, player.damagePoint.value!!)
         editor.putBoolean(Key.PLAYER_IS_DEAD.name, player.isDead.value!!)
+
+        // remove inventory and quest item, not to have stucked in items
+        // it can happen that there are no more quests for the player
+        // then the already saved one won't be removed/overwritten
+        for (i in 0..100) {
+            editor.remove(Key.PLAYER_ITEM_NAME.name + i)
+            editor.remove(Key.PLAYER_ITEM_DESCRIPTION.name + i)
+            editor.remove(Key.PLAYER_ITEM_TYPE.name + i)
+            editor.remove(Key.PLAYER_ITEM_VALUE.name + i)
+            editor.remove(Key.PLAYER_ITEM_IMAGE_ID.name + i)
+        }
+        for (i in 0..100) {
+            editor.remove(Key.QUEST_INDEX.name + i)
+            editor.remove(Key.QUEST_PROGRESS.name + i)
+            editor.remove(Key.QUEST_IS_FINISHED.name + i)
+        }
+
         player.inventory.forEachIndexed{ index, item ->
             editor.putString(Key.PLAYER_ITEM_NAME.name + index, item.name)
             editor.putString(Key.PLAYER_ITEM_DESCRIPTION.name + index, item.description)
@@ -72,7 +91,7 @@ class GameDataManager(context: Context) {
 
     fun loadGameState(): GameState {
         val gameState = GameState()
-        gameState.chapter = prefs.getFloat(Key.CHAPTER.name, 0.0.toFloat()).toDouble()
+        gameState.chapter = prefs.getFloat(Key.CHAPTER.name, 0.0.toFloat()).toBigDecimal().setScale(1, RoundingMode.UP).toDouble()
         gameState.isGoldFishDefeated = prefs.getBoolean(Key.GOLD_FISH_DEFEATED.name, false)
         gameState.isDragonLordBlackIsDefeated = prefs.getBoolean(Key.DRAGON_LORD_BLACK_DEFEATED.name, false)
         gameState.isDragonLordSnowPrinceIsDefeated = prefs.getBoolean(Key.DRAGON_LORD_SNOW_PRINCE_DEFEATED.name, false)
