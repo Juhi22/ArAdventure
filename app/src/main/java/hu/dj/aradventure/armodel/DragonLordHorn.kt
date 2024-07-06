@@ -31,7 +31,7 @@ object DragonLordHorn: Enemy() {
 
     override var reward: Item? = DragonPowerOrb
 
-    override var invincibleUntilChapter = 1.0F
+    override var invincibleUntilChapter = 1.0
 
     override val sounds: Map<String, String>
         get() {

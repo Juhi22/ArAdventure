@@ -26,7 +26,7 @@ object DragonKnight: Enemy() {
 
     override var name = "Sárkánylovag"
 
-    override var invincibleUntilChapter = 2.1F
+    override var invincibleUntilChapter = 2.1
 
     override var scale = Vector3(0.1F, 0.1F, 0.1F)
 

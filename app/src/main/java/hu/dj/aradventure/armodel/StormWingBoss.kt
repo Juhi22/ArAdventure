@@ -30,7 +30,7 @@ object StormWingBoss : Enemy() {
 
     override var scale = Vector3(0.1F, 0.1F, 0.1F)
 
-    override var invincibleUntilChapter = 2.2F
+    override var invincibleUntilChapter = 2.2
 
     override var loopDeathAnimation: Boolean = false
 
