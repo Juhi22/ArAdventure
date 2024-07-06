@@ -109,6 +109,7 @@ class GameDataManager(context: Context) {
         gameState.isDragonLordBlackIsDefeated = prefs.getBoolean(Key.DRAGON_LORD_BLACK_DEFEATED.name, false)
         gameState.isDragonLordSnowPrinceIsDefeated = prefs.getBoolean(Key.DRAGON_LORD_SNOW_PRINCE_DEFEATED.name, false)
         gameState.isDragonLordHornIsDefeated = prefs.getBoolean(Key.DRAGON_LORD_HORN_DEFEATED.name, false)
+        gameState.isStormWingBossDefeated = prefs.getBoolean(Key.STORM_WING_BOSS_DEFEATED.name, false)
         return gameState
     }
 
@@ -142,5 +143,6 @@ class GameDataManager(context: Context) {
         DRAGON_LORD_BLACK_DEFEATED,
         DRAGON_LORD_SNOW_PRINCE_DEFEATED,
         DRAGON_LORD_HORN_DEFEATED,
+        STORM_WING_BOSS_DEFEATED,
     }
 }

@@ -47,11 +47,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var player: Player
 
     private var medievalKnight = MedievalKnight
+    private var dragonKnight = DragonKnight
     private var unicorn = Unicorn
     private var hellMinion = HellMinion
     private var goldFish = GoldFish
     private var chickenSandwich = ChickenSandwich
     private var stormWing = StormWing
+    private var stormWingBoss = StormWingBoss
     private var ent = Ent
     private var dragonSlave = DragonSlave
     private var dragonLordBlack = DragonLordBlack
@@ -181,6 +183,9 @@ class MainActivity : AppCompatActivity() {
                 }
                 if (quest.nextChapter != null) {
                     gameState.chapter = quest.nextChapter
+                    if (gameState.chapter == 2.0) {
+                        transformFriendsToEnemies()
+                    }
                     gameDataManager.saveGameState(gameState)
                 }
                 val entry = QuestList.list.entries.first { entry -> entry.value.name == quest.name }
@@ -200,6 +205,13 @@ class MainActivity : AppCompatActivity() {
         arFragment = supportFragmentManager.findFragmentById(R.id.arFragment) as ArFragment
 
         arFragment.arSceneView.post {
+            if (gameState.chapter >= 2.0) {
+                arModels.remove(stormWing)
+                arModels.add(stormWingBoss)
+                arModels.remove(medievalKnight)
+                arModels.add(dragonKnight)
+            }
+
             val augmentedImageDatabase = AugmentedImageDatabase(arFragment.arSceneView.session)
             arModels.forEach {
                 addAugmentedImageToDB(it, augmentedImageDatabase)
@@ -255,6 +267,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun transformFriendsToEnemies() {
+        arModels.remove(stormWing)
+        arModels.add(stormWingBoss)
+        arModels.remove(medievalKnight)
+        arModels.add(dragonKnight)
+        val augmentedImageDatabase = AugmentedImageDatabase(arFragment.arSceneView.session)
+        addAugmentedImageToDB(stormWingBoss, augmentedImageDatabase)
+        addAugmentedImageToDB(dragonKnight, augmentedImageDatabase)
+    }
+
     private fun setModelHealthBar(healthPercent: Int, modelNameView: TextView = findViewById(R.id.modelName)) {
         val modelHealthView: ProgressBar = findViewById(R.id.modelHealth)
         modelHealthView.progress = healthPercent
@@ -272,6 +294,8 @@ class MainActivity : AppCompatActivity() {
             return !gameState.isDragonLordSnowPrinceIsDefeated
         } else if (model is DragonLordHorn) {
             return !gameState.isDragonLordHornIsDefeated
+        } else if (model is StormWingBoss) {
+                return !gameState.isStormWingBossDefeated
         } else if (model is Collectable) {
             return !PlayerUtil.isItemInInventory(player.inventory, model.item)
         }
@@ -318,6 +342,7 @@ class MainActivity : AppCompatActivity() {
                 isItemBeingShown = false
                 gameDataManager.savePlayer(player)
                 QuestController.update(player.quests, QuestType.COLLECTING, item)
+                QuestController.update(player.quests, QuestType.SPEAKING, item)
             }
         } else {
             healthPoints.visibility = View.VISIBLE
@@ -549,6 +574,9 @@ class MainActivity : AppCompatActivity() {
         } else if (arModel is DragonLordHorn) {
             gameState.isDragonLordHornIsDefeated = true
             gameDataManager.saveBooleanValue(GameDataManager.Key.DRAGON_LORD_HORN_DEFEATED.name, true)
+        } else if (arModel is StormWingBoss) {
+            gameState.isStormWingBossDefeated = true
+            gameDataManager.saveBooleanValue(GameDataManager.Key.STORM_WING_BOSS_DEFEATED.name, true)
         }
     }
 

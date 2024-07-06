@@ -11,4 +11,5 @@ class GameState: ViewModel() {
     var isDragonLordBlackIsDefeated = false
     var isDragonLordHornIsDefeated = false
     var isDragonLordSnowPrinceIsDefeated = false
+    var isStormWingBossDefeated = false
 }
