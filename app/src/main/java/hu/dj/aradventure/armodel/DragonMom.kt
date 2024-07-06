@@ -20,8 +20,6 @@ object DragonMom : ArModel() {
 
     override var name = "Sárkány anya"
 
-    //override var scale = Vector3(0.001F, 0.001F, 0.001F)
-
     override val quests: List<Quest> = listOf(
         QuestList.list[2]!!,
     )
@@ -45,13 +43,19 @@ object DragonMom : ArModel() {
 
     override var script: MutableMap<String, Any> =
         hashMapOf(
+            "default" to hashMapOf(
+                "1" to listOf(
+                    "Ön a mi hősünk!",
+                    null
+                ),
+            ),
             quests[0].name to hashMapOf(
                 "1" to listOf(
                     "Nagyon szépen köszönöm, hogy hazahoztad!",
                     null
                 )
             ),
-            "default" to hashMapOf(
+            "quest2" to hashMapOf(
                 "1" to listOf(
                     "Hála istennek, Ön egy igazi hős? Kérem, tudna nekem segíteni?",
                     listOf("player1", "player2")

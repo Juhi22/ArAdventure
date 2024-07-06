@@ -7,7 +7,6 @@ import hu.dj.aradventure.item.Item
 import hu.dj.aradventure.item.ItemType
 import hu.dj.aradventure.item.QuestList
 import java.math.RoundingMode
-import java.text.DecimalFormat
 
 class GameDataManager(context: Context) {
 
@@ -55,6 +54,11 @@ class GameDataManager(context: Context) {
     fun saveGameState(gameState: GameState) {
         val editor = prefs.edit()
         editor.putFloat(Key.CHAPTER.name, gameState.chapter.toFloat())
+
+        gameState.completedQuestIndexes.forEachIndexed { index, questIndex ->
+            editor.putInt(Key.COMPLETED_QUEST_INDEX.name + index, questIndex)
+        }
+
         editor.apply()
     }
 
@@ -92,6 +96,15 @@ class GameDataManager(context: Context) {
     fun loadGameState(): GameState {
         val gameState = GameState()
         gameState.chapter = prefs.getFloat(Key.CHAPTER.name, 0.0.toFloat()).toBigDecimal().setScale(1, RoundingMode.UP).toDouble()
+
+        for (i in 0..100) {
+            val questIndex = prefs.getInt(Key.COMPLETED_QUEST_INDEX.name + i, 0)
+            if (questIndex == 0) {
+                break
+            }
+            gameState.completedQuestIndexes.add(questIndex)
+        }
+
         gameState.isGoldFishDefeated = prefs.getBoolean(Key.GOLD_FISH_DEFEATED.name, false)
         gameState.isDragonLordBlackIsDefeated = prefs.getBoolean(Key.DRAGON_LORD_BLACK_DEFEATED.name, false)
         gameState.isDragonLordSnowPrinceIsDefeated = prefs.getBoolean(Key.DRAGON_LORD_SNOW_PRINCE_DEFEATED.name, false)
@@ -124,6 +137,7 @@ class GameDataManager(context: Context) {
         QUEST_INDEX,
         QUEST_PROGRESS,
         QUEST_IS_FINISHED,
+        COMPLETED_QUEST_INDEX,
         GOLD_FISH_DEFEATED,
         DRAGON_LORD_BLACK_DEFEATED,
         DRAGON_LORD_SNOW_PRINCE_DEFEATED,

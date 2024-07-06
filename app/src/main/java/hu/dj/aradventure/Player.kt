@@ -44,7 +44,7 @@ class Player : ViewModel() {
             isDead.value = false
         } else if (item is Quest && !quests.contains(item)) {
             quests.add(item)
-        } else if (!PlayerUtil.isItemInInventory(inventory, item) || item.stackable) {
+        } else if (item !is Quest && (!PlayerUtil.isItemInInventory(inventory, item) || item.stackable)) {
             inventory.add(item)
             if (item.type == ItemType.MAX_HEALTH) {
                 maxHealth += item.value
@@ -57,6 +57,13 @@ class Player : ViewModel() {
 
     fun finishQuest(quest: Quest) {
         quests.remove(quest)
+        if (quest.questType == QuestType.COLLECTING) {
+            for(i in 1..quest.goal) {
+                val questItem = quest.questItem as Item
+                val item = inventory.first { it.name == questItem.name}
+                inventory.remove(item)
+            }
+        }
     }
 
     fun updateQuests(quests: List<Quest>) {

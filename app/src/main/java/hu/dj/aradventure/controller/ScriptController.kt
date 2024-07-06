@@ -5,6 +5,7 @@ import android.widget.TextView
 import hu.dj.aradventure.GameState
 import hu.dj.aradventure.armodel.ArModel
 import hu.dj.aradventure.item.Quest
+import hu.dj.aradventure.item.QuestList
 import java.util.stream.Collectors
 
 class ScriptController(
@@ -99,16 +100,39 @@ class ScriptController(
             if (script[chapter] != null) {
                 script[chapter] as HashMap<String, List<Any>>
             } else {
-                script["default"] as HashMap<String, List<Any>>
+                var foundQuestScript: HashMap<String, List<Any>>? = null
+                for (i in 1..50) {
+                    val questScript = script["quest$i"]
+                    if (questScript != null && gameState != null && !gameState.completedQuestIndexes.contains(i)
+                    ) {
+                        if (checkIfQuestIsInProgressByIndex(i, quests)) {
+                            break
+                        }
+                        foundQuestScript = questScript as HashMap<String, List<Any>>
+                        break
+                    }
+                }
+                foundQuestScript ?: script["default"] as HashMap<String, List<Any>>
             }
         }
         displayDialogsAndPlaySound()
     }
 
+    private fun checkIfQuestIsInProgressByIndex(index: Int, quests: List<Quest>): Boolean {
+        val questFromTheList = QuestList.list[index]
+        if (questFromTheList != null) {
+            return quests
+                .stream()
+                .filter { it.name == questFromTheList.name }
+                .collect(Collectors.toList()).isNotEmpty()
+        }
+        return false
+    }
+
     private fun collectCompletedQuestsOfArModel(quests: List<Quest>): List<Quest> {
         return quests
             .stream()
-            .filter {it.isFinished && arModel.quests.contains(it)}
+            .filter { it.isFinished && arModel.quests.contains(it) }
             .collect(Collectors.toList())
     }
 

@@ -30,13 +30,11 @@ import com.google.ar.sceneform.rendering.RenderableInstance
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
 import hu.dj.aradventure.armodel.*
+import hu.dj.aradventure.armodel.DragonBaby
 import hu.dj.aradventure.controller.*
 import hu.dj.aradventure.dialog.InventoryDialog
 import hu.dj.aradventure.dialog.QuestLogDialog
-import hu.dj.aradventure.item.Death
-import hu.dj.aradventure.item.Item
-import hu.dj.aradventure.item.Quest
-import hu.dj.aradventure.item.QuestType
+import hu.dj.aradventure.item.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -185,6 +183,9 @@ class MainActivity : AppCompatActivity() {
                     gameState.chapter = quest.nextChapter
                     gameDataManager.saveGameState(gameState)
                 }
+                val entry = QuestList.list.entries.first { entry -> entry.value.name == quest.name }
+                gameState.completedQuestIndexes.add(entry.key)
+                gameDataManager.saveGameState(gameState)
                 gameDataManager.savePlayer(player)
             }
 
