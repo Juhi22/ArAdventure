@@ -17,6 +17,9 @@ object Unicorn : ArModel() {
 
     override val quests: List<Quest> = listOf(
         QuestList.list[5]!!,
+        QuestList.list[6]!!,
+        QuestList.list[7]!!,
+        QuestList.list[8]!!,
     )
 
     override val animations: MutableMap<String, String>
@@ -151,6 +154,130 @@ object Unicorn : ArModel() {
                     "Utolsó akadályok voltak?",
                     "10"
                 ),
-            )
+            ),
+            "2.0" to hashMapOf(
+                "1" to listOf(
+                    "Na mi van tökfilkó? Azért jöttél, hogy Viharszárny elé vigyél vagy mert kirúgott a főnök?",
+                    listOf("player1", "player2")
+                ),
+                "2" to listOf(
+                    "Persze, hogy nem önmaga. A gömbök ereje hatalmat ad, de közben meg is rontja az elmét. Segíts nekem legyőzni őt és az átalakult lovagjait.",
+                    listOf("player3", "player4")
+                ),
+                "3" to listOf(
+                    "Hát ez szomorú, lehet új karrier után kell nézned? Vagy csatlakozhatsz is hozzám. Amúgy csak nézd meg a lovagtársaidat, ha nekem nem hiszel, már nem ugyan azok mint voltak.",
+                    listOf("player3", "player4")
+                ),
+                "4" to listOf(
+                    "A terv, hogy megszerezzük a trónt és békét hozunk végre. Kell egy erős sereg ami fel tudja venni a harcot Viharszárnyéval. Jó pár lovagot már sikerült magam mellé állítani.",
+                    listOf("player7", "player8")
+                ),
+                "5" to listOf(
+                    "Egykor én is sárkányúr voltam, én vezettem őket. Bizalmat fektettem Viharszárnyba, a sárkány erő gömbömet is oda adtam neki és ez lett a vége. A gömböktől egy kicsit begolyóztam, nem tagadom, ezért száműztek. De most, hogy nagy a baj felkérném egy táncra.",
+                    listOf("player5", "player6")
+                ),
+                "6" to listOf(
+                    "Trollok portyáztak akkoriban és az tűnt a legjobb megoldásnak, ha ilyen módon a segítségét kérem. Utána jött a száműzetés, ő meg háborút robbantott ki.",
+                    listOf("player9", "player10")
+                ),
+                "7" to listOf(
+                    "Részletezem, csak 3 lépés. 1. Foglyokat tart fogva mágiával, mind erős sárkányok, fel kell őket szabadítanunk és erősíteni fognak minket. 2. Meg kell ütköznünk a lovagjaival, rést kell ütnünk a védelmen. 3. A célpont: Viharszárny.",
+                    listOf("player11", "player12")
+                ),
+                "8" to listOf(
+                    "Nincs idő szundikálni, már így is maximumon van az ereje a gömbök miatt. Menjünk és szabadítsuk fel a fogolytábort!",
+                    quests[1]
+                ),
+                "player1" to listOf(
+                    "Viharszárny, mintha nem lett volna önmaga. Lehet elviszlek neki és akkor jobb belátásra tér.",
+                    "2"
+                ),
+                "player2" to listOf(
+                    "Kirúgott. Még mindig nem tudom, kinek higyjek.",
+                    "3"
+                ),
+                "player3" to listOf(
+                    "Mi lett a lovagokkal? Honnan tudsz ennyi mindent?",
+                    "5"
+                ),
+                "player4" to listOf(
+                    "Hiszek neked, bár nem tudom miért, hogyan győzzük le őt?",
+                    "4"
+                ),
+                "player5" to listOf(
+                    "Segítek neked ha elmondod, miért adtad oda neki a gömböt. Mi lenne a terv?",
+                    "6"
+                ),
+                "player6" to listOf(
+                    "Csapjuk szét a brigádját mielőtt rosszabbra fordulna a helyzet. Mi a terv?",
+                    "4"
+                ),
+                "player7" to listOf(
+                    "Ez még elég gyengének hangzik.",
+                    "7"
+                ),
+                "player8" to listOf(
+                    "Ennyi lenne a nagy terv? Részletesebben?",
+                    "7"
+                ),
+                "player9" to listOf(
+                    "Értem, elhiszem. Mi a terv?",
+                    "4"
+                ),
+                "player10" to listOf(
+                    "Még mindig bizalmatlan vagyok. Nem tudok mást tenni, segítek. Mi a terv?",
+                    "4"
+                ),
+                "player11" to listOf(
+                    "Mikor kezdjük?",
+                    "8"
+                ),
+                "player12" to listOf(
+                    "Beverem a szunyát előtte.",
+                    "8"
+                ),
+            ),
+            quests[1].name to hashMapOf(
+                "1" to listOf(
+                    "Első lépés pipa. A kémek jelentése szerint, mostmár bizonyára elég erősek vagyunk, hogy nyíltan megütközzünk az ellenséggel. Irány lovagokat simogatni!",
+                    quests[2]
+                ),
+            ),
+            quests[2].name to hashMapOf(
+                "1" to listOf(
+                    "Második lépés pipa. Szívósabbak voltak mint reméltem, de győztünk. Egész jó csapatot alkotunk Tökfilkó",
+                    listOf("player1", "player2")
+                ),
+                "2" to listOf(
+                    "Bla bla bla... Utolsó lépés jön, főellenség a láthatáron! Vigyázz, kész, rajt!",
+                    quests[3]
+                ),
+                "player1" to listOf(
+                    "Nem vagyok Tökfilkó! Ne nevezz így, mert különben hazamegyek!",
+                    "2"
+                ),
+                "player2" to listOf(
+                    "Gyengék voltak, én vagyok itt a völgyben a muszkli manus.",
+                    "2"
+                ),
+            ),
+            quests[3].name to hashMapOf(
+                "1" to listOf(
+                    "Sikerült! A háborúnak, a csatáknak vége. A völgy újra szabad!",
+                    listOf("player1", "player2")
+                ),
+                "2" to listOf(
+                    "vége",
+                    null
+                ),
+                "player1" to listOf(
+                    "xyz",
+                    "2"
+                ),
+                "player2" to listOf(
+                    "zyx",
+                    "2"
+                ),
+            ),
         )
 }

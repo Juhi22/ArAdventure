@@ -1,7 +1,6 @@
 package hu.dj.aradventure.item
 
-import hu.dj.aradventure.armodel.Ent
-import hu.dj.aradventure.armodel.HellMinion
+import hu.dj.aradventure.armodel.*
 
 object QuestList {
 
@@ -38,6 +37,33 @@ object QuestList {
             0,
             null,
             2.0
+        ),
+        6 to Quest(
+            "A nagy szökés, alias rontáslevétel",
+            "Szabadítsd fel a mágia alól Viharszárny fogjait",
+            QuestType.KILLING,
+            DragonSlave,
+            5,
+            null,
+            2.1
+        ),
+        7 to Quest(
+            "Szuper csillag sárkány lovag",
+            "Küzdj meg Viharszárny seregével és győzd le a sárkány erő gömbök által felerősített lovagjait",
+            QuestType.KILLING,
+            DragonKnight,
+            5,
+            null,
+            2.2
+        ),
+        8 to Quest(
+            "A vihar vége?",
+            "Eljött az idő, megnyílt az út Viharszárnyhoz. Győzd le és ments meg a völgyet",
+            QuestType.KILLING,
+            StormWingBoss,
+            1,
+            null,
+            2.3
         ),
     )
 
