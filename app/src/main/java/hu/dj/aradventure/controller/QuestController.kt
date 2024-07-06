@@ -25,7 +25,7 @@ object QuestController {
         listener?.onQuestEnds(quest)
     }
 
-    fun update(quests: List<Quest>, type: QuestType, questItem: Any) {
+    fun update(quests: List<Quest>, type: QuestType, questItem: Any?) {
         quests.forEach{
             if (!it.isFinished && it.questType == type) {
                 if (it.questItem == questItem && it.progress < it.goal) {

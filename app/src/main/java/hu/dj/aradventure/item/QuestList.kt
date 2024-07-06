@@ -33,8 +33,8 @@ object QuestList {
         5 to Quest(
             "Tiszta vizet a pohárba",
             "Beszélj Viharszárnnyal, kérdezz rá az Unikornistól hallottakra",
-            QuestType.COLLECTING,
-            HellMinion,
+            QuestType.SPEAKING,
+            null,
             0,
             null,
             2.0

@@ -6,7 +6,7 @@ class Quest(
     override var name: String,
     override var description: String,
     val questType: QuestType,
-    val questItem: Any,
+    val questItem: Any?,
     val goal: Int,
     val reward: Item?,
     val nextChapter: Double?
