@@ -45,7 +45,7 @@ object Unicorn : ArModel() {
         hashMapOf(
             "default" to hashMapOf(
                 "1" to listOf(
-                    "Hosszú az út, de végül békét teremtünk a völgyben!",
+                    "Egy gyönyörű unikornis vagyok, szivárvány!",
                     null
                 ),
             ),
@@ -263,20 +263,88 @@ object Unicorn : ArModel() {
             ),
             quests[3].name to hashMapOf(
                 "1" to listOf(
-                    "Sikerült! A háborúnak, a csatáknak vége. A völgy újra szabad!",
+                    "Sikerült! A háborúnak, a csatáknak vége. A völgy újra szabad! Tökfilkó, köszönöm a segítségedet minden sárkány nevében. Újra tudunk mindent kezdeni.",
                     listOf("player1", "player2")
                 ),
                 "2" to listOf(
-                    "vége",
+                    "Mit akarsz ezzel mondani?",
+                    listOf("player3", "player4")
+                ),
+                "3" to listOf(
+                    "Micsoda? Elgurult a gyógyszered? Szerinted ezt hagyni fogják az itt élők, hogy egy újabb zsarnok lépjen a trónra?",
+                    listOf("player5", "player6")
+                ),
+                "4" to listOf(
+                    "Állok szolgálatára Tökfi.. Akarom mondani Uram.",
+                    listOf("player7", "player8")
+                ),
+                "5" to listOf(
+                    "Van egy jó hírem Uram, a napokban volt szerencsém beszélni vele. Egy ajándékot elrejtett a Sárkányfog erdőben található karácsonyfa alá.",
+                    null
+                ),
+                "6" to listOf(
+                    "Igen, a feladatra alaklmas sárkányokat keresek és úrnak nevezem ki őket. A hatalmat megosztjuk és a völgy újra virágozni fog.",
+                    listOf("player9", "player10")
+                ),
+                "7" to listOf(
+                    "Megteszek minden tőlem telhetőt, köszönünk neked mindent Tökfilkó!",
+                    listOf("player11", "player12")
+                ),
+                "8" to listOf(
+                    "Örök hálánk neked. Lenne még egy apróság. Mielőtt mennél látogass el a Sárkányfog erdőbe. A napokban beszéltem a Jézuskával és hagyott az ott található karácsonyfa alatt egy csomagot.",
+                    null
+                ),
+                "9" to listOf(
+                    "Örök hálánk neked. Meg leszünk, már bőven kivetted a részed. Inkább látogass el a Sárkányfog erdőbe. A napokban beszéltem a Jézuskával és hagyott az ott található karácsonyfa alatt egy csomagot.",
                     null
                 ),
                 "player1" to listOf(
-                    "xyz",
+                    "Újra bizony, viszont azt ne felejtsd el, hogy erősebb vagyok már minden sárkánynál.",
                     "2"
                 ),
                 "player2" to listOf(
-                    "zyx",
+                    "Újra bizony, új sárkányurak lesznek kinevezve és meg lesz osztva a hatalom?",
+                    "6"
+                ),
+                "player3" to listOf(
+                    "Csak annyit, hogy ki vagyok gyúrva és remélem kapok ingyen bérletet a konditerembe. Új sárkányurak lesznek kinevezve és meg lesz osztva a hatalom?",
+                    "6"
+                ),
+                "player4" to listOf(
+                    "Nincs több sárkányúr aki ellenállna nekem. Vasmarokkal megragadom a hatalmat és a völgyet mostantól én vezetem.",
+                    "3"
+                ),
+                "player5" to listOf(
+                    "Az ő szavuk az enyém ellen semmit nem ér, ha bárki ellenszegül akkor megbánja.",
+                    "4"
+                ),
+                "player6" to listOf(
+                    "Már eldöntöttem, te leszel a jobb kezem és követed a parancsaimat.",
+                    "4"
+                ),
+                "player7" to listOf(
+                    "Uralokodásom megerősítése érdekében vedd fel a kapcsolatot a Jézuskával és szerezd meg az ajándék hollétét.",
+                    "5"
+                ),
+                "player8" to listOf(
+                    "Fel kell keresnünk a karácsonyi ajándékomat, mielőtt más kaparintja meg.",
+                    "5"
+                ),
+                "player9" to listOf(
+                    "Remek terv, biztos vagyok benne, hogy a megfelelő sárkányokat fogod választani a feladatra.",
+                    "7"
+                ),
+                "player10" to listOf(
+                    "Én vagyok a legerősebb a völgyben. Ez a terv nem fog teljesülni.",
                     "2"
+                ),
+                "player11" to listOf(
+                    "Szívesen, a feladatomat itt elvégeztem. Új kalandot keresek, még ma elhagyom a völgyet.",
+                    "8"
+                ),
+                "player12" to listOf(
+                    "Szívesen, ha további segítségre van szükség szóljatok és jövök.",
+                    "9"
                 ),
             ),
         )

@@ -39,7 +39,7 @@ object QuestList {
             2.0
         ),
         6 to Quest(
-            "A nagy szökés, alias rontáslevétel",
+            "Rontáslevétel",
             "Szabadítsd fel a mágia alól Viharszárny fogjait",
             QuestType.KILLING,
             DragonSlave,

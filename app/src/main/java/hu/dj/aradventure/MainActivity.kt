@@ -2,7 +2,6 @@ package hu.dj.aradventure
 
 import GameDataManager
 import android.annotation.SuppressLint
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
@@ -185,6 +184,9 @@ class MainActivity : AppCompatActivity() {
                     gameState.chapter = quest.nextChapter
                     if (gameState.chapter == 2.0) {
                         transformFriendsToEnemies()
+                    }
+                    if (gameState.chapter == 2.3) {
+                        showItem(StoryFinishTrophy)
                     }
                     gameDataManager.saveGameState(gameState)
                 }
@@ -522,7 +524,7 @@ class MainActivity : AppCompatActivity() {
                                     showItem(arModel.reward!!)
                                 }
                                 if (arModel.loopDeathAnimation) {
-                                    timedActionController.runAfterDelay(5000) {
+                                    timedActionController.runAfterDelay(3000) {
                                         clearAllNodes()
                                     }
                                 }
