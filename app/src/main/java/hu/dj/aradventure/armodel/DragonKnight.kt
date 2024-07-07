@@ -33,9 +33,9 @@ object DragonKnight: Enemy() {
     override val sounds: Map<String, String>
         get() {
             return mutableMapOf(
-                "default" to "hell_minion/sounds/1.mp3",
-                "attack/1" to "hell_minion/sounds/1.mp3",
-                "dead/1" to "hell_minion/sounds/1.mp3",
+                "default" to "dragon_knight/sounds/1.mp3",
+                "attack/1" to "dragon_knight/sounds/1.mp3",
+                "dead/1" to "dragon_knight/sounds/1.mp3",
             )
         }
 

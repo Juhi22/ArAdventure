@@ -295,8 +295,14 @@ class MainActivity : AppCompatActivity() {
         } else if (model is DragonLordHorn) {
             return !gameState.isDragonLordHornIsDefeated
         } else if (model is StormWingBoss) {
-                return !gameState.isStormWingBossDefeated
+            return !gameState.isStormWingBossDefeated
         } else if (model is Collectable) {
+            if (model is DragonBaby) {
+                return !gameState.completedQuestIndexes.contains(2) && !PlayerUtil.isItemInInventory(
+                    player.inventory,
+                    model.item
+                )
+            }
             return !PlayerUtil.isItemInInventory(player.inventory, model.item)
         }
         return true
@@ -341,7 +347,7 @@ class MainActivity : AppCompatActivity() {
                 player.pickUpItem(item)
                 isItemBeingShown = false
                 gameDataManager.savePlayer(player)
-                QuestController.update(player.quests, QuestType.COLLECTING, item)
+                QuestController.update(player.quests, QuestType.COLLECTING, item, player.inventory)
                 QuestController.update(player.quests, QuestType.SPEAKING, item)
             }
         } else {
@@ -451,7 +457,7 @@ class MainActivity : AppCompatActivity() {
                     )
                 }
 
-                if (animationName == "dead" && arModel is Enemy && !arModel.loopDeathAnimation ) {
+                if (animationName == "dead" && arModel is Enemy && !arModel.loopDeathAnimation) {
                     playAnimationOnce(renderableInstance, arModel, animationName, true)
                 } else if (animationName == "idle" && arModel is Collectable && !arModel.loopIdleAnimation) {
                     playAnimationOnce(renderableInstance, arModel, animationName, false)

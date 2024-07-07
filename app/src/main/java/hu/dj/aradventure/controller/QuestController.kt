@@ -1,5 +1,7 @@
 package hu.dj.aradventure.controller
 
+import hu.dj.aradventure.PlayerUtil
+import hu.dj.aradventure.item.Item
 import hu.dj.aradventure.item.Quest
 import hu.dj.aradventure.item.QuestType
 
@@ -25,14 +27,20 @@ object QuestController {
         listener?.onQuestEnds(quest)
     }
 
-    fun update(quests: List<Quest>, type: QuestType, questItem: Any?) {
+    fun update(quests: List<Quest>, type: QuestType, questItem: Any?, playerInventory: List<Item> = emptyList()) {
         var item = questItem
         if (questItem is Quest) {
             item = questItem.questItem
         }
-        quests.forEach{
+        quests.forEach {
             if (!it.isFinished && it.questType == type) {
-                if (it.questItem == item && it.progress < it.goal) {
+                if (type == QuestType.COLLECTING && playerInventory.isNotEmpty()) {
+                    playerInventory.forEach { inventoryItem ->
+                        if (item is Item && inventoryItem.name == item.name) {
+                            it.progress++
+                        }
+                    }
+                } else if (questItem !is Quest && it.questItem == item && it.progress < it.goal) {
                     it.progress++
                 }
                 if (it.progress >= it.goal) {
