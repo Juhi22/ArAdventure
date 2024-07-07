@@ -208,20 +208,10 @@ class MainActivity : AppCompatActivity() {
 
         arFragment.arSceneView.post {
             if (gameState.chapter >= 2.0) {
-                arModels.remove(stormWing)
-                arModels.add(stormWingBoss)
-                arModels.remove(medievalKnight)
-                arModels.add(dragonKnight)
+                transformFriendsToEnemies()
+            } else {
+                addArModelsToAgumentedImageDb()
             }
-
-            val augmentedImageDatabase = AugmentedImageDatabase(arFragment.arSceneView.session)
-            arModels.forEach {
-                addAugmentedImageToDB(it, augmentedImageDatabase)
-            }
-
-            val config = arFragment.arSceneView.session?.config
-            config?.augmentedImageDatabase = augmentedImageDatabase
-            arFragment.arSceneView.session?.configure(config)
 
             progressBar.visibility = View.GONE
             healthPointsView.visibility = View.VISIBLE
@@ -269,14 +259,22 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun addArModelsToAgumentedImageDb() {
+        val augmentedImageDatabase = AugmentedImageDatabase(arFragment.arSceneView.session)
+        arModels.forEach {
+            addAugmentedImageToDB(it, augmentedImageDatabase)
+        }
+        val config = arFragment.arSceneView.session?.config
+        config?.augmentedImageDatabase = augmentedImageDatabase
+        arFragment.arSceneView.session?.configure(config)
+    }
+
     private fun transformFriendsToEnemies() {
         arModels.remove(stormWing)
         arModels.add(stormWingBoss)
         arModels.remove(medievalKnight)
         arModels.add(dragonKnight)
-        val augmentedImageDatabase = AugmentedImageDatabase(arFragment.arSceneView.session)
-        addAugmentedImageToDB(stormWingBoss, augmentedImageDatabase)
-        addAugmentedImageToDB(dragonKnight, augmentedImageDatabase)
+        addArModelsToAgumentedImageDb()
     }
 
     private fun setModelHealthBar(healthPercent: Int, modelNameView: TextView = findViewById(R.id.modelName)) {
