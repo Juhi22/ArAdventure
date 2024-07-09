@@ -15,6 +15,8 @@ class ScriptController(
     private val soundController: SoundController
 ) {
 
+    private val timedActionController = TimedActionController()
+
     private lateinit var dialogs: HashMap<String, List<Any>>
     private lateinit var arModel: ArModel
     private lateinit var chapter: String
@@ -149,7 +151,11 @@ class ScriptController(
                     soundPath = arModel.sounds["default"]
                 }
                 if (soundPath != null) {
-                    soundController.start(soundPath)
+                    soundController.shutdown().apply {
+                        timedActionController.runAfterDelay(300) {
+                            soundController.start(soundPath, true)
+                        }
+                    }
                 }
             }
             isScriptOngoing = true

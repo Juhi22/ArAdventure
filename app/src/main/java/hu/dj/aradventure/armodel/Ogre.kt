@@ -33,9 +33,9 @@ object Ogre: Enemy() {
     override val sounds: Map<String, String>
         get() {
             return mutableMapOf(
-                "default" to "ogre/sounds/1.mp3",
-                "attack/1" to "ogre/sounds/1.mp3",
-                "dead/1" to "ogre/sounds/1.mp3",
+                "default" to "ogre/sounds/ogre_attack.mp3",
+                "attack/1" to "ogre/sounds/ogre_attack.mp3",
+                "dead/1" to "ogre/sounds/ogre_dead.mp3",
             )
         }
 

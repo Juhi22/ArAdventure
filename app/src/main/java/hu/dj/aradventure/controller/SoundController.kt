@@ -7,7 +7,10 @@ class SoundController(private val assetManager: AssetManager) {
 
     private var mediaPlayer: MediaPlayer? = null
 
-    fun start(soundPath: String) {
+    fun start(soundPath: String, stopLastSound: Boolean = false) {
+        if (mediaPlayer != null && stopLastSound) {
+            shutdown()
+        }
         val assetFileDescriptor = assetManager.openFd(soundPath)
         mediaPlayer = MediaPlayer().apply {
             setDataSource(

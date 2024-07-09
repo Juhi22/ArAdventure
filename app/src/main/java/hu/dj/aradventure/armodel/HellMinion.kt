@@ -27,9 +27,9 @@ object HellMinion: Enemy() {
     override val sounds: Map<String, String>
         get() {
             return mutableMapOf(
-                "default" to "hell_minion/sounds/1.mp3",
-                "attack/1" to "hell_minion/sounds/1.mp3",
-                "dead/1" to "hell_minion/sounds/1.mp3",
+                "default" to "hell_minion/sounds/hell_minion_attack.mp3",
+                "attack/1" to "hell_minion/sounds/hell_minion_attack.mp3",
+                "dead/1" to "hell_minion/sounds/hell_minion_dead.mp3",
             )
         }
 
@@ -43,7 +43,7 @@ object HellMinion: Enemy() {
                 ),
                 "dead" to hashMapOf(
                     "1" to listOf(
-                        "AJDOAIJ(%+U+)(QFQAKJLKA!",
+                        "Ahh... Megfájdult a fejem!",
                         null
                     ),
                 )
