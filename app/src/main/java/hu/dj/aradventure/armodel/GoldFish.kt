@@ -32,14 +32,14 @@ object GoldFish : Enemy() {
     override val sounds: Map<String, String>
         get() {
             return mutableMapOf(
-                "default" to "gold_fish/sounds/1.mp3",
-                "attack/1" to "gold_fish/sounds/1.mp3",
-                "attack/2" to "gold_fish/sounds/1.mp3",
-                "attack/3" to "gold_fish/sounds/1.mp3",
-                "attack/4" to "gold_fish/sounds/1.mp3",
-                "attack/5" to "gold_fish/sounds/1.mp3",
-                "dead/1" to "gold_fish/sounds/1.mp3",
-                "dead/2" to "gold_fish/sounds/1.mp3"
+                "default" to "gold_fish/sounds/gold_fish_attack_1.mp3",
+                "attack/1" to "gold_fish/sounds/gold_fish_attack_1.mp3",
+                "attack/2" to "gold_fish/sounds/gold_fish_attack_2.mp3",
+                "attack/3" to "gold_fish/sounds/gold_fish_attack_3.mp3",
+                "attack/4" to "gold_fish/sounds/gold_fish_attack_4.mp3",
+                "attack/5" to "gold_fish/sounds/gold_fish_attack_5.mp3",
+                "dead/1" to "gold_fish/sounds/gold_fish_dead_1.mp3",
+                "dead/2" to "gold_fish/sounds/gold_fish_dead_2.mp3"
             )
         }
 
@@ -55,7 +55,7 @@ object GoldFish : Enemy() {
                     listOf("player3", "player4")
                 ),
                 "3" to listOf(
-                    "Látom a nyelvtannal vannak problémák. Nem tudom, honnan vetted, hogy kívánságokat teljesítek. Pont jó alany lennél a ruhám az új ruhám tesztelésére.",
+                    "Látom a nyelvtannal vannak problémák. Nem tudom honnan vetted, hogy kívánságokat teljesítek. Pont jó alany lennél az új ruhám tesztelésére.",
                     listOf("player3", "player4")
                 ),
                 "4" to listOf(
