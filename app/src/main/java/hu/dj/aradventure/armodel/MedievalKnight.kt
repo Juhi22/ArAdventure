@@ -26,14 +26,14 @@ object MedievalKnight : ArModel() {
     override val sounds: Map<String, String>
         get() {
             return mutableMapOf(
-                "default" to "medieval_knight/sounds/1.mp3",
-                "default/1" to "medieval_knight/sounds/1.mp3",
-                "0.0/1" to "medieval_knight/sounds/1.mp3",
-                "0.0/2" to "medieval_knight/sounds/1.mp3",
-                "0.0/3" to "medieval_knight/sounds/1.mp3",
-                "0.0/4" to "medieval_knight/sounds/1.mp3",
-                "0.0/5" to "medieval_knight/sounds/1.mp3",
-                quests[0].name + "/1" to "medieval_knight/sounds/1.mp3",
+                "default" to "medieval_knight/sounds/knight_default.mp3",
+                "default/1" to "medieval_knight/sounds/knight_default.mp3",
+                "0.0/1" to "medieval_knight/sounds/knight_0_0_1.mp3",
+                "0.0/2" to "medieval_knight/sounds/knight_0_0_2.mp3",
+                "0.0/3" to "medieval_knight/sounds/knight_0_0_3.mp3",
+                "0.0/4" to "medieval_knight/sounds/knight_0_0_4.mp3",
+                "0.0/5" to "medieval_knight/sounds/knight_0_0_5.mp3",
+                quests[0].name + "/1" to "medieval_knight/sounds/knight_quest_0_1.mp3",
             )
         }
 
@@ -53,7 +53,7 @@ object MedievalKnight : ArModel() {
             ),
             "0.0" to hashMapOf(
                 "1" to listOf(
-                    "Üdvözöllek Sárkányvölgyben! Köszönjük, hogy ilyen gyorsan jöttél és segítesz nekünk a láda kinyitásában és a gonosz legyőzésében!",
+                    "Üdvözöllek Sárkányvölgyben! Köszönjük, hogy ilyen gyorsan jöttél és segítesz nekünk a gonosz legyőzésében!",
                     listOf("player1", "player2")
                 ),
                 "2" to listOf(
