@@ -37,9 +37,9 @@ object StormWingBoss : Enemy() {
     override val sounds: Map<String, String>
         get() {
             return mutableMapOf(
-                "default" to "storm_wing_boss/sounds/1.mp3",
-                "attack/1" to "storm_wing_boss/sounds/1.mp3",
-                "dead/1" to "storm_wing_boss/sounds/1.mp3",
+                "default" to "storm_wing_boss/sounds/storm_wing_boss_attack.mp3",
+                "attack/1" to "storm_wing_boss/sounds/storm_wing_boss_attack.mp3",
+                "dead/1" to "storm_wing_boss/sounds/storm_wing_boss_dead.mp3",
             )
         }
 

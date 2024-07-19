@@ -32,12 +32,37 @@ object Unicorn : ArModel() {
     override val sounds: Map<String, String>
         get() {
             return mutableMapOf(
-                "default" to "unicorn/sounds/1.mp3",
-                "0.0/1" to "unicorn/sounds/1.mp3",
-                "0.0/2" to "unicorn/sounds/1.mp3",
-                "0.0/3" to "unicorn/sounds/1.mp3",
-                "0.0/4" to "unicorn/sounds/1.mp3",
-                "0.0/5" to "unicorn/sounds/1.mp3",
+                "default" to "unicorn/sounds/unicorn_default.mp3",
+                "1.1/1" to "unicorn/sounds/unicorn_1_1_1.mp3",
+                "1.1/2" to "unicorn/sounds/unicorn_1_1_2.mp3",
+                "1.1/3" to "unicorn/sounds/unicorn_1_1_3.mp3",
+                "1.1/4" to "unicorn/sounds/unicorn_1_1_4.mp3",
+                "1.1/5" to "unicorn/sounds/unicorn_1_1_5.mp3",
+                "1.1/6" to "unicorn/sounds/unicorn_1_1_6.mp3",
+                "1.1/7" to "unicorn/sounds/unicorn_1_1_7.mp3",
+                "1.1/8" to "unicorn/sounds/unicorn_1_1_8.mp3",
+                "1.1/9" to "unicorn/sounds/unicorn_1_1_9.mp3",
+                "1.1/10" to "unicorn/sounds/unicorn_1_1_10.mp3",
+                "2.0/1" to "unicorn/sounds/unicorn_2_0_1.mp3",
+                "2.0/2" to "unicorn/sounds/unicorn_2_0_2.mp3",
+                "2.0/3" to "unicorn/sounds/unicorn_2_0_3.mp3",
+                "2.0/4" to "unicorn/sounds/unicorn_2_0_4.mp3",
+                "2.0/5" to "unicorn/sounds/unicorn_2_0_5.mp3",
+                "2.0/6" to "unicorn/sounds/unicorn_2_0_6.mp3",
+                "2.0/7" to "unicorn/sounds/unicorn_2_0_7.mp3",
+                "2.0/8" to "unicorn/sounds/unicorn_2_0_8.mp3",
+                quests[1].name + "/1" to "unicorn/sounds/unicorn_quest_1_1.mp3",
+                quests[2].name + "/1" to "unicorn/sounds/unicorn_quest_2_1.mp3",
+                quests[2].name + "/2" to "unicorn/sounds/unicorn_quest_2_2.mp3",
+                quests[3].name + "/1" to "unicorn/sounds/unicorn_quest_3_1.mp3",
+                quests[3].name + "/2" to "unicorn/sounds/unicorn_quest_3_2.mp3",
+                quests[3].name + "/3" to "unicorn/sounds/unicorn_quest_3_3.mp3",
+                quests[3].name + "/4" to "unicorn/sounds/unicorn_quest_3_4.mp3",
+                quests[3].name + "/5" to "unicorn/sounds/unicorn_quest_3_5.mp3",
+                quests[3].name + "/6" to "unicorn/sounds/unicorn_quest_3_6.mp3",
+                quests[3].name + "/7" to "unicorn/sounds/unicorn_quest_3_7.mp3",
+                quests[3].name + "/8" to "unicorn/sounds/unicorn_quest_3_8.mp3",
+                quests[3].name + "/9" to "unicorn/sounds/unicorn_quest_3_9.mp3",
             )
         }
 
@@ -291,7 +316,8 @@ object Unicorn : ArModel() {
                     listOf("player11", "player12")
                 ),
                 "8" to listOf(
-                    "Örök hálánk neked. Lenne még egy apróság. Mielőtt mennél látogass el a Sárkányfog erdőbe. A napokban beszéltem a Jézuskával és hagyott az ott található karácsonyfa alatt egy csomagot.",
+                    "Örök hálánk neked. Lenne még egy apróság. Mielőtt mennél látogass el a Sárkányfog erdőbe." +
+                            "A napokban beszéltem a Jézuskával és hagyott az ott található karácsonyfa alatt egy csomagot.",
                     null
                 ),
                 "9" to listOf(
