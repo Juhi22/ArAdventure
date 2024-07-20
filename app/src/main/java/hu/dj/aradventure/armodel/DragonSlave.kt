@@ -37,7 +37,7 @@ object DragonSlave: Enemy() {
             return mutableMapOf(
                 "default" to "dragon_slave/sounds/dragon_growl.mp3",
                 "attack/1" to "dragon_slave/sounds/dragon_growl.mp3",
-                "dead/1" to "dragon_slave/sounds/1.mp3",
+                "dead/1" to "dragon_slave/sounds/dragon_slave_dead.mp3",
             )
         }
 
@@ -51,7 +51,7 @@ object DragonSlave: Enemy() {
                 ),
                 "dead" to hashMapOf(
                     "1" to listOf(
-                        "Sza-szabad vagyok! Kiszabadítottál! Köszönöm!",
+                        "Sza-szabad vagyok! Felszabadítottál! Köszönöm!",
                         null
                     ),
                 )
