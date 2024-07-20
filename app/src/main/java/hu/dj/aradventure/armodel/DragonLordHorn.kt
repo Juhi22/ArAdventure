@@ -36,9 +36,9 @@ object DragonLordHorn: Enemy() {
     override val sounds: Map<String, String>
         get() {
             return mutableMapOf(
-                "default" to "dragon_lord_horn/sounds/1.mp3",
-                "attack/1" to "dragon_lord_horn/sounds/1.mp3",
-                "dead/1" to "dragon_lord_horn/sounds/1.mp3",
+                "default" to "dragon_lord_horn/sounds/dragon_lord_horn_attack.mp3",
+                "attack/1" to "dragon_lord_horn/sounds/dragon_lord_horn_attack.mp3",
+                "dead/1" to "dragon_lord_horn/sounds/dragon_lord_horn_dead.mp3",
             )
         }
 
@@ -46,13 +46,13 @@ object DragonLordHorn: Enemy() {
         hashMapOf(
                 "attack" to hashMapOf(
                     "1" to listOf(
-                        "Viharszárny egyik csatlósa személyesen, éhes lettem!",
+                        "Mit akarsz olajbogyó? Szétkaplak mint Foxi a lábtörlőt!",
                         null
                     ),
                 ),
                 "dead" to hashMapOf(
                     "1" to listOf(
-                        "Neee, nem bukhatunk el!",
+                        "Az erkölcsi siker akkor is az enyém!",
                         null
                     ),
                 )
