@@ -39,9 +39,9 @@ object DragonLordSnowPrince: Enemy() {
     override val sounds: Map<String, String>
         get() {
             return mutableMapOf(
-                "default" to "dragon_lord_snow_prince/sounds/1.mp3",
-                "attack/1" to "dragon_lord_snow_prince/sounds/1.mp3",
-                "dead/1" to "dragon_lord_snow_prince/sounds/1.mp3",
+                "default" to "dragon_lord_snow_prince/sounds/dragon_lord_snow_prince_attack.mp3",
+                "attack/1" to "dragon_lord_snow_prince/sounds/dragon_lord_snow_prince_attack.mp3",
+                "dead/1" to "dragon_lord_snow_prince/sounds/dragon_lord_snow_prince_dead.mp3",
             )
         }
 
@@ -49,13 +49,13 @@ object DragonLordSnowPrince: Enemy() {
         hashMapOf(
             "attack" to hashMapOf(
                 "1" to listOf(
-                    "Viharszárny egyik csatlósa személyesen, éhes lettem!",
+                    "Mi van veled hóember? Mától a neved Olaf és te vagy az új játékszerem! Most azonnal játszani fogunk!",
                     null
                 ),
             ),
             "dead" to hashMapOf(
                 "1" to listOf(
-                    "Neee, nem bukhatunk el!",
+                    "Áú! Csúnya vagy! Veled nem jó játszani és még a sárkány erő gömbömet is elveszed! Anyukám azt mondta a trón az enyém lesz.",
                     null
                 ),
             )
