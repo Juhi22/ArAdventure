@@ -31,7 +31,7 @@ object StormWing : ArModel() {
     override val sounds: Map<String, String>
         get() {
             return mutableMapOf(
-                "default" to "storm_wing/sounds/1.mp3",
+                "default" to "storm_wing/sounds/storm_wing_default.mp3",
                 "0.1/1" to "storm_wing/sounds/storm_wing_0_1_1.mp3",
                 "0.1/2" to "storm_wing/sounds/storm_wing_0_1_2.mp3",
                 "0.1/3" to "storm_wing/sounds/storm_wing_0_1_3.mp3",
@@ -259,11 +259,11 @@ object StormWing : ArModel() {
                     listOf("player3", "player4")
                 ),
                 "4" to listOf(
-                    "Az erdő szellemei testet öltöttek és a gonosz oldalára álltak, nem engedik át az ételt szállító utánpótlást, ezért a nép éhezik. Eltökélt vagy ez tetszik.",
+                    "Az erdő szellemei testet öltöttek és a gonosz oldalára álltak. Nem engedik át az ételt szállító utánpótlást, ezért a nép éhezik. Eltökélt vagy ez tetszik.",
                     quests[0]
                 ),
                 "5" to listOf(
-                    "Semmittevés? Az erdő szellemei testet öltöttek és a gonosz oldalára álltak, nem engedik át az ételt szállító utánpótlást, ezért a nép éhezik. Ha olyan erősnek érzed magad, mutasd is meg.",
+                    "Semmittevés? Az erdő szellemei testet öltöttek és a gonosz oldalára álltak. Nem engedik át az ételt szállító utánpótlást, ezért a nép éhezik. Ha olyan erősnek érzed magad, mutasd is meg.",
                     quests[0]
                 ),
                 "player1" to listOf(
