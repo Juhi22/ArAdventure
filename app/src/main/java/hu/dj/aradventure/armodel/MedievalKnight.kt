@@ -27,7 +27,6 @@ object MedievalKnight : ArModel() {
         get() {
             return mutableMapOf(
                 "default" to "medieval_knight/sounds/knight_default.mp3",
-                "default/1" to "medieval_knight/sounds/knight_default.mp3",
                 "0.0/1" to "medieval_knight/sounds/knight_0_0_1.mp3",
                 "0.0/2" to "medieval_knight/sounds/knight_0_0_2.mp3",
                 "0.0/3" to "medieval_knight/sounds/knight_0_0_3.mp3",

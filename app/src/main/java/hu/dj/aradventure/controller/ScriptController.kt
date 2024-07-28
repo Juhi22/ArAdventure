@@ -96,6 +96,7 @@ class ScriptController(
                 chapter = specialScriptKey
             }
         }
+        var useDefaultSound = false
         dialogs = if (script.isEmpty()) {
             HashMap()
         } else {
@@ -114,10 +115,15 @@ class ScriptController(
                         break
                     }
                 }
-                foundQuestScript ?: script["default"] as HashMap<String, List<Any>>
+                if (foundQuestScript != null) {
+                    foundQuestScript
+                } else {
+                    useDefaultSound = true
+                    script["default"] as HashMap<String, List<Any>>
+                }
             }
         }
-        displayDialogsAndPlaySound()
+        displayDialogsAndPlaySound(useDefaultSound)
     }
 
     private fun checkIfQuestIsInProgressByIndex(index: Int, quests: List<Quest>): Boolean {
@@ -138,7 +144,7 @@ class ScriptController(
             .collect(Collectors.toList())
     }
 
-    private fun displayDialogsAndPlaySound() {
+    private fun displayDialogsAndPlaySound(playDefaultSound: Boolean = false) {
         if (dialogs.isNotEmpty()) {
             val section = dialogs[npcSentenceKey]
             if (section != null) {
@@ -147,7 +153,7 @@ class ScriptController(
 
                 val soundKey = "$chapter/$npcSentenceKey"
                 var soundPath: String? = arModel.sounds[soundKey]
-                if (soundPath == null) {
+                if (soundPath == null || playDefaultSound) {
                     soundPath = arModel.sounds["default"]
                 }
                 if (soundPath != null) {
