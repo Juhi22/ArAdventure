@@ -35,14 +35,14 @@ class GameDataManager(context: Context) {
             editor.remove(Key.QUEST_IS_FINISHED.name + i)
         }
 
-        player.inventory.forEachIndexed{ index, item ->
+        player.inventory.forEachIndexed { index, item ->
             editor.putString(Key.PLAYER_ITEM_NAME.name + index, item.name)
             editor.putString(Key.PLAYER_ITEM_DESCRIPTION.name + index, item.description)
             editor.putString(Key.PLAYER_ITEM_TYPE.name + index, item.type.name)
             editor.putInt(Key.PLAYER_ITEM_VALUE.name + index, item.value)
             editor.putInt(Key.PLAYER_ITEM_IMAGE_ID.name + index, item.imageId)
         }
-        player.quests.forEachIndexed{ index, quest ->
+        player.quests.forEachIndexed { index, quest ->
             val entry = QuestList.list.entries.first { entry -> entry.value.name == quest.name }
             editor.putInt(Key.QUEST_INDEX.name + index, entry.key)
             editor.putInt(Key.QUEST_PROGRESS.name + index, quest.progress)
@@ -95,7 +95,8 @@ class GameDataManager(context: Context) {
 
     fun loadGameState(): GameState {
         val gameState = GameState()
-        gameState.chapter = prefs.getFloat(Key.CHAPTER.name, 0.0.toFloat()).toBigDecimal().setScale(1, RoundingMode.UP).toDouble()
+        gameState.chapter =
+            prefs.getFloat(Key.CHAPTER.name, 0.0.toFloat()).toBigDecimal().setScale(1, RoundingMode.UP).toDouble()
 
         for (i in 0..100) {
             val questIndex = prefs.getInt(Key.COMPLETED_QUEST_INDEX.name + i, 0)
@@ -124,7 +125,13 @@ class GameDataManager(context: Context) {
         editor.putBoolean(key, value)
         editor.apply()
     }
+
+    fun getBooleanValue(key: String): Boolean {
+        return prefs.getBoolean(key, false)
+    }
+
     enum class Key {
+        INTRO_WATCHED,
         CHAPTER,
         PLAYER_HEALTH,
         PLAYER_MAX_HEALTH,

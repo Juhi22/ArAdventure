@@ -11,9 +11,12 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MenuActivity : AppCompatActivity() {
 
+    private lateinit var gameDataManager: GameDataManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
+
+        gameDataManager = GameDataManager(this)
 
         val videoView: VideoView = findViewById(R.id.backgroundVideoView)
         val videoPath = "android.resource://${packageName}/${R.raw.menu_background}"
@@ -30,9 +33,16 @@ class MenuActivity : AppCompatActivity() {
         val resetButton: Button = findViewById(R.id.resetButton)
 
         startButton.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
+            if (!gameDataManager.getBooleanValue(GameDataManager.Key.INTRO_WATCHED.name)) {
+                gameDataManager.saveBooleanValue(GameDataManager.Key.INTRO_WATCHED.name, true)
+                val intent = Intent(this, IntroActivity::class.java)
+                startActivity(intent)
+                finish()
+            } else {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         }
 
         tutorialButton.setOnClickListener {
