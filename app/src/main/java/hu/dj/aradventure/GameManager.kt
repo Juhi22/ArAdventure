@@ -132,6 +132,7 @@ class GameDataManager(context: Context) {
 
     enum class Key {
         INTRO_WATCHED,
+        TUTORIAL_WATCHED,
         CHAPTER,
         PLAYER_HEALTH,
         PLAYER_MAX_HEALTH,

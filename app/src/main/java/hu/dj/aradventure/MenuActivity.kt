@@ -32,6 +32,11 @@ class MenuActivity : AppCompatActivity() {
         val tutorialButton: Button = findViewById(R.id.tutorialButton)
         val resetButton: Button = findViewById(R.id.resetButton)
 
+        if (gameDataManager.getBooleanValue(GameDataManager.Key.INTRO_WATCHED.name)) {
+            startButton.isEnabled = true
+            startButton.visibility = View.VISIBLE
+        }
+
         startButton.setOnClickListener {
             if (!gameDataManager.getBooleanValue(GameDataManager.Key.INTRO_WATCHED.name)) {
                 gameDataManager.saveBooleanValue(GameDataManager.Key.INTRO_WATCHED.name, true)
@@ -46,6 +51,11 @@ class MenuActivity : AppCompatActivity() {
         }
 
         tutorialButton.setOnClickListener {
+            if (!gameDataManager.getBooleanValue(GameDataManager.Key.INTRO_WATCHED.name)) {
+                gameDataManager.saveBooleanValue(GameDataManager.Key.TUTORIAL_WATCHED.name, true)
+                startButton.isEnabled = true
+                startButton.visibility = View.VISIBLE
+            }
             val intent = Intent(this, TutorialActivity::class.java)
             startActivity(intent)
         }
@@ -59,6 +69,8 @@ class MenuActivity : AppCompatActivity() {
         resetButton.setOnClickListener {
             val gameDataManager = GameDataManager(this)
             gameDataManager.resetGameState()
+            startButton.isEnabled = false
+            startButton.visibility = View.INVISIBLE
         }
     }
 }
