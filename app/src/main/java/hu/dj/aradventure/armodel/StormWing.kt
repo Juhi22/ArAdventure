@@ -123,7 +123,7 @@ object StormWing : ArModel() {
                     listOf("player5", "player6")
                 ),
                 "4" to listOf(
-                    "Ha kipihented magad, gyere vissza lenne egy feladat a számodra.",
+                    "Ha kipihented magad, gyere vissza. Lenne egy feladat a számodra.",
                     listOf("player7", "player8")
                 ),
                 "5" to listOf(
@@ -209,7 +209,7 @@ object StormWing : ArModel() {
             ),
             quests[1].name to hashMapOf(
                 "1" to listOf(
-                    "Lenyűgöző teljesítmény, legyőzted a sárkány urakat  és lehoztad az erőgömböket nekem.",
+                    "Lenyűgöző teljesítmény, legyőzted a sárkány urakat és lehoztad az erőgömböket nekem.",
                     listOf("player1", "player2")
                 ),
                 "2" to listOf(
