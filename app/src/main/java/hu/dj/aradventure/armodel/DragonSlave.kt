@@ -18,11 +18,11 @@ object DragonSlave: Enemy() {
             )
         }
 
-    override var health: Int = 5
+    override var health: Int = 80
 
-    override var maxHealth: Int = 5
+    override var maxHealth: Int = 80
 
-    override var damagePoint: Int = 1
+    override var damagePoint: Int = 2
 
     override var scale = Vector3(10F, 10F, 10F)
 

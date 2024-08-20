@@ -18,11 +18,11 @@ object DragonKnight: Enemy() {
             )
         }
 
-    override var health: Int = 5
+    override var health: Int = 90
 
-    override var maxHealth: Int = 5
+    override var maxHealth: Int = 90
 
-    override var damagePoint: Int = 1
+    override var damagePoint: Int = 3
 
     override var name = "Sárkánylovag"
 

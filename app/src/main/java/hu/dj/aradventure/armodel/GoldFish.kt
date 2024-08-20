@@ -19,9 +19,9 @@ object GoldFish : Enemy() {
             )
         }
 
-    override var health: Int = 5
+    override var health: Int = 25
 
-    override var maxHealth: Int = 5
+    override var maxHealth: Int = 25
 
     override var damagePoint: Int = 1
 

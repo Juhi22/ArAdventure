@@ -20,11 +20,11 @@ object DragonLordSnowPrince: Enemy() {
             )
         }
 
-    override var health: Int = 5
+    override var health: Int = 70
 
-    override var maxHealth: Int = 5
+    override var maxHealth: Int = 70
 
-    override var damagePoint: Int = 1
+    override var damagePoint: Int = 2
 
     override var loopDeathAnimation: Boolean = false
 

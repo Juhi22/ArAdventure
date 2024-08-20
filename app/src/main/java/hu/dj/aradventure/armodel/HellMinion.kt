@@ -16,9 +16,9 @@ object HellMinion: Enemy() {
             )
         }
 
-    override var health: Int = 5
+    override var health: Int = 20
 
-    override var maxHealth: Int = 5
+    override var maxHealth: Int = 20
 
     override var damagePoint: Int = 1
 

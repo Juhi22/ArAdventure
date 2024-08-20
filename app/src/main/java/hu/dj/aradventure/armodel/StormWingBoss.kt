@@ -20,11 +20,11 @@ object StormWingBoss : Enemy() {
             )
         }
 
-    override var health: Int = 5
+    override var health: Int = 100
 
-    override var maxHealth: Int = 5
+    override var maxHealth: Int = 100
 
-    override var damagePoint: Int = 1
+    override var damagePoint: Int = 4
 
     override var name = "Viharszárny"
 
