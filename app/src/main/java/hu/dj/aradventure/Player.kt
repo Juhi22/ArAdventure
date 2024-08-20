@@ -60,7 +60,7 @@ class Player : ViewModel() {
         if (quest.questType == QuestType.COLLECTING) {
             for(i in 1..quest.goal) {
                 val questItem = quest.questItem as Item
-                val item = inventory.first { it.name == questItem.name}
+                val item = inventory.firstOrNull { it.name == questItem.name}
                 inventory.remove(item)
             }
         }
