@@ -29,6 +29,7 @@ import com.google.ar.sceneform.rendering.RenderableInstance
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
 import hu.dj.aradventure.armodel.*
+import hu.dj.aradventure.armodel.Bread
 import hu.dj.aradventure.armodel.DragonBaby
 import hu.dj.aradventure.controller.*
 import hu.dj.aradventure.dialog.InventoryDialog
@@ -63,6 +64,7 @@ class MainActivity : AppCompatActivity() {
     private var chestOne = ChestOne
     private var chestTwo = ChestTwo
     private var ogre = Ogre
+    private var bread = Bread
 
     private var arModels = mutableListOf(
         medievalKnight,
@@ -80,7 +82,8 @@ class MainActivity : AppCompatActivity() {
         dragonMom,
         chestOne,
         chestTwo,
-        ogre
+        ogre,
+        bread,
     )
 
     private var timedActionController = TimedActionController()
@@ -299,6 +302,11 @@ class MainActivity : AppCompatActivity() {
         } else if (model is Collectable) {
             if (model is DragonBaby) {
                 return !gameState.completedQuestIndexes.contains(2) && !PlayerUtil.isItemInInventory(
+                    player.inventory,
+                    model.item
+                )
+            } else if (model is Bread) {
+                return !gameState.completedQuestIndexes.contains(9) && !PlayerUtil.isItemInInventory(
                     player.inventory,
                     model.item
                 )

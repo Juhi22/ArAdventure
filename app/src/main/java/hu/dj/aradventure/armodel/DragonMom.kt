@@ -22,6 +22,7 @@ object DragonMom : ArModel() {
 
     override val quests: List<Quest> = listOf(
         QuestList.list[2]!!,
+        QuestList.list[9]!!,
     )
 
     override val sounds: Map<String, String>
@@ -52,6 +53,40 @@ object DragonMom : ArModel() {
             quests[0].name to hashMapOf(
                 "1" to listOf(
                     "Nagyon szépen köszönöm, hogy hazahoztad!",
+                    listOf("player1", "player2")
+                ),
+                "2" to listOf(
+                    "Lenne még egy apróság, ma még nem reggeliztünk. Tudnál hozni nekünk a boltból valamilyen pékárut?",
+                    listOf("player3", "player4")
+                ),
+                "3" to listOf(
+                    "Nagyon hálás vagyok, egy kenyér nagyon jó lenne.",
+                    quests[1]
+                ),
+                "4" to listOf(
+                    "Bocsánat, nem akartam rabolni az idejét.",
+                    null
+                ),
+                "player1" to listOf(
+                    "Legközelebb ne engedd a gyereket repkedni, ilyen felelőtlenséget...",
+                    "2"
+                ),
+                "player2" to listOf(
+                    "Ez csak természetes, van bármi amiben tudok még segíteni?",
+                    "2"
+                ),
+                "player3" to listOf(
+                    "Természetesen! Egy hős nem hagyhatja, hogy éhezzetek. Milyen termék legyen?",
+                    "3"
+                ),
+                "player4" to listOf(
+                    "Felejtsd el, így is sok időt töltöttem gyerek felvigyázással",
+                    "4"
+                )
+            ),
+            quests[1].name to hashMapOf(
+                "1" to listOf(
+                    "Nagyon szépen köszönöm, végre egy nagyon finom reggelit fogok tudni adni a gyermekemnek!",
                     null
                 )
             ),
@@ -88,6 +123,28 @@ object DragonMom : ArModel() {
                     "Nyugodjon meg, biztos itt van valahol a közelben. Ígérem, hogy hazahozom.",
                     "4"
                 ),
-            )
+            ),
+            "quest9" to hashMapOf(
+                "1" to listOf(
+                    "A mi hősünk újra itt. Mi szél hozta Önt erre?",
+                    listOf("player1", "player2")
+                ),
+                "2" to listOf(
+                    "Nagyon hálás vagyok, egy kenyér nagyon jó lenne.",
+                    quests[1]
+                ),
+                "3" to listOf(
+                    "Bocsánat, nem akartam rabolni az idejét.",
+                    null
+                ),
+                "player1" to listOf(
+                    "Jöttem beszerezni a pékárut, mire van szükség?",
+                    "2"
+                ),
+                "player2" to listOf(
+                    "Csak nézelődök, egy hős mindig elfoglalt és sosem ér rá.",
+                    "3"
+                ),
+            ),
         )
 }

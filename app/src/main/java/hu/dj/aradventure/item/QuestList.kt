@@ -16,7 +16,7 @@ object QuestList {
             QuestType.COLLECTING,
             DragonBaby,
             1,
-            HealthAmulet,
+            null,
             null
         ),
         3 to Quest(
@@ -64,6 +64,15 @@ object QuestList {
             1,
             null,
             2.3
+        ),
+        9 to Quest(
+          "Egy zsíros deszkának való",
+            "Szerezz egy kenyeret, hogy a sárkány bébi meg tudjon reggelizni",
+            QuestType.COLLECTING,
+            Bread,
+            1,
+            HealthAmulet,
+            null
         ),
     )
 
