@@ -1,0 +1,11 @@
+Model Information:
+* title:	The Dread Serpent (Deepwoken)
+* source:	https://sketchfab.com/3d-models/the-dread-serpent-deepwoken-7132610b5b8a4dfc86ac0be2f0144eb9
+* author:	Zyleck (https://sketchfab.com/Zyleck)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "The Dread Serpent (Deepwoken)" (https://sketchfab.com/3d-models/the-dread-serpent-deepwoken-7132610b5b8a4dfc86ac0be2f0144eb9) by Zyleck (https://sketchfab.com/Zyleck) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -74,6 +74,15 @@ object QuestList {
             HealthAmulet,
             null
         ),
+        10 to Quest(
+            "Shrek-ből elég",
+            "Győzd le a mocsárban randalírozó ogrékat",
+            QuestType.KILLING,
+            Ogre,
+            3,
+            PowerAmulet,
+            null
+        )
     )
 
 }

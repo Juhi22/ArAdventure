@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity() {
     private var chestTwo = ChestTwo
     private var ogre = Ogre
     private var bread = Bread
+    private var swampGuard = SwampGuard
 
     private var arModels = mutableListOf(
         medievalKnight,
@@ -84,6 +85,7 @@ class MainActivity : AppCompatActivity() {
         chestTwo,
         ogre,
         bread,
+        swampGuard,
     )
 
     private var timedActionController = TimedActionController()
