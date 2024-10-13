@@ -16,7 +16,7 @@ object QuestList {
             QuestType.COLLECTING,
             DragonBaby,
             1,
-            null,
+            HealthAmulet,
             null
         ),
         3 to Quest(
@@ -71,7 +71,7 @@ object QuestList {
             QuestType.COLLECTING,
             Bread,
             1,
-            HealthAmulet,
+            DragonMomTrophy,
             null
         ),
         10 to Quest(
@@ -82,7 +82,25 @@ object QuestList {
             3,
             PowerAmulet,
             null
-        )
+        ),
+        11 to Quest(
+            "Méregkeverés",
+            "Gyűjts be 5 mérget.",
+            QuestType.COLLECTING,
+            Poison,
+            5,
+            PowerAmulet,
+            null
+        ),
+        12 to Quest(
+            "Méregkeverés",
+            "Gyűjts be 100 mérget.",
+            QuestType.COLLECTING,
+            Poison,
+            100,
+            SwampTrophy,
+            null
+        ),
     )
 
 }

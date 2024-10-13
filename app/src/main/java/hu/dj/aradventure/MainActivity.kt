@@ -66,6 +66,7 @@ class MainActivity : AppCompatActivity() {
     private var ogre = Ogre
     private var bread = Bread
     private var swampGuard = SwampGuard
+    private var snake = Snake
 
     private var arModels = mutableListOf(
         medievalKnight,
@@ -86,6 +87,7 @@ class MainActivity : AppCompatActivity() {
         ogre,
         bread,
         swampGuard,
+        snake,
     )
 
     private var timedActionController = TimedActionController()
@@ -378,14 +380,14 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    private fun updateModelOrientation(transformableNode: TransformableNode) {
+    private fun updateModelOrientation(transformableNode: TransformableNode, degree: Float) {
         val cameraPosition = arFragment.arSceneView.scene.camera.worldPosition
         val transformableNodePosition = transformableNode.worldPosition
         if (cameraPosition != null && transformableNodePosition != null) {
             val relativePosition = Vector3.subtract(cameraPosition, transformableNodePosition)
             val direction = Vector3(relativePosition.x, 0.0f, relativePosition.z).normalized()
             val rotation = Quaternion.lookRotation(direction, Vector3.up())
-            transformableNode.worldRotation = Quaternion.multiply(rotation, Quaternion.axisAngle(Vector3.up(), 180f))
+            transformableNode.worldRotation = Quaternion.multiply(rotation, Quaternion.axisAngle(Vector3.up(), degree))
         }
     }
 
@@ -518,12 +520,12 @@ class MainActivity : AppCompatActivity() {
                 if (arModel !is Collectable) {
                     if (animationName != "dead") {
                         arFragment.arSceneView.scene.addOnUpdateListener {
-                            updateModelOrientation(this)
+                            updateModelOrientation(this, arModel.rotationDegree)
                         }
                     } else {
                         gameState.isFightOngoing.value = false
                         timedActionController.runAfterDelay(100) {
-                            updateModelOrientation(this)
+                            updateModelOrientation(this, arModel.rotationDegree)
                         }
                         scriptController.play(null, arModel, player.quests, "dead")
                         if (arModel is Enemy) {

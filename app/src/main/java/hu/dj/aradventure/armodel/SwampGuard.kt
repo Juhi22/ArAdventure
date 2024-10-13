@@ -22,6 +22,8 @@ object SwampGuard : ArModel() {
 
     override val quests: List<Quest> = listOf(
         QuestList.list[10]!!,
+        QuestList.list[11]!!,
+        QuestList.list[12]!!,
     )
 
     override val sounds: Map<String, String>
@@ -40,10 +42,74 @@ object SwampGuard : ArModel() {
                     null
                 ),
             ),
+            quests[1].name to hashMapOf(
+                "1" to listOf(
+                    "Meg is hoztad a mérget, remek. Még egy dolog lenne.",
+                    listOf("player1", "player2")
+                ),
+                "1" to listOf(
+                    "Egy sárkány pusztítja a mocsarat. Senkit nem enged be. Győzd le és hozd el nekem a nála lévő kulcsot!",
+                    quests[2]
+                ),
+                "player1" to listOf(
+                    "Teljesítem bármi legyen is az!",
+                    "2"
+                ),
+                "player2" to listOf(
+                    "De ez az utolsó!",
+                    "2"
+                ),
+            ),
+            "quest11" to hashMapOf(
+                "1" to listOf(
+                    "Lenne még feladatom a számodra. Gyűjts nekem mérget, egy adalékot keverek amivel meg tudom tisztítani a mocsár vizét.",
+                    listOf("player1", "player2")
+                ),
+                "2" to listOf(
+                    "Hát jó, ha meggondolnád magad itt leszek.",
+                    null
+                ),
+                "3" to listOf(
+                    "Remek, alig várom.",
+                    quests[1]
+                ),
+                "player1" to listOf(
+                    "Mindjárt hozom.",
+                    "3"
+                ),
+                "player2" to listOf(
+                    "Köszönöm, de nem érdekel.",
+                    "2"
+                ),
+            ),
             quests[0].name to hashMapOf(
                 "1" to listOf(
-                    "Nagyon jó, nagyon jó...",
+                    "Nagyon jó, nagyon jó... Lenne még feladatom a számodra.",
+                    listOf("player1", "player2")
+                ),
+                "2" to listOf(
+                    "Hát jó, ha meggondolnád magad itt leszek.",
                     null
+                ),
+                "3" to listOf(
+                    "Gyűjts nekem mérget, egy adalékot keverek amivel meg tudom tisztítani a mocsár vizét.",
+                    listOf("player2", "player3")
+                ),
+                "4" to listOf(
+                    "Remek, alig várom.",
+                    quests[1]
+                ),
+                "player1" to listOf(
+                    "Mi lenne az?",
+                    "3"
+                ),
+                "player2" to listOf(
+                    "Köszönöm, de nem érdekel.",
+                    "2"
+                ),
+                "player3" to listOf(
+                    "Mindjárt hozom.",
+                    "4"
                 ),
             ),
             "quest10" to hashMapOf(
