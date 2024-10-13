@@ -42,13 +42,39 @@ object SwampGuard : ArModel() {
                     null
                 ),
             ),
+            quests[2].name to hashMapOf(
+                "1" to listOf(
+                    "Itt is van a kulcs! Remek! Nagyon jó szolgálatot tettél, mostmár ki tudom nyitni a zsilipet és végre tudom hajtani a tervem.",
+                    listOf("player1", "player2")
+                ),
+                "2" to listOf(
+                    "Legjobbakat, sok szerencsét neked is. Kelleni fog!",
+                    null
+                ),
+                "3" to listOf(
+                    "Nincs több ogre az utamban, nálam a zsilip kulcsa és a méregből kikevert vegyülettel elpusztíthatom... ööö akarom mondani megtisztíthatom a völgyet a gonosztól!",
+                    listOf("player1", "player3")
+                ),
+                "player1" to listOf(
+                    "Örülök, hogy segíthettem, viszlát!",
+                    "2"
+                ),
+                "player2" to listOf(
+                    "Miféle terv?",
+                    "3"
+                ),
+                "player3" to listOf(
+                    "Remélem nem sántikálsz semmi rosszban, mert akkor még találkozunk! Addig is viszlát!",
+                    "2"
+                ),
+            ),
             quests[1].name to hashMapOf(
                 "1" to listOf(
                     "Meg is hoztad a mérget, remek. Még egy dolog lenne.",
                     listOf("player1", "player2")
                 ),
                 "1" to listOf(
-                    "Egy sárkány pusztítja a mocsarat. Senkit nem enged be. Győzd le és hozd el nekem a nála lévő kulcsot!",
+                    "Egy sárkány pusztítja a mocsarat. Senkit nem enged be. Győzd le és hozd el nekem a nála lévő vörös kulcsot!",
                     quests[2]
                 ),
                 "player1" to listOf(

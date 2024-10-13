@@ -7,4 +7,5 @@ object Poison: Item() {
     override var description = "Remek alapanyag a gonosz tervek megvalósításához."
     override var imageId = R.drawable.poison
     override var type = ItemType.COLLECTABLE
+    override var stackable = true
 }

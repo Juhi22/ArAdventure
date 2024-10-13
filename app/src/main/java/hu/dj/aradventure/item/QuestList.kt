@@ -93,11 +93,11 @@ object QuestList {
             null
         ),
         12 to Quest(
-            "Méregkeverés",
-            "Gyűjts be 100 mérget.",
+            "A csavar kulcs",
+            "Szerezd meg a vörös kulcsot a mocsárban lévő sárkánytól.",
             QuestType.COLLECTING,
-            Poison,
-            100,
+            RedKey,
+            1,
             SwampTrophy,
             null
         ),

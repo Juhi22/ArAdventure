@@ -36,7 +36,6 @@ import hu.dj.aradventure.dialog.InventoryDialog
 import hu.dj.aradventure.dialog.QuestLogDialog
 import hu.dj.aradventure.item.*
 
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var arFragment: ArFragment
@@ -67,6 +66,7 @@ class MainActivity : AppCompatActivity() {
     private var bread = Bread
     private var swampGuard = SwampGuard
     private var snake = Snake
+    private var lightDragon = LightDragon
 
     private var arModels = mutableListOf(
         medievalKnight,
@@ -88,6 +88,7 @@ class MainActivity : AppCompatActivity() {
         bread,
         swampGuard,
         snake,
+        lightDragon,
     )
 
     private var timedActionController = TimedActionController()
@@ -303,6 +304,8 @@ class MainActivity : AppCompatActivity() {
             return !gameState.isDragonLordHornIsDefeated
         } else if (model is StormWingBoss) {
             return !gameState.isStormWingBossDefeated
+        }else if (model is LightDragon) {
+            return !gameState.isLightDragonDefeated
         } else if (model is Collectable) {
             if (model is DragonBaby) {
                 return !gameState.completedQuestIndexes.contains(2) && !PlayerUtil.isItemInInventory(
@@ -595,6 +598,9 @@ class MainActivity : AppCompatActivity() {
         } else if (arModel is StormWingBoss) {
             gameState.isStormWingBossDefeated = true
             gameDataManager.saveBooleanValue(GameDataManager.Key.STORM_WING_BOSS_DEFEATED.name, true)
+        } else if (arModel is LightDragon) {
+            gameState.isLightDragonDefeated = true
+            gameDataManager.saveBooleanValue(GameDataManager.Key.LIGHT_DRAGON_DEFEATED.name, true)
         }
     }
 
