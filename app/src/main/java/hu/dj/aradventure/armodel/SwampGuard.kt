@@ -29,8 +29,24 @@ object SwampGuard : ArModel() {
     override val sounds: Map<String, String>
         get() {
             return mutableMapOf(
-                "default" to "swamp_guard/sounds/1.mp3",
-                quests[0].name + "/1" to "swamp_guard/sounds/1.mp3",
+                "default" to "swamp_guard/sounds/default.mp3",
+                "quest10" to "swamp_guard/sounds/quest10_1.mp3",
+                "quest10" to "swamp_guard/sounds/quest10_2.mp3",
+                "quest10" to "swamp_guard/sounds/quest10_3.mp3",
+                "quest10" to "swamp_guard/sounds/quest10_4.mp3",
+                "quest10" to "swamp_guard/sounds/quest10_5.mp3",
+                "quest11" to "swamp_guard/sounds/quest11_1.mp3",
+                "quest11" to "swamp_guard/sounds/quest10_3.mp3",
+                "quest11" to "swamp_guard/sounds/quest11_3.mp3",
+                quests[0].name + "/1" to "swamp_guard/sounds/quest_0_1.mp3",
+                quests[0].name + "/2" to "swamp_guard/sounds/quest10_3.mp3",
+                quests[0].name + "/3" to "swamp_guard/sounds/quest_0_3.mp3",
+                quests[0].name + "/4" to "swamp_guard/sounds/quest11_3.mp3",
+                quests[1].name + "/1" to "swamp_guard/sounds/quest_1_1.mp3",
+                quests[1].name + "/2" to "swamp_guard/sounds/quest_1_2.mp3",
+                quests[2].name + "/1" to "swamp_guard/sounds/quest_2_1.mp3",
+                quests[2].name + "/2" to "swamp_guard/sounds/quest_2_2.mp3",
+                quests[2].name + "/3" to "swamp_guard/sounds/quest_2_3.mp3",
             )
         }
 
@@ -73,7 +89,7 @@ object SwampGuard : ArModel() {
                     "Meg is hoztad a mérget, remek. Még egy dolog lenne.",
                     listOf("player1", "player2")
                 ),
-                "1" to listOf(
+                "2" to listOf(
                     "Egy sárkány pusztítja a mocsarat. Senkit nem enged be. Győzd le és hozd el nekem a nála lévő vörös kulcsot!",
                     quests[2]
                 ),

@@ -111,6 +111,7 @@ class ScriptController(
                         if (checkIfQuestIsInProgressByIndex(i, quests)) {
                             break
                         }
+                        chapter = "quest$i"
                         foundQuestScript = questScript as HashMap<String, List<Any>>
                         break
                     }

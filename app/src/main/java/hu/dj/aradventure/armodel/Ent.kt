@@ -29,9 +29,9 @@ object Ent: Enemy() {
     override val sounds: Map<String, String>
         get() {
             return mutableMapOf(
-                "default" to "ent/sounds/1.mp3",
-                "attack/1" to "ent/sounds/1.mp3",
-                "dead/1" to "ent/sounds/1.mp3",
+                "default" to "ent/sounds/ent_attack.mp3",
+                "attack/1" to "ent/sounds/ent_attack.mp3",
+                "dead/1" to "ent/sounds/ent_dead.mp3",
             )
         }
 

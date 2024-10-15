@@ -28,17 +28,19 @@ object DragonMom : ArModel() {
     override val sounds: Map<String, String>
         get() {
             return mutableMapOf(
-                "default" to "dragon_mom/sounds/1.mp3",
-                "default/1" to "dragon_mom/sounds/1.mp3",
-                "default/2" to "dragon_mom/sounds/1.mp3",
-                "default/3" to "dragon_mom/sounds/1.mp3",
-                "default/4" to "dragon_mom/sounds/1.mp3",
-                "0.0/1" to "dragon_mom/sounds/1.mp3",
-                "0.0/2" to "dragon_mom/sounds/1.mp3",
-                "0.0/3" to "dragon_mom/sounds/1.mp3",
-                "0.0/4" to "dragon_mom/sounds/1.mp3",
-                "0.0/5" to "dragon_mom/sounds/1.mp3",
-                quests[0].name + "/1" to "dragon_mom/sounds/1.mp3",
+                "default" to "dragon_mom/sounds/default.mp3",
+                "quest2/1" to "dragon_mom/sounds/quest2_1.mp3",
+                "quest2/2" to "dragon_mom/sounds/quest2_2.mp3",
+                "quest2/3" to "dragon_mom/sounds/quest2_3.mp3",
+                "quest2/4" to "dragon_mom/sounds/quest2_4.mp3",
+                "quest9/1" to "dragon_mom/sounds/quest9_1.mp3",
+                "quest9/2" to "dragon_mom/sounds/quest9_2.mp3",
+                "quest9/3" to "dragon_mom/sounds/quest2_2.mp3",
+                quests[0].name + "/1" to "dragon_mom/sounds/quest_0_1.mp3",
+                quests[0].name + "/2" to "dragon_mom/sounds/quest_0_2.mp3",
+                quests[0].name + "/3" to "dragon_mom/sounds/quest9_2.mp3",
+                quests[0].name + "/4" to "dragon_mom/sounds/quest2_2.mp3",
+                quests[1].name + "/1" to "dragon_mom/sounds/quest_1_1.mp3",
             )
         }
 

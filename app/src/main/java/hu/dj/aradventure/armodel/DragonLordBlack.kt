@@ -36,9 +36,9 @@ object DragonLordBlack: Enemy() {
     override val sounds: Map<String, String>
         get() {
             return mutableMapOf(
-                "default" to "dragon_lord_black/sounds/1.mp3",
-                "attack/1" to "dragon_lord_black/sounds/1.mp3",
-                "dead/1" to "dragon_lord_black/sounds/1.mp3",
+                "default" to "dragon_lord_black/sounds/black_attack.mp3",
+                "attack/1" to "dragon_lord_black/sounds/black_attack.mp3",
+                "dead/1" to "dragon_lord_black/sounds/black_dead.mp3",
             )
         }
 
