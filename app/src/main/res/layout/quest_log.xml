@@ -2,5 +2,6 @@
           android:id="@+id/listView"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:background="@android:color/white"
+          android:textAlignment="center"
+          android:background="#D2B48C"
           android:padding="16dp"/>

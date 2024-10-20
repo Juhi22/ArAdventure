@@ -1,11 +1,11 @@
 package hu.dj.aradventure.dialog
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.ListAdapter
@@ -14,29 +14,29 @@ import android.widget.TextView
 import androidx.annotation.NonNull
 import hu.dj.aradventure.R
 import hu.dj.aradventure.item.Quest
-import java.util.stream.Collectors
 
 class QuestLogDialog(private var context: Context) {
 
     private lateinit var alertDialog: AlertDialog
 
-    private val DEFAULT_DATA = listOf("Jelenleg nincs küldetésed, kalandozz tovább!")
-
-    init {
-        buildDialog(ArrayAdapter(context, android.R.layout.simple_list_item_1, DEFAULT_DATA))
-    }
-
     fun show(quests: List<Quest>) {
         if (quests.isEmpty()) {
-            buildDialog(ArrayAdapter(context, android.R.layout.simple_list_item_1, DEFAULT_DATA))
+            buildEmptyQuestLogDialog()
         } else {
             buildDialog(QuestLogDialogAdapter(context, quests))
         }
         alertDialog.show()
     }
 
+    @SuppressLint("SetTextI18n")
+    private fun buildEmptyQuestLogDialog() {
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.empty_stuff, null)
+        val textView = dialogView.findViewById<TextView>(R.id.text)
+        textView.text = "Jelenleg nincs küldetésed, kalandozz tovább!"
+        alertDialog = AlertDialog.Builder(context).setView(dialogView).create()
+    }
+
     private fun buildDialog(adapter: ListAdapter) {
-        val builder = AlertDialog.Builder(context)
         val inflater = LayoutInflater.from(context)
         val dialogView = inflater.inflate(R.layout.quest_log, null)
 
@@ -44,8 +44,7 @@ class QuestLogDialog(private var context: Context) {
 
         listView.adapter = adapter
 
-        builder.setView(dialogView)
-        alertDialog = builder.create()
+        alertDialog = AlertDialog.Builder(context).setView(dialogView).create()
     }
 
     private class QuestLogDialogAdapter(

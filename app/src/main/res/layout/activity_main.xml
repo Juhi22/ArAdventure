@@ -182,7 +182,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:background="@drawable/rounded_background"
+            android:background="@drawable/rounded_background_grey"
             android:gravity="center"
             android:padding="8dp"
             app:layout_constraintStart_toStartOf="parent"

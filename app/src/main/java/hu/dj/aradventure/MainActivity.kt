@@ -97,6 +97,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var vibrationController: VibrationController
 
     private var isItemBeingShown = false
+    private var itemsToShowQueue = mutableListOf<Item>()
 
     @SuppressLint("MissingInflatedId", "ClickableViewAccessibility")
     @RequiresApi(Build.VERSION_CODES.O)
@@ -168,7 +169,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         inventoryImage.setOnClickListener {
-            val inventoryDialog = InventoryDialog(this, resources)
+            val inventoryDialog = InventoryDialog(this)
             inventoryDialog.show(player.inventory)
         }
 
@@ -364,6 +365,10 @@ class MainActivity : AppCompatActivity() {
                 gameDataManager.savePlayer(player)
                 QuestController.update(player.quests, QuestType.COLLECTING, item, player.inventory)
                 QuestController.update(player.quests, QuestType.SPEAKING, item)
+                if (itemsToShowQueue.isNotEmpty()) {
+                    showItem(itemsToShowQueue.first())
+                    itemsToShowQueue.removeFirst()
+                }
             }
         } else {
             healthPoints.visibility = View.VISIBLE
@@ -605,8 +610,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showItem(reward: Item) {
-        isItemBeingShown = true
-        setBackDropContent(View.VISIBLE, reward)
+        if (isItemBeingShown) {
+            itemsToShowQueue.add(reward)
+        } else {
+            isItemBeingShown = true
+            setBackDropContent(View.VISIBLE, reward)
+        }
     }
 
     private fun clearChildNodes(anchorNode: Node) {

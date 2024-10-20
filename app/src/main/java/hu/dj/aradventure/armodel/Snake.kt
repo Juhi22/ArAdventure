@@ -1,6 +1,5 @@
 package hu.dj.aradventure.armodel
 
-import com.google.ar.sceneform.math.Quaternion
 import hu.dj.aradventure.item.Item
 import hu.dj.aradventure.item.Poison
 
@@ -31,6 +30,8 @@ object Snake: Enemy() {
     override var name = "Kígyó"
 
     override var rotationDegree = 270f
+    
+    override var loopDeathAnimation: Boolean = false
 
     override val sounds: Map<String, String>
         get() {

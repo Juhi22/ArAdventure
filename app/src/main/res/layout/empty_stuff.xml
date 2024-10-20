@@ -5,14 +5,10 @@
               android:padding="16dp"
               android:background="#D2B48C">
 
-    <GridLayout
-            android:id="@+id/gridLayout"
-            android:layout_width="match_parent"
+    <TextView
+            android:id="@+id/text"
             android:layout_height="wrap_content"
-            android:columnCount="3"
-            android:rowCount="3"
-            android:orientation="horizontal"
-            android:padding="8dp"
-            android:background="#D2B48C">
-    </GridLayout>
+            android:layout_width="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/black"/>
 </LinearLayout>

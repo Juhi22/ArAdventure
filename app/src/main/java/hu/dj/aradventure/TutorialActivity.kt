@@ -1,5 +1,6 @@
 package hu.dj.aradventure
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.viewpager2.widget.ViewPager2
 
 class TutorialActivity : AppCompatActivity() {
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tutorial)
@@ -72,6 +74,7 @@ class TutorialActivity : AppCompatActivity() {
 
         val adapter = ViewPagerAdapter(items)
         viewPager.adapter = adapter
+        pageIndicator.text = "1/${adapter.itemCount}"
 
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {

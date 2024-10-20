@@ -59,7 +59,6 @@ class ScriptController(
 
     private fun finishScript() {
         removeDialogs()
-        removeDoneDialog()
         isScriptOngoing = false
         if (newQuest != null) {
             QuestController.startQuest(newQuest!!)
@@ -70,12 +69,6 @@ class ScriptController(
             finishedQuest = null
         }
         onCompletionListener?.invoke()
-    }
-
-    private fun removeDoneDialog() {
-        if (!constantDialogs.contains(chapter) && arModel.script.keys.contains(chapter)) {
-            arModel.script.remove(chapter)
-        }
     }
 
     fun play(gameState: GameState?, givenArModel: ArModel, quests: List<Quest>, specialScriptKey: String = "default") {
