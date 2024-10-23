@@ -35,6 +35,10 @@ import hu.dj.aradventure.controller.*
 import hu.dj.aradventure.dialog.InventoryDialog
 import hu.dj.aradventure.dialog.QuestLogDialog
 import hu.dj.aradventure.item.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
 
@@ -97,6 +101,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var vibrationController: VibrationController
 
     private var isItemBeingShown = false
+    private var areModelsBeingLoaded = false
     private var itemsToShowQueue = mutableListOf<Item>()
 
     @SuppressLint("MissingInflatedId", "ClickableViewAccessibility")
@@ -109,20 +114,10 @@ class MainActivity : AppCompatActivity() {
 
         val modelInfoView: LinearLayout = findViewById(R.id.modelInfo)
         val modelNameView: TextView = findViewById(R.id.modelName)
-        val progressBar: ProgressBar = findViewById(R.id.progress_bar)
         val healthPointsView: TextView = findViewById(R.id.healthPoints)
-        val heartIconView: ImageView = findViewById(R.id.heartIcon)
         val damagePointsView: TextView = findViewById(R.id.damagePoints)
-        val damageIconView: ImageView = findViewById(R.id.damageIcon)
         val questLogImage: ImageView = findViewById(R.id.questLog)
         val inventoryImage: ImageView = findViewById(R.id.inventory)
-        modelInfoView.visibility = View.GONE
-        healthPointsView.visibility = View.GONE
-        heartIconView.visibility = View.GONE
-        damageIconView.visibility = View.GONE
-        damagePointsView.visibility = View.GONE
-        questLogImage.visibility = View.GONE
-        inventoryImage.visibility = View.GONE
 
         soundController = SoundController(assets)
 
@@ -221,18 +216,12 @@ class MainActivity : AppCompatActivity() {
             } else {
                 addArModelsToAgumentedImageDb()
             }
-
-            progressBar.visibility = View.GONE
-            healthPointsView.visibility = View.VISIBLE
-            heartIconView.visibility = View.VISIBLE
-            damagePointsView.visibility = View.VISIBLE
-            damageIconView.visibility = View.VISIBLE
-            questLogImage.visibility = View.VISIBLE
-            inventoryImage.visibility = View.VISIBLE
         }
 
         arFragment.arSceneView.scene.addOnUpdateListener { frameTime: FrameTime ->
-            if (!player.isDead.value!! && !gameState.isFightOngoing.value!! && !scriptController.isScriptOngoing && !isItemBeingShown) {
+            if (!player.isDead.value!! && !gameState.isFightOngoing.value!! && !scriptController.isScriptOngoing &&
+                !isItemBeingShown && !areModelsBeingLoaded
+            ) {
                 val updatedAugmentedImages =
                     arFragment.arSceneView.arFrame?.getUpdatedTrackables(AugmentedImage::class.java)
                 updatedAugmentedImages?.forEach { augmentedImage ->
@@ -269,13 +258,33 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addArModelsToAgumentedImageDb() {
-        val augmentedImageDatabase = AugmentedImageDatabase(arFragment.arSceneView.session)
-        arModels.forEach {
-            addAugmentedImageToDB(it, augmentedImageDatabase)
+        val progressBar: ProgressBar = findViewById(R.id.progress_bar)
+        val progressBarText: TextView = findViewById(R.id.progress_bar_text)
+        val progressTexts = listOf(
+            "Türelem! A manók éppen a háttérben szerelik a játékot!",
+            "Ha már úgyis tölt a játék, nem kellene kitakarítani a szobádat?",
+            "Pillanat és kezdünk csak még néhány sárkány alszik.",
+            "Csinálj küldetéseket, hogy a küldetések kész legyenek.",
+            "Ha harcra kerül a sor érdemes a kardodat használni.",
+        )
+        progressBarText.text = "Tipp: " + progressTexts[progressTexts.indices.random()]
+        progressBar.visibility = View.VISIBLE
+        progressBarText.visibility = View.VISIBLE
+        CoroutineScope(Dispatchers.Main).launch {
+            withContext(Dispatchers.IO) {
+                areModelsBeingLoaded = true
+                val augmentedImageDatabase = AugmentedImageDatabase(arFragment.arSceneView.session)
+                arModels.forEach {
+                    addAugmentedImageToDB(it, augmentedImageDatabase)
+                }
+                val config = arFragment.arSceneView.session?.config
+                config?.augmentedImageDatabase = augmentedImageDatabase
+                arFragment.arSceneView.session?.configure(config)
+            }
+            areModelsBeingLoaded = false
+            progressBar.visibility = View.GONE
+            progressBarText.visibility = View.GONE
         }
-        val config = arFragment.arSceneView.session?.config
-        config?.augmentedImageDatabase = augmentedImageDatabase
-        arFragment.arSceneView.session?.configure(config)
     }
 
     private fun transformFriendsToEnemies() {
@@ -305,7 +314,7 @@ class MainActivity : AppCompatActivity() {
             return !gameState.isDragonLordHornIsDefeated
         } else if (model is StormWingBoss) {
             return !gameState.isStormWingBossDefeated
-        }else if (model is LightDragon) {
+        } else if (model is LightDragon) {
             return !gameState.isLightDragonDefeated
         } else if (model is Collectable) {
             if (model is DragonBaby) {
