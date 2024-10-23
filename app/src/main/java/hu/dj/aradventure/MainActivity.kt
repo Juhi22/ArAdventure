@@ -210,6 +210,8 @@ class MainActivity : AppCompatActivity() {
 
         arFragment = supportFragmentManager.findFragmentById(R.id.arFragment) as ArFragment
 
+        arFragment.instructionsController.isEnabled = false
+
         arFragment.arSceneView.post {
             if (gameState.chapter >= 2.0) {
                 transformFriendsToEnemies()
