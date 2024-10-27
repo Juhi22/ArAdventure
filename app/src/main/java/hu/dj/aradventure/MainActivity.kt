@@ -104,6 +104,10 @@ class MainActivity : AppCompatActivity() {
     private var areModelsBeingLoaded = false
     private var itemsToShowQueue = mutableListOf<Item>()
 
+    private lateinit var currentAnchorNode: Node
+    private lateinit var currentModelRenderable: ModelRenderable
+    private lateinit var currentArModel: ArModel
+
     @SuppressLint("MissingInflatedId", "ClickableViewAccessibility")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -176,7 +180,7 @@ class MainActivity : AppCompatActivity() {
         QuestController.onEventListener(object : QuestController.QuestListener {
             override fun onQuestStarts(quest: Quest) {
                 showItem(quest)
-                QuestController.update(player.quests, quest.questType, quest.questItem)
+                QuestController.update(player.quests + quest, quest.questType, quest.questItem)
             }
 
             override fun onQuestEnds(quest: Quest) {
@@ -216,7 +220,7 @@ class MainActivity : AppCompatActivity() {
             if (gameState.chapter >= 2.0) {
                 transformFriendsToEnemies()
             } else {
-                addArModelsToAgumentedImageDb()
+                addArModelsToAugmentedImageDb()
             }
         }
 
@@ -259,7 +263,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun addArModelsToAgumentedImageDb() {
+    private fun addArModelsToAugmentedImageDb() {
         val progressBar: ProgressBar = findViewById(R.id.progress_bar)
         val progressBarText: TextView = findViewById(R.id.progress_bar_text)
         val progressTexts = listOf(
@@ -294,7 +298,7 @@ class MainActivity : AppCompatActivity() {
         arModels.add(stormWingBoss)
         arModels.remove(medievalKnight)
         arModels.add(dragonKnight)
-        addArModelsToAgumentedImageDb()
+        addArModelsToAugmentedImageDb()
     }
 
     private fun setModelHealthBar(healthPercent: Int, modelNameView: TextView = findViewById(R.id.modelName)) {
@@ -376,6 +380,9 @@ class MainActivity : AppCompatActivity() {
                 gameDataManager.savePlayer(player)
                 QuestController.update(player.quests, QuestType.COLLECTING, item, player.inventory)
                 QuestController.update(player.quests, QuestType.SPEAKING, item)
+                if (item is Quest && item.isFinished) {
+                    changeNodeAnimation(currentAnchorNode, currentModelRenderable, currentArModel, "idle")
+                }
                 if (itemsToShowQueue.isNotEmpty()) {
                     showItem(itemsToShowQueue.first())
                     itemsToShowQueue.removeFirst()
@@ -429,6 +436,10 @@ class MainActivity : AppCompatActivity() {
                 runOnUiThread {
                     arFragment.arSceneView.scene.addChild(anchorNode.apply {
                         addChildNode(this, modelRenderable, arModel, "idle")
+
+                        currentAnchorNode = this
+                        currentModelRenderable = modelRenderable
+                        currentArModel = arModel
 
                         if (arModel is Enemy) {
                             var isInitialAttack = true
