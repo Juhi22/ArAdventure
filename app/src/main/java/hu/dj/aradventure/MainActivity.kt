@@ -180,7 +180,7 @@ class MainActivity : AppCompatActivity() {
         QuestController.onEventListener(object : QuestController.QuestListener {
             override fun onQuestStarts(quest: Quest) {
                 showItem(quest)
-                QuestController.update(player.quests + quest, quest.questType, quest.questItem)
+                QuestController.update(player.quests, quest.questType, quest.questItem)
             }
 
             override fun onQuestEnds(quest: Quest) {
@@ -380,7 +380,7 @@ class MainActivity : AppCompatActivity() {
                 gameDataManager.savePlayer(player)
                 QuestController.update(player.quests, QuestType.COLLECTING, item, player.inventory)
                 QuestController.update(player.quests, QuestType.SPEAKING, item)
-                if (item is Quest && item.isFinished) {
+                if (item is Quest && item.goal != 0 && item.isFinished) {
                     changeNodeAnimation(currentAnchorNode, currentModelRenderable, currentArModel, "idle")
                 }
                 if (itemsToShowQueue.isNotEmpty()) {
